@@ -1,0 +1,939 @@
+{
+  "upstream": "https://github.com/kdavies4/FCSys",
+  "upstream_commit": "cb4b17f34313b9d8f2d4223d5365684b4dc1ab65",
+  "port_revision": "om127-native-core.1",
+  "qualification": "Staged/extracted headless and manual OMEdit wet TestStand PASS; monitored GUI DLL paths captured. Limited Windows64 OM1.27 software regression; full library, automatic setup, empirical accuracy and full visual fidelity unqualified.",
+  "files": [
+    {
+      "path": "FCSys 0.2.6/Assemblies.mo",
+      "sha256": "4c39e32c6a12bf23221e17efec6ef4631ddabc583ec285705db60ab64773e9fa",
+      "bytes": 54517,
+      "sha256_lf": "67401612f977c029ad8e3c26f4b3357f8af55440b65b4df332c6e7a91ffa6c1b"
+    },
+    {
+      "path": "FCSys 0.2.6/Blocks.mo",
+      "sha256": "62fd6427a38f66394ae13b189a8c90a2c538a7e3ed8869d77cb7d206800e440b",
+      "bytes": 6746,
+      "sha256_lf": "78bd454e5581cd116a75b29f3c82fdcfe61958fe41b5362507665e5de9596dd9"
+    },
+    {
+      "path": "FCSys 0.2.6/Characteristics.mo",
+      "sha256": "e283b29daf748251f57a7691f7f0831a4396a42eff92ad36cd8144b8b1796691",
+      "bytes": 111647,
+      "sha256_lf": "81dbc7c3ba3a571b91863aa88a76ab2a437a7a93b252c48203596abdc7fc7a9c"
+    },
+    {
+      "path": "FCSys 0.2.6/Chemistry.mo",
+      "sha256": "ba10cd857a1a24dea28ddd4aebcd15ba900ae5ee13794c6c0e7a5abbf67203c9",
+      "bytes": 33422,
+      "sha256_lf": "3b08cf6dab8fbcc858242cf25ebfeb084a7d918ce95a600521582c44c6cffb74"
+    },
+    {
+      "path": "FCSys 0.2.6/Conditions.mo",
+      "sha256": "8ca9c1ad923b2063cd2f6037444fed9f3f0296a5123f40b1d30634378df7f45a",
+      "bytes": 309751,
+      "sha256_lf": "72f4b8d512313984117906a23a6accf2bb9accef5d4f3f206c71e525305e4413"
+    },
+    {
+      "path": "FCSys 0.2.6/Connectors.mo",
+      "sha256": "92c090e096df5f5877aeee35be20b8c55c3f7a588dc0f8bed27aa0f24c96afcb",
+      "bytes": 45897,
+      "sha256_lf": "eefb0c7976e976823c69e2d5fd8af83935d3f002fda9d681495e1d2b89eb8647"
+    },
+    {
+      "path": "FCSys 0.2.6/Icons.mo",
+      "sha256": "8e805bd3d22d718ca55556c02ea56004be944311f2e6bdd35f14d09536c1d920",
+      "bytes": 26315,
+      "sha256_lf": "c03c88b5f2a0d7e58937b82bac164ec7e7a785c7b2093856a615d9b0c360cf35"
+    },
+    {
+      "path": "FCSys 0.2.6/package.mo",
+      "sha256": "0ced6ff31643d0180ccd7eab03906f3791d49daef3b1a5bbbef2201f97186ce7",
+      "bytes": 14192,
+      "sha256_lf": "2e642ffc6ca7455bdb0359ab96ba1518e2fe481239331a41dc87c95422c9035a"
+    },
+    {
+      "path": "FCSys 0.2.6/package.order",
+      "sha256": "cc2442c2362b79db2f9ca5e8ea76e323f58d4cb7874d01a881cb098d88580464",
+      "bytes": 159,
+      "sha256_lf": "2db3ca6b04db595da1f56345ca38cf0a0ddcce704e67b883dea02d0b6f6e7cbd"
+    },
+    {
+      "path": "FCSys 0.2.6/Phases.mo",
+      "sha256": "e605f5ed76a929e0696c793699c576ffdbb4c6a27c1059f703f1b5a5570d9a66",
+      "bytes": 61609,
+      "sha256_lf": "82b615c9b5b89d18f0d3252651e91b9805db3bc4c0319f1208f827b623479616"
+    },
+    {
+      "path": "FCSys 0.2.6/Quantities.mo",
+      "sha256": "0a993e53f7c6f4cde7c98251343e25b2e1d57744aabaa0094fe7f92d7367c8f5",
+      "bytes": 15197,
+      "sha256_lf": "5e0d432f3e41712de3c2bb6b72bbd9841269e36635626ed2bd46e4316d3f3b33"
+    },
+    {
+      "path": "FCSys 0.2.6/Regions.mo",
+      "sha256": "7c7206d9a5422bc194a325213e6039fb9e858fd7e3a7f659aab89673e977509e",
+      "bytes": 147953,
+      "sha256_lf": "592565cd448178e9d3bc12c4a7147299e3ad1ef5f8d08583632169ee35a0459c"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/CellFlows.png",
+      "sha256": "14736e66841036fdc8e62f139f7f221f0ef14b96ba01c349277c3434f399b2f1",
+      "bytes": 36680
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/CellFlows.svg",
+      "sha256": "00b00f98a37966bad523ffdfe25685a106a41b94b651394d71cd0d4cd0461c20",
+      "bytes": 184734,
+      "sha256_lf": "c4961a2fc471f99706e153f713fc8f502a33ccb42e77bcae742be33bfdc4e761"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Conditions/Router/CrossOver.png",
+      "sha256": "ec73c2f581d9354a3efae987247281fbb3125d1c45aa82240a65a89032f09d5a",
+      "bytes": 928
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Conditions/Router/PassThrough.png",
+      "sha256": "0e40ade05936419a943bed09dc33889ae32345de69d43e8d9c73af72a200f654",
+      "bytes": 778
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Connectors.png",
+      "sha256": "0255b2d70c4f49360a826bec8f35b8d2e8309c460bfefedc2bbe2e257f006dbd",
+      "bytes": 13675
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/favicon.ico",
+      "sha256": "7f7025e54567fe709bf1379fb9f8792461b25b4573df36899769e2c48b8eff8e",
+      "bytes": 3662
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/FCSys.Assemblies.Cells.CellD.png",
+      "sha256": "333df8132fa5bfed466ef06fc8e02d20a646bc35b54f4312e2455279163d6344",
+      "bytes": 23634
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/FCSys.Assemblies.Cells.Examples.TestStandD.png",
+      "sha256": "be39c30d87114a5ff414c082666baffcdb27402d3b7d766e6eb6ae016a83bacc",
+      "bytes": 25285
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/icon.gif",
+      "sha256": "39c77241fc941a264290cc5b3eabf81bb4cd1bb7ea3f189f064513e98042c7a4",
+      "bytes": 37040
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/icon.png",
+      "sha256": "f1082041775b6dfaf51160bbf059b19594807e509c35c6dc4846203ed1d27f51",
+      "bytes": 3331
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/ModelicaDoc.css",
+      "sha256": "ac637d44e58b24d2bf572774e3c82887f9151f59b58b1ed9c2d0c1bb19eb6f85",
+      "bytes": 6333,
+      "sha256_lf": "ce2d3c5420c095abe5ebaa334db73d4fee8d3a805fe6938349ce8c46d3a16d3f"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/ModelicaLicense2.html",
+      "sha256": "6c765bb5affb37ebeca59ee5e6826706fd364f41e06d03b47e4075993fb40edc",
+      "bytes": 26999,
+      "sha256_lf": "d1d27f0169b2fa9a46e2b89dcbade38fcd7f6fc74e60f764499c39185adb4601"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Reactions/HOR.png",
+      "sha256": "255da83ecf39d3bb931a8e435630415457466cf242987570fa9d053cbe2fc049",
+      "bytes": 6003
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Reactions/ORR.png",
+      "sha256": "fe5049603abd226e0e8230870fe7e369f2ee5accb8b63335f59cfb94fb72d534",
+      "bytes": 7199
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/README.md",
+      "sha256": "ec2e506245fb9c4ab15a202dcd09325f6042865099cf5f4be09d7b238503a8a7",
+      "bytes": 171,
+      "sha256_lf": "93841d4658f2f3806817c4c36787465af24d92b5dc5d9b5c3d43d62071492632"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Subregions/Species/Species/Exchange.png",
+      "sha256": "5808c17b889c77871b681cac8e7544f9eb0dd97f71109e97476cec33cf124bc6",
+      "bytes": 17336
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Subregions/Species/Species/Exchange.svg",
+      "sha256": "735a3d4a45c716b989142eb64057294cb3c40f0c8614f0c7eb3a9259e523f679",
+      "bytes": 13708,
+      "sha256_lf": "d03c8f34ff0ac28e359b15ab1e019470cfca90aea4a063e985860a562a9e16ca"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Subregions/Species/Species/SharePressure.png",
+      "sha256": "8013315f6ca154bac157a2908eebf3461e0b70b6d80cb57d96d98f8f857bcd1f",
+      "bytes": 27125
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Subregions/Species/Species/SharePressure.svg",
+      "sha256": "b607f2df94c5389e25fc83025578bcd7c2111f0c1a5afd6f2f94092cf83e0781",
+      "bytes": 21186,
+      "sha256_lf": "60504991abf128e445d3f706239e084bfdf2af6b03dec30ad2d5b51e4751733b"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Subregions/Species/Species/ShareVolume.png",
+      "sha256": "88f52ec97e7918a67a376d46ea4e63f37b6a75f83a1bdf9b6c9fd8b9267a1849",
+      "bytes": 18955
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Subregions/Species/Species/ShareVolume.svg",
+      "sha256": "35e86b9ea37ff4f816974d088efab40699935fe4981b5e5ae3535740b5469d9e",
+      "bytes": 27777,
+      "sha256_lf": "947f6aa6b791f0bc8266b60f71de69d3a20a76cbed998b6e48bacf83b3b0f08c"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Subregions/Species/Species/Transport.png",
+      "sha256": "11d8e9ee9f0128e50b5cbada106541a4bbeee58868bc269e1ac535ac2400ddc0",
+      "bytes": 12443
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/Subregions/Species/Species/Transport.svg",
+      "sha256": "bfadcd66f02546e9aaaf72e211719d1368c40f381eee32277b5abc8437c91573",
+      "bytes": 15797,
+      "sha256_lf": "15522debee3c581483900c02c13b1eb827adba6132130ec1024888609f16590e"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/References/Natural Unit Representation in Modelica (poster).pdf",
+      "sha256": "120ae0afcd820bc56fea92af46ef99d46d5af8377b94db00364cb908742f167b",
+      "bytes": 1030198
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/CyclePolarization.pdf",
+      "sha256": "07b635fd5cae5cd2790153a77af67a74ae320a47ebf22fe9a53c84ce0ecc415b",
+      "bytes": 14942
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/CyclePolarization.png",
+      "sha256": "647e0ada750d40990370c939ee62c37c616e56c931760e4e02d768b7c95fe94b",
+      "bytes": 9432
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/CycleSaturation.pdf",
+      "sha256": "0596fbde0d1d18487fdc503973cde93237a937f6a4f3dbbab1d8b8f160392e42",
+      "bytes": 13839
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/CycleSaturation.png",
+      "sha256": "643fb0f5794b518b78e69b143949e1ace61170dbd6f61baf2ad6ae655ffd5e80",
+      "bytes": 28810
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/Energy.pdf",
+      "sha256": "00fde2dc057f8aa1b473e112aee9f33ca51e70fa1831df8b63ba6fcbbec87172",
+      "bytes": 12773
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/Energy.png",
+      "sha256": "ad361e6470846b0ba947d9300c0fc41a5be23d6c1a4eac96f597c4c918709712",
+      "bytes": 10641
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/Losses.pdf",
+      "sha256": "402b0378d67e172361ac156f6c94522fac6da813e738453927798940d3cd9870",
+      "bytes": 11460
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/Losses.png",
+      "sha256": "f796ee6724987d258244954dc86cfb6977df43ef165908e1d1b62f25827a59e6",
+      "bytes": 26240
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/PolarizationPressure.pdf",
+      "sha256": "0fd092b5bc915e49332da0b0d00e86bfdc3ca1b2bd40ab6ddfc136182846092b",
+      "bytes": 15620
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/PolarizationPressure.png",
+      "sha256": "5121e992f121040764abdd2b93a86762b1b3267e2ce86e16eee2858af4071c33",
+      "bytes": 11037
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/PolarizationTemperature.pdf",
+      "sha256": "ef8e5196c690422c7248c523a5a98becfadef58a1e782876313a72d791f41da4",
+      "bytes": 15979
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/PolarizationTemperature.png",
+      "sha256": "6c6a7628f60cf598eeb39ee51a11867a05040c39ec8d765e830ecede2cef9d6c",
+      "bytes": 10792
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/PressureO2.pdf",
+      "sha256": "ba84e356e6d4ad800a333f50112f5ecb1407dd736d5c53ecc05aa351d8c0facd",
+      "bytes": 11358
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/PressureO2.png",
+      "sha256": "955e00e6a3b666b1ed06827638e7c26cd5d952907748d121ab1d135660255f68",
+      "bytes": 23273
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/SegmentPolarization.pdf",
+      "sha256": "742c812a5a7800b074dc99267f5da1824d06204555ae3899ff90f0f7f978d4c4",
+      "bytes": 17818
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/SegmentPolarization.png",
+      "sha256": "7a0b5ffe8aa19c6d11f6b94d2f5751afb495bed8f57eb06b7c32c3f857af16dc",
+      "bytes": 34296
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/Temperature.pdf",
+      "sha256": "6c23cc00bda59a0a9d2fba0921f2a052f5a57c05a58ad133ecf0c19e9c8b3d18",
+      "bytes": 15405
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Documentation/UsersGuide/SampleResults/Temperature.png",
+      "sha256": "013911e9441fd2d002a36056af2f37fad1ea707b2e6ac6561e7157b317352468",
+      "bytes": 35589
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/math-constants.cdf",
+      "sha256": "4624b71ef4ae57a5cc2d07d08d7b1bb48ccce03baac3ae5e69e80a819e865195",
+      "bytes": 5199,
+      "sha256_lf": "53d9805a8b13b117a82af23c9a3a7e176f149804a216f03695ada29dd32433d7"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/quantities.xls",
+      "sha256": "7d6960af8924f5512d4a16797864c9c49783714f9a97f676e23013c057f7dcb9",
+      "bytes": 496128
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStand-states.mos",
+      "sha256": "666cd288745f7e3bec7e5fe574caad9110b9747774fe70896bfe5d0e883e1bf8",
+      "bytes": 2394,
+      "sha256_lf": "41413d1014723d713c0c3d59ca388419982398023abec7adf9fb96901d030990"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStand.mos",
+      "sha256": "48aa4829140930dc7f0913b22af9cc5fd6c816a80efc066bbb78da4f99403c80",
+      "bytes": 3466,
+      "sha256_lf": "ad5a203f4f19cf12939d99a8272d2ec38d21a3456fb5ff40c4faff5a9d246cb9"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStandCycle.mos",
+      "sha256": "13efab89c2b0a1d73e6223528b0ad617210285878da9eac4ccd084c69ea12e78",
+      "bytes": 3471,
+      "sha256_lf": "dbe67915230202ffee631e0d3525172e12b240873049a6188401a46983e3ad31"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStandSimple.mos",
+      "sha256": "fd41c6a6ad39715d20a018a78e4a1e04eb5875f461fcf6d247a4ed1f598a3787",
+      "bytes": 2612,
+      "sha256_lf": "1119f2b55d72c8c4651538897df378525104b986564a3bec200bc07fce563b9b"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStandStep.mos",
+      "sha256": "7687668d176cb321e7c3a1a675c1e4ae0b238a563dfbdc9405031e9a6ba346d3",
+      "bytes": 3358,
+      "sha256_lf": "136c1342270e4f8f7fe5710d7d58c4ba727d7a4b0b6342df52cf7f50260d3947"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Assemblies.Examples.Cell.mos",
+      "sha256": "78b7e30a921b7d2efa3b494cfe7743b8a915433eee6a4b3b3ab18fdd3bb76585",
+      "bytes": 833,
+      "sha256_lf": "8c352fb74d74bc06c336518046f66326bbd43fa5b8f8c7245f6ebaf7fb2a712b"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Characteristics.Examples.CellPotential.mos",
+      "sha256": "706e4ecd76c82e2b582081bb0a73cd2eda2e3ee222eea9201f4ed1b90198f129",
+      "bytes": 489,
+      "sha256_lf": "6062e97eea1c7c6c72ef36d4e13961380f72a2c76971aab8bf2c77a9c2ef2f86"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Characteristics.Examples.Correlations.mos",
+      "sha256": "d5eba685bb28bec983a4dd96555abf2e6001e8a2b5fd32ba308a843eda0cff75",
+      "bytes": 461,
+      "sha256_lf": "6c64e20b0475f0e3fd68e029a94bab3fafdbafadfcb97afd63b6166835ace4f8"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Characteristics.Examples.HydrationLevel.mos",
+      "sha256": "34dcd574f7d1b2b36f914af206ac48f5470dda678c38881b3af1574f41a21078",
+      "bytes": 486,
+      "sha256_lf": "fa5902e5467aafb7531ea06c41a72fb4585f014cf9175d7611eae9f3b8a6eeae"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Characteristics.Examples.LatentHeat.mos",
+      "sha256": "acd00f9157e02191858d1bf84d872d6d201737632c2bcfdf7cb668045bb5421f",
+      "bytes": 391,
+      "sha256_lf": "5c9b3763637dc108925ae9f0b79ecbeb26cf605b95710a9925b775d7563c2e44"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Characteristics.Examples.Leverett.mos",
+      "sha256": "dd03b77334f43a4d771a2c216cc8d35fe2edea52f2ccadf0b11ccbf7b563f97b",
+      "bytes": 389,
+      "sha256_lf": "c5f18183b39520e1ac909dea9761c3e4f379bec2a7ef8021d11e9e366b626598"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Characteristics.Examples.MobilityFactors.mos",
+      "sha256": "d7bd047e4e4ba80df61e968b7dcdd012a0f3ead4d7fe2905b08f8b067c79b5dd",
+      "bytes": 310,
+      "sha256_lf": "61b89dc506e64f1f79debc287c975a6ce8d44b7a7aa29531ceeccca4829bf925"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Characteristics.Examples.SaturationPressure.mos",
+      "sha256": "8df9b84b0c419c04159ba08bc479550a8f39a3c5ead494b41e7f83d0a04b4420",
+      "bytes": 549,
+      "sha256_lf": "4e392550477b17ae2d7dd493fed7f180ec6f208760e448dc87cf0d61f60bd488"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Chemistry.Examples.Overpotential.mos",
+      "sha256": "0ac4ac4206d4d66db579e4bad16d89085def827dfcd0aecdf25f76ec0ab4a1fc",
+      "bytes": 475,
+      "sha256_lf": "d94abe255b1ba8e481cd7ff4cb1b31ef8823dbcaed6a192a998e3d02af40156e"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Chemistry.Examples.Stoichiometry.mos",
+      "sha256": "093fe67325c29d036b71fbef637a2d115c324727aa4a53466658654d8ee4fd87",
+      "bytes": 174,
+      "sha256_lf": "139d13113cc0a350ccfe7694d0a8f10f099acc158caf6b57642e1cb4c1d24c12"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Conditions.Examples.Adapteminus.mos",
+      "sha256": "94cb2366ed28fd1f1469bbe65283020f48f13356f5a4986a778fa80799a596f2",
+      "bytes": 326,
+      "sha256_lf": "cf2df59dbdc49a7c0eada9ea633ed16d1cf7213553d30abb7dbe3ba3bf702ff3"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Conditions.Examples.AnodeAdapter.mos",
+      "sha256": "fa8a12a2723aa5f7ba2f792edc5ea306251fbcff71a36d489df5abde931fa1ad",
+      "bytes": 7642,
+      "sha256_lf": "444b1de28ab3990a164bae777006bb4f348e5a5ea0e64084882d04ba3af12b2c"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Conditions.Examples.BoundaryCondition.mos",
+      "sha256": "6e364c7823c4798f57ab46d3070756bf5cf14dacb82286af2508fde00070e690",
+      "bytes": 358,
+      "sha256_lf": "e9493a675292f6d1dfe3417d6327350b89366a02259f79e1b7b548319689b1ea"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Conditions.Examples.Router.mos",
+      "sha256": "344bf5f52952da10c5dcca6d01b57dd0ffd3a858cbd3573f25917f292bae1734",
+      "bytes": 238,
+      "sha256_lf": "6bb1cae05136ac564c1f5656a77747092dabc8f1bf8d50ff57effa0b5ae79b43"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Conditions.Examples.Stoichiometry.mos",
+      "sha256": "348fe8400690569015008735640d33e46a92561d221e96f14098ff0534717452",
+      "bytes": 202,
+      "sha256_lf": "ceee5c7485cf7a62031c4eaa3a7f0cdadf30a664f12b6c5f0ea703e7bdeefdd0"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/README.md",
+      "sha256": "3cc74e073fc7027ce327c7d3c804671b9e416bef744b837d9520cc5e951bd9a0",
+      "bytes": 182,
+      "sha256_lf": "5cf39ef23338698b3036afda7ff93ee81d9452a4b6a8381cd743e354f4e41785"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.AnCL.mos",
+      "sha256": "95b25a120941df8deee88de919ed5779afbdd7eacc87351a235f4f13041d2b89",
+      "bytes": 727,
+      "sha256_lf": "277261ffadc22be362343707a5d961d91e1cb751a0c13ec4c3a9ceb629ecae3e"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.AnFP-states.mos",
+      "sha256": "d3cf7e6aedc3253b17f8b8938c3e441fdf6bfc120e7c2d90a57d7d535572bc44",
+      "bytes": 469,
+      "sha256_lf": "93a3019faf5b71159a7be1acc85e0141a96806721d18f81acf7a18f30d625935"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.AnFP.mos",
+      "sha256": "100bf60f00ccc80ee98181109bc0814bac5026c50ccb8fe651b1513cec290afa",
+      "bytes": 372,
+      "sha256_lf": "9544694ce3247fc269f0941ff97ad278e8b0f8c67dd961d1b41d270272011d9e"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.AnGDL.mos",
+      "sha256": "a7c98b81751fc563d96047adb3a95d523773d6bb02b653736975f166d4af5535",
+      "bytes": 378,
+      "sha256_lf": "ffa759650c3633f86755dbdf33c4234f052a9b08a46726768d6061ff7219aeeb"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.CaCL.mos",
+      "sha256": "bd443683810942426c44c29d59aef75195ba13b31a40ff0f430e384080ae52df",
+      "bytes": 727,
+      "sha256_lf": "8014b6154790a193784c163b22b1aefc981d8d98f820c6795b5d6415e4f2e8d3"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.CaFP-states.mos",
+      "sha256": "83e67475cccf33780c13acf9aa759c1c967cf80a5569557b8b51f0cdc75760c4",
+      "bytes": 96,
+      "sha256_lf": "8fdeda293e154b3e1034de19e664ceed1d95b69da10aa685e96aac650f0a3d50"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.CaFP.mos",
+      "sha256": "3a46cb9e21dd346935e9bebe73ce627a971982f67cb614f583150ea0f7061138",
+      "bytes": 419,
+      "sha256_lf": "c008bd09d468e65674ab1c6a3b18a1aeaf0b95fb490ab0f7e5c3ca6d6e37aacb"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.CaGDL.mos",
+      "sha256": "dfb5e44155cbd24abc68e59ba5429b58ed8e0d04a72056e88012595d893aa111",
+      "bytes": 436,
+      "sha256_lf": "c2f4c9f3aa6363e3b8e6cbc5959a5f26519d8ff3056d26f0a1ca2bdb48590056"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.CLtoCL.mos",
+      "sha256": "dd242d350a63467920361b68d4da7cbf614d7a4abca4bafd069f168bd8cf15d3",
+      "bytes": 1702,
+      "sha256_lf": "0dba7e87ac072466a27da01174b65e6e13e5dfdd849acdd617fe3f3cdf61c54c"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.FPtoFP-states.mos",
+      "sha256": "08e3202635b4460c35afc8dff867beba00c1128e091ca4b06801023bc8a5f185",
+      "bytes": 2104,
+      "sha256_lf": "b684be3d9b2f625f0053ac611a9c1b8af5018c5256c26eaefe04a1cedb804302"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.FPtoFP.mos",
+      "sha256": "d71de2b23750d242a2fcf6915208e2a7875d8cdf60a9a1d38f9e8accba0e8f6d",
+      "bytes": 3051,
+      "sha256_lf": "46c9f9ccfe9c5d2813586c4a88c380b50bfaec4052b1c0eaa1cbcc11e596b582"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.GDLtoGDL-states.mos",
+      "sha256": "8de602ace7ee883770e16f3caf55ba3c3297ec1cf2c74f025da126c1dcd86a71",
+      "bytes": 1955,
+      "sha256_lf": "1c0816145966663b5bda79c4ec4e3ef3bb25b15310b9bc395d0c330e08cad661"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.GDLtoGDL.mos",
+      "sha256": "edec5136db7c3d34bbbb425efbaf0911ff15ca44c5d5b217d5a20ccd0cfa7c67",
+      "bytes": 1704,
+      "sha256_lf": "3ff8b04852adc3dfd0e3df5cc0888fe5b43323741c76ffafc4d0723fc284d4a5"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Regions.Examples.PEM.mos",
+      "sha256": "d48d844b2abf91ba72598c802267af7be179dc7b774a2317eeca688987cd2724",
+      "bytes": 304,
+      "sha256_lf": "a597dcaf2c4e7534be6c93628426baa9f86c2e33f8b0dc7ce739c1c301abe11b"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.AirColumn.mos",
+      "sha256": "baedf2bb4af50ed40d82f910a2ce4af80f5e2de949752120b559bfbe7284bc63",
+      "bytes": 2163,
+      "sha256_lf": "9c540dd8865e3bc1bfda0c8978319352679bcb0b3559fab78ca104d4b0e7678f"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.BinaryDiffusion.mos",
+      "sha256": "4f443fab7008eb6ae3bd62d1e601293531bf30a1011ad88816c538ea8ab19be5",
+      "bytes": 1328,
+      "sha256_lf": "7cb06f9f6e7bee5cf0c9e0f5b853ee9af158dbf58b88bc616e04bd96bb0d0525"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.CapillaryAction.mos",
+      "sha256": "dabb584f43908e86e6bf22c2bd9de831a61c6888e3e407d635596f5cbd84ebc3",
+      "bytes": 2972,
+      "sha256_lf": "471e10bd107704a8065397e9cbd90a59790cfbea91819b3b3f4e6eea2330887d"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.Echo.mos",
+      "sha256": "90264ab0c2ce189d79f669f82712285e7f775d50b9a22186c4c581bcf9365a2b",
+      "bytes": 2961,
+      "sha256_lf": "4202ad6465f66e8044348bc06089c39ff1e34921ba6209c54ce8e08b065da4cf"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.EchoCentral.mos",
+      "sha256": "a7277631a4a32dc1b5ae723205e035d67d122fe26a8342189c04741e4a83a4b6",
+      "bytes": 2968,
+      "sha256_lf": "6297f9e7927b880ae7c6c2eabee5dcfd11a774b6423b7c49510c81629e670a0d"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.ElectricalConduction.mos",
+      "sha256": "ba1579d848f67f96aa4b5ef814b5df5576a6fe1d1e787a11a8c3057561b8cf0b",
+      "bytes": 1201,
+      "sha256_lf": "2480864630c0bf8e8733b8cb4fd51f9cb2e371168f389343fb6a1f92f123bf32"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.InternalFlow.mos",
+      "sha256": "1b967bdd6fc08d7f55708557e00c14dc0f2470ddc740cddab479088689fe311f",
+      "bytes": 651,
+      "sha256_lf": "72aa3a54608d956dd7b4dccaee660a0af7531f63a7d84aa4efe583f70c17d63a"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.PhaseChange.Evaporation.mos",
+      "sha256": "d624ded01bbffff23ea1be17326799b12290257f0f9eb7e56d819de563ebe321",
+      "bytes": 404,
+      "sha256_lf": "8c7239c90e1252e73b40795c9892d825c7308a627ca9c473e0cedf24176f1fc0"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.PhaseChange.Hydration.mos",
+      "sha256": "4e3a15bdc9be16de7161c44d08819297edbe7799f6d7c61e0f51452dd43b20de",
+      "bytes": 789,
+      "sha256_lf": "99c35780940acf98a25e4c175a45b262d020d32b71299e3f80ba228a5fd1cf10"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.Reactions.HOR.mos",
+      "sha256": "daff01d978a70d00aebea86c8ecf4b51a2a9f4a27016a656d06e65b339fbc709",
+      "bytes": 1214,
+      "sha256_lf": "b9eedc588cfbd54a8ec07d8a2f28a6b8397305fdeeacae4f47968f82f5396025"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.Reactions.ORR.mos",
+      "sha256": "94edc650cfa27104a3fe3f2808131f96a1dcd78a7c80dcb08ea872c5792650e0",
+      "bytes": 1212,
+      "sha256_lf": "0c6c0593b2cb56107317f6dea2918132b277e171d86a2dfeed842b2bdf5f1855"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.Subregion.mos",
+      "sha256": "41a1c46e26f5bcc21411bd1ba5617441dbb956b8ab8ec15a3982f680b58d9830",
+      "bytes": 1322,
+      "sha256_lf": "607ccbf00ed9f9a10fb0a2d7da07b725592e96e736fd3d6b0cf8a99dc9223ac5"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.Subregions.mos",
+      "sha256": "89baab2bc27c3dce359690b307a8dd198d74b3a5b9acfe1bee3de9a324eba3b7",
+      "bytes": 2967,
+      "sha256_lf": "e3f6cf7fb94b64b7a3591ce9300b1eafdf9b1c716a4d2d4b9e52ee6e551010a0"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.ThermalConduction.mos",
+      "sha256": "7b09c39f0f2546a01fe199056fc986e95341d459f2a3720fb96749f7d640ae28",
+      "bytes": 1079,
+      "sha256_lf": "5869ef59202205eb2eecdfc7573c9655a90d00acc9e5693d36f5df096875a800"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/Dymola/Subregions.Examples.ThermalConductionConvection.mos",
+      "sha256": "d631c47c7a6df0cf381ebe6861f2ed68d94b39ae874cb7f581b18568b5edbe9c",
+      "bytes": 1876,
+      "sha256_lf": "d60ea707a13d5d0521227f50fc5b1f1762e130e010ede6904a84611bc56a35f7"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/load-in-unix.sh",
+      "sha256": "f907bc6c3c75a613071aec3a2994ba788a228c58fb442eecac57c86973e07636",
+      "bytes": 247,
+      "sha256_lf": "aa7df2967034989f83de50dbd039f08718b4ce5d27e327546d90701e4803fea3"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Scripts/run-dymosim.sh",
+      "sha256": "93931640dcdbc148796bb6dc8714cfbd710e63aea0c7bc3ad3bcf6dd2e63ada5",
+      "bytes": 326,
+      "sha256_lf": "9413039d460cd53e0026f50c74f3ec0e2ecd548df48263ace8b4cb6bbefef0d1"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/C/Chemistry.c",
+      "sha256": "45c621097f8246701a03390a2317cbd082fa11aa1f166d400be4cb1af74286a0",
+      "bytes": 5472,
+      "sha256_lf": "63c7b7023cf785e273039dc1ac5545681f2f30d8b45a6ccd0243dbdaee059fb8"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/C/Time.c",
+      "sha256": "95bb84f8afdc6b57305ba42c62bc6997b0b50f1f6e4440e734eebb44eec27543",
+      "bytes": 298,
+      "sha256_lf": "1f2a08a589ae06af5bce2789192e9c79280446fcc70966c98baa7d738227b8dd"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/bin/analyze-fc.py",
+      "sha256": "0c0bb111e5c33a619433315f0dcda0f1eac8c59827e061c57ace4ae132f4dc4a",
+      "bytes": 1415,
+      "sha256_lf": "e2a125315d51382fdde1b470bff84c6b4e765070539081807dc4a5f94e71bba9"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/bin/loadres.py",
+      "sha256": "adb94a3b67a15a6ffe3dd384d660a83b133ac78e34ed3c7df937e053058ed5df",
+      "bytes": 7325,
+      "sha256_lf": "d10fe5da460b9288e33bf1f7067a293558d3991305ddabcc2fb0778c6d6f64cd"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/bin/matplotlibrc",
+      "sha256": "21a507a5095c0c63a11d2568bcbe8c83df4de6698afbe19f4c9b2501b6ab1943",
+      "bytes": 26857,
+      "sha256_lf": "dbf463cecad1facaf9796a6546cc47d11c85448e30b59bc2ac0ba9a20e5639ea"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/bin/run-exps.py",
+      "sha256": "f7225760bc3618199fe9595b07b192ca32482ad4cfd07175650a4b6510b3be6c",
+      "bytes": 30747,
+      "sha256_lf": "f76b2b241018268427711979c53dfc2bcfbb504ba4107fa3b7fed2536dfab830"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/CHANGES.txt",
+      "sha256": "94f94c857264baf9d02fecc2a68dba3d3f356c1c6623c345b9564bbb4a05a46a",
+      "bytes": 115,
+      "sha256_lf": "cbd42af536c1ed9a150e1c8ec4b9fd8a8de1c038f95efa1651fd68001789f510"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/_static/copybutton.js",
+      "sha256": "21d86e4ea379cc12a8bbe5cd9785390a457d9721c79f5f35e3b6a085a5302db1",
+      "bytes": 2511,
+      "sha256_lf": "be58638aeb33ea27a23745e6e9334f0c3e91abad60607c673ffa31447a2a7501"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/_static/favicon.ico",
+      "sha256": "7f7025e54567fe709bf1379fb9f8792461b25b4573df36899769e2c48b8eff8e",
+      "bytes": 3662
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/_static/fcsys.css",
+      "sha256": "6f574e50b67a450916724fc95eddbd77381402c44c72ecef3a0c20967ae6ebcc",
+      "bytes": 8677,
+      "sha256_lf": "b8474c60564a566b6936c2a89eae11fe087d7e444e196acfcddab0d0c76af2db"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/_static/logo.gif",
+      "sha256": "1d413ec39c7637b3e3c41bc5dfb6ccbbb713abd3d20ce99f0b74ffc8760d6981",
+      "bytes": 7595
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/_static/logo.png",
+      "sha256": "a69f803bb8e05ad660da8a856a15b7eeceb87954c0b8c4b30ab697c2f439de9e",
+      "bytes": 3981
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/_templates/search.html",
+      "sha256": "05c3bded39e65fd9125bbcfc7166a2ea3d8fab35f812bb0ca28971a26da8ba94",
+      "bytes": 1354,
+      "sha256_lf": "102193ff0e8138e8484cbe6c38c92b92a9d4a8d52ce0197c8fd73cf8445078a3"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/base.rst",
+      "sha256": "b02ccb138ac000d0c53aa96a4828ef6bf0b483a552c964aab284d067b72c3e14",
+      "bytes": 206,
+      "sha256_lf": "740576e30f37e993a19361866b88c9cd2ecad0d6aff51e01b41ab7ee5627317d"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/conf.py",
+      "sha256": "1e68c903c37fb630fef73c8361960c7713097ac2188b556c06a4234cec43d07b",
+      "bytes": 7736,
+      "sha256_lf": "eae29b5c26311b0399de92c6c03590f224bd40dbcedd8c2d9c2f7076c70129dc"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/examples",
+      "sha256": "484be353acc705a5add4e339ce907666ec74000cd7f532967365bfbb533bccc5",
+      "bytes": 11,
+      "sha256_lf": "484be353acc705a5add4e339ce907666ec74000cd7f532967365bfbb533bccc5"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/exps.rst",
+      "sha256": "17f85e16a3eb27eb582e691a90d9ec8b5ad005e23f806f819acd988259db20fd",
+      "bytes": 131,
+      "sha256_lf": "234553b15530357b8948c4f4266393c9add5d230162e5104cab7069b1fac8d49"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/fcres.html",
+      "sha256": "8b3b58a90a8ae358dee2b9e3a156741a8e87cc8b242653457e7d9c9967ddd449",
+      "bytes": 49661,
+      "sha256_lf": "8b68ae2aac49baca3c23436f75a6f59d4ba5e625a9aecb449fc8749079d088b2"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/fcres.rst",
+      "sha256": "dedcc81058434512662d420b46422d26299f3eaa56292d511eabe89ef0c64306",
+      "bytes": 110,
+      "sha256_lf": "2704e21602e4e524ff42aa45ea4d85b5cf48486b0a0db3685cf6a55873e59217"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/index.rst",
+      "sha256": "d8c30b9ed9783682aa6c4a5ea329d9c7f553a4f092ef304b314573aeb4806bb7",
+      "bytes": 7272,
+      "sha256_lf": "9a66e98cb8a541d1c2c6773338c211369e545445eecfccfede76d149e2c1ec9c"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/linres.rst",
+      "sha256": "530e0adb5895a578b9e43e1521f8ee2a1779bc1e31d6915071f1c461327671d4",
+      "bytes": 138,
+      "sha256_lf": "b715fec9669afc5cb173819ef2530705c93a6540de81e1119c00956d04fa1dfb"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/loadres.rst",
+      "sha256": "233ec9d8a616d621b192cc694163f2c4df8159a30f3a5f7e9117b38aca79cab5",
+      "bytes": 911,
+      "sha256_lf": "df958103e61c831a7dabf91d21785e823c41d4beee2e0bfda23381e45a74e002"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/make.py",
+      "sha256": "dc526db55ced6cc3d3dd934ccdb3f6d5e3fc5327f39fe65a7989efd12547e6c6",
+      "bytes": 3078,
+      "sha256_lf": "4dc54bdac83b5282af676d5801d707a686d5e887aff190cee443e3a2547729f3"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/Makefile",
+      "sha256": "e8706897d1bd23d422f93986c0d3d8d264d7b98744ca95e0898f25ddaebc29d0",
+      "bytes": 4739,
+      "sha256_lf": "160cbf32f113354307e4d10aa6b79c91d83ba21f3c52aeefafeb0ce48572ea66"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/modelicares.rst",
+      "sha256": "b65ebf26d5be473df18c6c2e01539a4eb0f8e5236238b04289f2ea91c328328f",
+      "bytes": 116,
+      "sha256_lf": "26136ec5ebe5ebdc4940d70294aa7fb1454c0269d39a2da7caee232671d930af"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/multi.rst",
+      "sha256": "434a63f3eb1adc8842cde994e520f9e11fe4520e7eb579a5e028114e8b57fe17",
+      "bytes": 128,
+      "sha256_lf": "d86eb86d00bdad6e4f4998ad18b0fd0cfeb736911d9ab6d4664ddeb914724570"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/README.md",
+      "sha256": "0a322f44765f5f638c7c32502a8bc4a9486a6e5acb2330e6c64a03673a8526a1",
+      "bytes": 1134,
+      "sha256_lf": "a0f035c610ac35b30ac7771172b8bc3ab50a8bbfaa9949d5fb643ebb6c678eaf"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/simres.rst",
+      "sha256": "38b2c92649ac174cd678e78ebd1f2336ea5c342b33f4483e998044ba82ea3b59",
+      "bytes": 131,
+      "sha256_lf": "c47264f83d5f76b2b7916afdf8d87a56cbcaa6a1489ffbb319a875b086b2a63a"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/doc/texunit.rst",
+      "sha256": "71dbe0c1712fd99a3f66fde196d9f1ca652bab904f86e64b3d77f35f3ce053e2",
+      "bytes": 134,
+      "sha256_lf": "3f50621185dd5b46942ca006b7d53cc3e0377efb2f0fd74d67c85a1c5594a9f0"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/examples/Polarization.py",
+      "sha256": "9fa8f3f347cd0198315139bb3dee70aedb6d470f80832a2c05388ae630e553f5",
+      "bytes": 2984,
+      "sha256_lf": "cee2f96a2a5e026d3f67e451243c06add6221514aa9dc138e770752b1ef3c66f"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/examples/Polarizations.py",
+      "sha256": "9fa8f3f347cd0198315139bb3dee70aedb6d470f80832a2c05388ae630e553f5",
+      "bytes": 2984,
+      "sha256_lf": "cee2f96a2a5e026d3f67e451243c06add6221514aa9dc138e770752b1ef3c66f"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/examples/README.md",
+      "sha256": "b2530c35d40b12a234960856a160fd1bfefe132d73a6b7f3452f22d71800f645",
+      "bytes": 134,
+      "sha256_lf": "5e1af1d7538dc14a5e11603511543c3de4a20b9b8da9bfe6270ce9200937cc1f"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/examples/SaturationPressure.pdf",
+      "sha256": "8e5cc0f3560208249ca1c17a089649b011d63e1862f5175afa564080254e8501",
+      "bytes": 22503
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/examples/SaturationPressure.png",
+      "sha256": "8068ce36dce19a635dc3dc7c769a889962fb671640ff34c1fef95e692d2f8a91",
+      "bytes": 45389
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/fcres/__init__.py",
+      "sha256": "cd4383f4cecee1c17ca6b537bea4d05249a0b31052641feb8190041df1213371",
+      "bytes": 2362,
+      "sha256_lf": "f81307e710d4fa4f4eaddc638b3578e47589613226ef4a2d59de35435e603144"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/fcres/_config.py",
+      "sha256": "7fd63aea2b7b64cb3c570fc17a6777f0927972019a60af621e60ba79c51cfe48",
+      "bytes": 850,
+      "sha256_lf": "f4271079f8223f1001a1cbe670cbc14fc9c7c89136b5ff2e42460479ce69cb12"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/fcres/fclinres.py",
+      "sha256": "09c74b2b888aa580de68d7904b156fc6e6ea5e0da41eb3e9f5b7fc678b846c52",
+      "bytes": 1288,
+      "sha256_lf": "10aed26ea00ceaf3d04566a45b5864be6e901910ccb00a41ab7288605ffdd56b"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/fcres/fcres.ini",
+      "sha256": "8c0d5be1d7ba42d476a749af816faac4af831152b6925f5871ef13857ff25ba5",
+      "bytes": 1485,
+      "sha256_lf": "684b0cffdb7b2cf8029527b7a953fa4ae06970a0999b0d32854c4aa2f0de9e8b"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/fcres/fcsimres.py",
+      "sha256": "5ff92e5096b5ae8d12172cd49d5f3cfb51ed178e6111eaec67fe0ffe4714271e",
+      "bytes": 47180,
+      "sha256_lf": "36a377e88f4627b45dc8ce968789f7f2a601c32cc507a0e9a3bd08ab84f3c3c5"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/fcres/sankey.py",
+      "sha256": "caa7b12c8027e836d5a6ebd58f6e2beb7528460dfbfdc5c7b14ebfb3c23d5de4",
+      "bytes": 25564,
+      "sha256_lf": "111bf73feb15c4b29522bdc0f93f331fdc2efe6789d7f65e9d11b60fc39bdfee"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/fcres/simres.py",
+      "sha256": "06512c0ba8e71d8dac6257ada70cfc47241bbb125d4414cd261d021e33b4497e",
+      "bytes": 26650,
+      "sha256_lf": "33f26e8e941cf8c0f5b22487da6f95f327a29569fc0e026c1040d69bb89fb340"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/LICENSE.txt",
+      "sha256": "0b470c38da390368367bf23eaf0f59264844d7d4b797b790f61413567a8377e5",
+      "bytes": 2707,
+      "sha256_lf": "aff28cc171ddd3b6870897265ee2d69474f4c1bd1d278d7330055070809186a4"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/MANIFEST.in",
+      "sha256": "958ff51a0da0d3353cbcaf1c2ac9e5dafb6c1c25162be9be6f546e78aa028062",
+      "bytes": 433,
+      "sha256_lf": "1d1714a82bf3bb6491f415f2a8cdd7077d1d1d973fb69598cd214779f331a4f3"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/matplotlibrc",
+      "sha256": "39f136970524ee45e4dee44212bd02135fb6d924f2423f45493787b1601a1220",
+      "bytes": 26548,
+      "sha256_lf": "f2c241302f82ddb21aa88445bbb94bab27ec49681d72adea50c6764ebb4ff857"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/README.md",
+      "sha256": "9ff0acb80165000b260fa20ea494729814c48d863b476fb874b966b11bbbe273",
+      "bytes": 1431,
+      "sha256_lf": "0a635467ccf6765348b1849fc08a149ad6f99ea31f6ec72e38c2d58b214656eb"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/Source/Python/setup.py",
+      "sha256": "9bd63247813c469cfae9d0aeb2abc32ef1615db78a3e20655f90e1e1ccbd2565",
+      "bytes": 682,
+      "sha256_lf": "e5502a420346982acd42f74ab64c712f93ce3836268a71d4e31d68bd692a0602"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/unit-systems.cdf",
+      "sha256": "3a08e2dfc7d80e1802a33c861b00b1043dcee05a083522e1351013dbf9ee09c1",
+      "bytes": 63445,
+      "sha256_lf": "ce917096b06766624b869191d3ea2657b53e0f4ddb0348b945c6574a3ff41738"
+    },
+    {
+      "path": "FCSys 0.2.6/Resources/virial-relations.cdf",
+      "sha256": "51284c4aa5064bc3bf1d8e028169c3f33c4edef66ba8244e3dcd25946328bb9b",
+      "bytes": 35024,
+      "sha256_lf": "42bb81e42f1db3b9a41bd04012267f2da0c60569b1bef9532cff0000a6c3d1c1"
+    },
+    {
+      "path": "FCSys 0.2.6/Species.mo",
+      "sha256": "113bf417980a78d4f3c7ec087a82e708fc17105feaf7075352d9e35b08de03a3",
+      "bytes": 115242,
+      "sha256_lf": "c8bc02ac3eae8db95b21725a519d95d6ba6d764c98cf71ef7eb69bb796246a2c"
+    },
+    {
+      "path": "FCSys 0.2.6/Subregions.mo",
+      "sha256": "b033b858b739f4c051e51c7059bd2b181d41fa8b88f2ca33277224df0bd7fc69",
+      "bytes": 77922,
+      "sha256_lf": "bec21be196d22e7db6ae4ddf6f8ecad2cee3f4a3aa0354bc5ed1697cbb72ddeb"
+    },
+    {
+      "path": "FCSys 0.2.6/Units.mo",
+      "sha256": "0a676c03041dd5e2361860905ae2d2aa36ea6eaec306c3c685d23e5f93d0d70b",
+      "bytes": 83278,
+      "sha256_lf": "0f8f7502d50504125aa3973cd8d4214658e0506b2c6033cc87bd28891be79cb0"
+    },
+    {
+      "path": "FCSys 0.2.6/UsersGuide.mo",
+      "sha256": "29dbae30e8565281dec2ecd218a9b238529ca84bbb7e70f0b6d0579248330d97",
+      "bytes": 53656,
+      "sha256_lf": "17616d33570a9d778b7ed2a1ddebd136db6ffb5dd5de5130228dd69841c4ead3"
+    },
+    {
+      "path": "FCSys 0.2.6/Utilities.mo",
+      "sha256": "3c23596d686394a0165d160bee5004815fa82c74f60906a6ee59e37fbf0a779f",
+      "bytes": 40230,
+      "sha256_lf": "fbc7337388d0fc5625c3f4d09b0411dd45afe4e26361b76196bbcf74c7e148b6"
+    }
+  ],
+  "hash_policy": {
+    "sha256": "Raw bytes of the qualified candidate; preserved from initial manifest.",
+    "sha256_lf": "For UTF-8 text with Git text=set/auto and no NUL bytes: SHA-256 after replacing CRLF with LF, with no other normalization.",
+    "git_note": "Inherited text attributes may normalize line endings. Final Git/archive/GUI source identities require reconciliation; no commit or fresh GUI run is implied."
+  }
+}

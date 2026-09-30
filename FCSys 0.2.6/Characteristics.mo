@@ -539,6 +539,7 @@ package Characteristics "Data and functions to correlate physical properties"
 
       extends BaseClasses.Characteristic(
         final formula="C9HF17O5S-",
+        final explicitEntropyInverse=true,
         final phase=Phase.solid,
         p0=U.atm,
         m=1044.214*U.g/U.mol - 'H+'.Gas.m,
@@ -614,8 +615,8 @@ package Characteristics "Data and functions to correlate physical properties"
         T_lim_c={200.000,20000.000}*U.K,
         b_c={Data.alow} .* fill({U.K^(3 - i) for i in 1:size(Data.alow, 1)},
             size(T_lim_c, 1) - 1),
-        B_c={Data.blow} .* fill({U.K,1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*
-            log(U.K),
+        B_c={{Data.blow[1]*U.K - b_c[1, 2]*log(U.K),
+              Data.blow[2] - b_c[1, 3]*log(U.K)}},
         d=U.alpha^3/(2*U.pi*U.R_inf*U.q));
 
       annotation (Documentation(info="<html>
@@ -679,8 +680,8 @@ package Characteristics "Data and functions to correlate physical properties"
         T_lim_c={200.000,20000.000}*U.K,
         b_c={Data.alow} .* fill({U.K^(3 - i) for i in 1:size(Data.alow, 1)},
             size(T_lim_c, 1) - 1),
-        B_c={Data.blow} .* fill({U.K,1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*
-            log(U.K),
+        B_c={{Data.blow[1]*U.K - b_c[1, 2]*log(U.K),
+              Data.blow[2] - b_c[1, 3]*log(U.K)}},
         d=240*U.pico*U.m/U.q);
 
       annotation (Documentation(info="<html>
@@ -750,8 +751,9 @@ package Characteristics "Data and functions to correlate physical properties"
         b_c={Data.alow,Data.ahigh,{4.966884120e8,-3.147547149e5,79.84121880,-8.414789210e-3,
             4.753248350e-7,-1.371873492e-11,1.605461756e-16}} .* fill({U.K^(3
              - i) for i in 1:size(Data.alow, 1)}, size(T_lim_c, 1) - 1),
-        B_c={Data.blow,Data.bhigh,{2.488433516e6,-669.5728110}} .* fill({U.K,1},
-            size(T_lim_c, 1) - 1) - b_c[:, 2:3]*log(U.K),
+        B_c=[Data.blow[1]*U.K - b_c[1,2]*log(U.K), Data.blow[2] - b_c[1,3]*log(U.K);
+          Data.bhigh[1]*U.K - b_c[2,2]*log(U.K), Data.bhigh[2] - b_c[2,3]*log(U.K);
+          2.488433516e6*U.K - b_c[3,2]*log(U.K), -669.5728110 - b_c[3,3]*log(U.K)],
         d=(240 + 100.3)*U.pico*U.m/U.q,
         T_lim_eta_theta={200.0,1000.0,5000.0,15000.0}*U.K,
         b_eta={fromNASAViscosity({0.74553182,43.555109,-3.2579340e3,0.13556243}),
@@ -798,8 +800,8 @@ package Characteristics "Data and functions to correlate physical properties"
         T_lim_c={200.000,Data.Tlimit,6000.000}*U.K,
         b_c={Data.alow,Data.ahigh} .* fill({U.K^(3 - i) for i in 1:size(Data.alow,
             1)}, size(T_lim_c, 1) - 1),
-        B_c={Data.blow,Data.bhigh} .* fill({U.K,1}, size(T_lim_c, 1) - 1) - b_c[
-            :, 2:3]*log(U.K),
+        B_c=[Data.blow[1]*U.K - b_c[1, 2]*log(U.K), Data.blow[2] - b_c[1, 3]*log(U.K);
+          Data.bhigh[1]*U.K - b_c[2, 2]*log(U.K), Data.bhigh[2] - b_c[2, 3]*log(U.K)],
         d=282*U.pico*U.m/U.q,
         T_lim_eta_theta={373.2,1073.2,5000.0,15000.0}*U.K,
         b_eta={fromNASAViscosity({0.50019557,-697.12796,8.8163892e4,3.0836508}),
@@ -834,8 +836,8 @@ package Characteristics "Data and functions to correlate physical properties"
         n_v={-1,0},
         b_c=Gas.b_c + fill({0,0,1,-2*0.2580123533308264/U.K,6*
             4.841882910380711e-4/U.K^2,-12*3.328156493413594e-7/U.K^3,0}, 2),
-        B_c=Gas.B_c + fill({0,47.15136731353458 - log('SO3-'.Ionomer.b_v[1, 1]*
-            U.atm/14)}, 2));
+        B_c={{Gas.B_c[1,1], Gas.B_c[1,2] + 47.15136731353458 - log('SO3-'.Ionomer.b_v[1, 1]*U.atm/14)},
+             {Gas.B_c[2,1], Gas.B_c[2,2] + 47.15136731353458 - log('SO3-'.Ionomer.b_v[1, 1]*U.atm/14)}});
       // These coefficients are based on the saturation pressure correlation
       // (Eq. 15) from Springer1991.  The factor of 1/14 in the 2nd column of
       // B_c gives lambda = 14 in equilibrium with saturated vapor.
@@ -991,8 +993,9 @@ package Characteristics "Data and functions to correlate physical properties"
         b_c={Data.alow,Data.ahigh,{4.975294300e8,-2.866106874e5,6.690352250e1,-6.169959020e-3,
             3.016396027e-7,-7.421416600e-12,7.278175770e-17}} .* fill({U.K^(3
              - i) for i in 1:size(Data.alow, 1)}, size(T_lim_c, 1) - 1),
-        B_c={Data.blow,Data.bhigh,{2.293554027e6,-5.530621610e2}} .* fill({U.K,
-            1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*log(U.K),
+        B_c=[Data.blow[1]*U.K - b_c[1,2]*log(U.K), Data.blow[2] - b_c[1,3]*log(U.K);
+          Data.bhigh[1]*U.K - b_c[2,2]*log(U.K), Data.bhigh[2] - b_c[2,3]*log(U.K);
+          2.293554027e6*U.K - b_c[3,2]*log(U.K), -5.530621610e2 - b_c[3,3]*log(U.K)],
         d=(304 + 128.2)*U.pico*U.m/U.q,
         T_lim_eta_theta={200.0,1000.0,5000.0,15000.0}*U.K,
         b_eta={fromNASAViscosity({0.60916180,-52.244847,-599.74009,2.0410801}),
@@ -1153,6 +1156,7 @@ package Characteristics "Data and functions to correlate physical properties"
       extends CharacteristicEOS;
 
       constant String formula "Chemical formula";
+      constant Boolean explicitEntropyInverse=false;
       constant Phase phase "Material phase";
       constant Q.MassSpecific m "Specific mass";
       constant Q.LengthSpecific d "Specific diameter" annotation (Dialog);
@@ -1257,11 +1261,9 @@ package Characteristics "Data and functions to correlate physical properties"
         algorithm
           c_p_resid := Polynomial.F(
                     p,
-                    {Polynomial.f(
-                      T,
-                      b_v[i, :] .* {(n_v[2] - n_v[1] + j - i)*(n_v[1] - n_v[2]
-                 + i - j + 1) for j in 1:size(b_v, 2)},
-                      n_v[2] - n_v[1] - i) for i in rowLimits[1]:rowLimits[2]},
+                    {sum(b_v[i, j] * (n_v[2] - n_v[1] + j - i)*(n_v[1] - n_v[2]
+                 + i - j + 1) * T^(n_v[2] - n_v[1] - i + j - 1)
+                     for j in 1:size(b_v, 2)) for i in rowLimits[1]:rowLimits[2]},
                     n_v[1]);
           // See s_resid() in Characteristic.s for the integral of (dels/delp)_T*dp.
           // This is temperature times the isobaric partial derivative of that
@@ -1370,17 +1372,17 @@ package Characteristics "Data and functions to correlate physical properties"
       protected
         function h0_i
           "Return h0 as a function of T using one of the temperature intervals"
-          import FCSys.Utilities.Polynomial;
           input Q.TemperatureAbsolute T "Temperature";
           input Integer i "Index of the temperature interval";
           output Q.Potential h0
             "Specific enthalpy at given temperature relative to enthalpy of formation at 25 degC, both at reference pressure";
-
         algorithm
-          h0 := Polynomial.F(
-                    T,
-                    b_c[i, :],
-                    n_c) + B_c[i, 1] annotation (Inline=true, derivative=dh0_i);
+          // Run-local finite-sum compatibility integral, independently tested in
+          // temperature-enthalpy-oracle-swap-20260905T115011Z.
+          // Preserve each original coefficient row and its enthalpy offset.
+          h0 := B_c[i,1] + sum(b_c[i,j]*(if n_c+j == 0 then log(T)
+            else T^(n_c+j)/(n_c+j)) for j in 1:size(b_c,2))
+            annotation (Inline=true, derivative=dh0_i);
           // This is the integral of c0_p*dT up to T at p0.  The lower bound is the
           // enthalpy of formation (of ideal gas, if the material is gaseous) at
           // 25 degC [McBride2002, p. 2].
@@ -1396,33 +1398,39 @@ package Characteristics "Data and functions to correlate physical properties"
           output Q.Potential dh0
             "Derivative of specific enthalpy at reference pressure";
 
+        protected
+          Real b_row[size(b_c, 2)];
+
         algorithm
+          for j in 1:size(b_c, 2) loop
+            b_row[j] := b_c[i, j];
+          end for;
           dh0 := Polynomial.f(
                     T,
-                    b_c[i, :],
+                    b_row,
                     n_c)*dT annotation (Inline=true);
 
         end dh0_i;
 
         function h_resid
           "Residual specific enthalpy for pressure adjustment for selected rows of b_v"
-          import FCSys.Utilities.Polynomial;
           input Q.TemperatureAbsolute T "Temperature";
           input Q.PressureAbsolute p "Pressure";
           input Integer rowLimits[2]={1,size(b_v, 1)}
             "Beginning and ending indices of rows of b_v to be included";
           output Q.Potential h_resid
             "Integral of (delh/delp)_T*dp up to p with zero integration constant (for selected rows)";
-
         algorithm
-          h_resid := Polynomial.F(
-                    p,
-                    {Polynomial.f(
-                      T,
-                      b_v[i, :] .* {n_v[1] - n_v[2] + i - j + 1 for j in 1:size(
-                b_v, 2)},
-                      n_v[2] - n_v[1] - i + 1) for i in rowLimits[1]:rowLimits[
-              2]},  n_v[1] + rowLimits[1] - 1) annotation (Inline=true);
+          // Run-local compatibility expression qualified by the independent
+          // native oracle in residual-enthalpy-oracle-swap-20260905T112622Z.
+          // Same powers, selected rows, and zero integration constant.
+          h_resid := sum(sum(
+            b_v[k,j]*(n_v[1]-n_v[2]+k-j+1)
+              *T^(n_v[2]-n_v[1]-k+j)
+              *(if n_v[1]+k == 0 then log(p)
+                else p^(n_v[1]+k)/(n_v[1]+k))
+            for j in 1:size(b_v,2))
+            for k in rowLimits[1]:rowLimits[2]) annotation (Inline=true);
           // Note:  The partial derivative (delh/delp)_T is equal to v +
           // T*(dels/delp)_T by definition of enthalpy change (dh = T*ds + v*dp)
           // and then to v - T*(delv/delT)_p by applying the appropriate Maxwell
@@ -1483,12 +1491,7 @@ package Characteristics "Data and functions to correlate physical properties"
             "Specific entropy at given temperature and reference pressure";
 
         algorithm
-          s0 := F(  T,
-                    b_c[i, :],
-                    n_c - 1) + B_c[i, 2];
-          // This is the integral of c0_p/T*dT up to T at p0 with the absolute
-          // entropy at the lower bound [McBride2002, p. 2].
-
+          s0 := B_c[i,2] + sum(b_c[i,j]*(if n_c + j - 1 == 0 then log(T) else T^(n_c + j - 1)/(n_c + j - 1)) for j in 1:size(b_c,2));
           annotation (Inline=true, derivative=ds0_i);
         end s0_i;
 
@@ -1502,9 +1505,7 @@ package Characteristics "Data and functions to correlate physical properties"
             "Derivative of specific entropy at given temperature and reference pressure";
 
         algorithm
-          ds0 := f( T,
-                    b_c[i, :],
-                    n_c - 1)*dT;
+          ds0 := sum(b_c[i,j]*T^(n_c + j - 2) for j in 1:size(b_c,2))*dT;
           annotation (Inline=true);
         end ds0_i;
 
@@ -1518,16 +1519,7 @@ package Characteristics "Data and functions to correlate physical properties"
             "Integral of (dels/delp)_T*dp up to p with zero integration constant (for selected rows)";
 
         algorithm
-          s_resid := Polynomial.F(
-                    p,
-                    {Polynomial.f(
-                      T,
-                      b_v[i, :] .* {n_v[1] - n_v[2] + i - j for j in 1:size(b_v,
-                2)},  n_v[2] - n_v[1] - i) for i in rowLimits[1]:rowLimits[2]},
-                    n_v[1] + rowLimits[1] - 1);
-          // Note:  According to the Maxwell relations,
-          // (dels/delp)_T = -(delv/delT)_p.
-
+          s_resid := sum(sum(b_v[k,j]*(n_v[1] - n_v[2] + k - j)*T^(n_v[2] - n_v[1] - k + j - 1)*(if (n_v[1] + k) == 0 then log(p) else p^(n_v[1] + k)/(n_v[1] + k)) for j in 1:size(b_v,2)) for k in rowLimits[1]:rowLimits[2]);
           annotation (Inline=true, derivative=ds_resid);
         end s_resid;
 
@@ -1543,15 +1535,7 @@ package Characteristics "Data and functions to correlate physical properties"
             "Derivative of integral of (dels/delp)_T*dp up to p with zero integration constant (for selected rows)";
 
         algorithm
-          ds_resid := Polynomial.dF(
-                    p,
-                    {Polynomial.df(
-                      T,
-                      b_v[i, :] .* {n_v[1] - n_v[2] + i - j for j in 1:size(b_v,
-                2)},  n_v[2] - n_v[1] - i,
-                      dT) for i in rowLimits[1]:rowLimits[2]},
-                    n_v[1] + rowLimits[1] - 1,
-                    dp);
+          ds_resid := sum(sum(b_v[k,j]*(n_v[1] - n_v[2] + k - j)*((n_v[2] - n_v[1] - k + j - 1)*T^((n_v[2] - n_v[1] - k + j - 1) - 1)*dT*(if (n_v[1] + k) == 0 then log(p) else p^(n_v[1] + k)/(n_v[1] + k)) + T^(n_v[2] - n_v[1] - k + j - 1)*p^((n_v[1] + k) - 1)*dp) for j in 1:size(b_v,2)) for k in rowLimits[1]:rowLimits[2]);
           annotation (Inline=true);
         end ds_resid;
 
@@ -1849,11 +1833,11 @@ temperature difference.</p>
       // Note:  p/T is the argument instead of p so that b_p will have the same
       // size as b_v for the typical definitions of the second virial
       // coefficients in [Dymond2002].
-      final constant Boolean isCompressible=anyTrue({anyTrue({abs(b_v[i, j]) >
+      final constant Boolean isCompressible=anyTrue({anyTrue({(if b_v[i, j] < 0 then -b_v[i, j] else b_v[i, j]) >
           Modelica.Constants.small and n_v[1] + i - 1 <> 0 for i in 1:size(b_v,
           1)}) for j in 1:size(b_v, 2)})
         "<html><code>true</code>, if density depends on pressure</html>";
-      final constant Boolean hasThermalExpansion=anyTrue({anyTrue({abs(b_v[i, j])
+      final constant Boolean hasThermalExpansion=anyTrue({anyTrue({(if b_v[i, j] < 0 then -b_v[i, j] else b_v[i, j])
            > Modelica.Constants.small and n_v[2] + j - n_v[1] - i <> 0 for i
            in 1:size(b_v, 1)}) for j in 1:size(b_v, 2)})
         "<html><code>true</code>, if density depends on temperature</html>";
@@ -1890,14 +1874,14 @@ temperature difference.</p>
           annotation (Dialog(__Dymola_label="<html>d<i>p</i></html>"));
 
       algorithm
-        dp := if isCompressible then Polynomial.f(
-                v,
-                {Polynomial.f(
-                  T,
-                  b_p[i, :] .* {(n_p[1] + i - 1)*T*dv + (n_p[2] + j - 1)*v*dT
-              for j in 1:size(b_p, 2)},
-                  n_p[2] - 1) for i in 1:size(b_p, 1)},
-                n_p[1] - 1) else 0;
+        dp := 0;
+        if isCompressible then
+          for i in 1:size(b_p, 1) loop
+            for j in 1:size(b_p, 2) loop
+              dp := dp + b_p[i, j]*((n_p[1] + i - 1)*v^(n_p[1] + i - 2)*T^(n_p[2] + j - 1)*dv + (n_p[2] + j - 1)*v^(n_p[1] + i - 1)*T^(n_p[2] + j - 2)*dT);
+            end for;
+          end for;
+        end if;
 
         annotation (
           Inline=true,
@@ -1925,14 +1909,12 @@ temperature difference.</p>
           annotation (Dialog(__Dymola_label="<html>d<i>v</i></html>"));
 
       algorithm
-        dv := Polynomial.f(
-                p,
-                {Polynomial.f(
-                  T,
-                  b_v[i, :] .* {(n_v[1] + i - 1)*T*dp + (n_v[2] - n_v[1] + j -
-              i)*p*dT for j in 1:size(b_v, 2)},
-                  n_v[2] - n_v[1] - i) for i in 1:size(b_v, 1)},
-                n_v[1] - 1);
+        dv := 0;
+        for i in 1:size(b_v, 1) loop
+          for j in 1:size(b_v, 2) loop
+            dv := dv + b_v[i,j]*((n_v[1]+i-1)*p^(n_v[1]+i-2)*T^(n_v[2]-n_v[1]-i+j)*dp + (n_v[2]-n_v[1]+j-i)*p^(n_v[1]+i-1)*T^(n_v[2]-n_v[1]-i+j-1)*dT);
+          end for;
+        end for;
 
         annotation (Inline=true, inverse(dp=dp_Tv(
                       T,
@@ -1958,13 +1940,16 @@ temperature difference.</p>
         //  AssertionLevel.warning);
         // Note:  This isn't used because it creates an error instead of a warning
         // in Dymola 2014
-        p := if isCompressible then Polynomial.f(
-                v,
-                {Polynomial.f(
-                  T,
-                  b_p[i, :],
-                  n_p[2]) for i in 1:size(b_p, 1)},
-                n_p[1]) else p0;
+        p := 0;
+        if isCompressible then
+          for i in 1:size(b_p, 1) loop
+            for j in 1:size(b_p, 2) loop
+              p := p + b_p[i,j]*v^(n_p[1]+i-1)*T^(n_p[2]+j-1);
+            end for;
+          end for;
+        else
+          p := p0;
+        end if;
         annotation (
           Inline=true,
           inverse(v=v_Tp(T, p)),
@@ -1987,13 +1972,12 @@ temperature difference.</p>
         output Q.VolumeSpecificAbsolute v "Specific volume";
 
       algorithm
-        v := Polynomial.f(
-                p,
-                {Polynomial.f(
-                  T,
-                  b_v[i, :],
-                  n_v[2] - n_v[1] - i + 1) for i in 1:size(b_v, 1)},
-                n_v[1]);
+        v := 0;
+        for i in 1:size(b_v, 1) loop
+          for j in 1:size(b_v, 2) loop
+            v := v + b_v[i,j]*p^(n_v[1]+i-1)*T^(n_v[2]-n_v[1]-i+j);
+          end for;
+        end for;
         annotation (
           Inline=true,
           inverse(p=p_Tv(T, v)),
@@ -2169,6 +2153,7 @@ temperature difference.</p>
         k_Phi := pDstar(T/T_crit)*p_crit^(2/3)*(T_crit*U.mol/U.K)^(5/6)*(U.atm/
           U.q)^(1/3)*U.cm^2/U.s/sqrt(harmonicMean({A.m,B.m})*U.g)/(p_A*B.D(T,
           v_A) + p_B*A.D(T, v_B))
+          *(U.g/U.C)*(1000*10973731.568539)/(483597.870e9*299792458)
           "Based on [Slattery1958, eq. 5] and the exchange equations in FCSys.Species.Species";
 
         annotation (Inline=true,Documentation(info="<html><p><i>v</i><sub>A</sub> and <i>v</i><sub>B</sub> are given as inputs even though they can be calculated

@@ -322,7 +322,7 @@ package Conditions "Models to specify and measure operating conditions"
 
       // extends FCSys.Icons.Names.Top1;
 
-      constant Integer n_trans(min=1,max=3)
+      parameter Integer n_trans(min=1,max=3)
         "Number of components of translational momentum" annotation (Dialog(
             __Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
       // Note:  This must be a constant rather than a parameter due to errors
@@ -340,7 +340,7 @@ package Conditions "Models to specify and measure operating conditions"
         actualStream(chemical.sT) if environment.analysis
         "Specific entropy-temperature product of the stream";
 
-      Connectors.Chemical chemical(redeclare final constant Integer n_trans=
+      Connectors.Chemical chemical(redeclare final parameter Integer n_trans=
             n_trans) "Connector for a species in a chemical reaction"
         annotation (Placement(transformation(extent={{-30,-10},{-10,10}}),
             iconTransformation(extent={{-50,-10},{-30,10}})));
@@ -800,11 +800,30 @@ package Conditions "Models to specify and measure operating conditions"
                       thickness=0.5)}));
       end Conductor;
 
+      expandable connector ElectronicGraphiteBoundaryBus
+        extends Connectors.BoundaryBus;
+        Connectors.Boundary 'e-';
+        Connectors.ThermalDiffusive 'C+';
+      end ElectronicGraphiteBoundaryBus;
+
+      expandable connector ElectronicBoundaryBus
+        extends Connectors.BoundaryBus;
+        ElectronicGraphiteBoundaryBus graphite;
+      end ElectronicBoundaryBus;
+
+      connector ElectronicCurrentGraphite
+        Connectors.Boundary 'e-';
+      end ElectronicCurrentGraphite;
+
+      connector ElectronicCurrentBoundary
+        ElectronicCurrentGraphite graphite;
+      end ElectronicCurrentBoundary;
+
       model Electronic
         "<html>Adapter for e<sup>-</sup> between <a href=\"modelica://Modelica\">Modelica</a> and <a href=\"modelica://FCSys\">FCSys</a></html>"
         extends FCSys.Icons.Names.Top1;
 
-        Connectors.BoundaryBus boundary "Multi-species connector" annotation (
+        ElectronicCurrentBoundary boundary "Multi-species connector" annotation (
             Placement(transformation(extent={{-50,-10},{-30,10}}),
               iconTransformation(extent={{-50,-10},{-30,10}})));
         Modelica.Electrical.Analog.Interfaces.NegativePin pin
@@ -816,7 +835,7 @@ package Conditions "Models to specify and measure operating conditions"
           annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
       equation
-        connect(graphite.boundary, boundary.graphite) annotation (Line(
+        connect(graphite.boundary.'e-', boundary.graphite.'e-') annotation (Line(
             points={{-4,6.10623e-016},{-40,6.10623e-016},{-40,0}},
             color={127,127,127},
             smooth=Smooth.None,
@@ -1105,7 +1124,7 @@ package Conditions "Models to specify and measure operating conditions"
                 Characteristics.'e-'.Graphite) if 'incle-'
             annotation (Placement(transformation(extent={{-10,10},{10,30}})));
 
-          Connectors.BoundaryBus boundary "FCSys boundary connector"
+          ElectronicGraphiteBoundaryBus boundary "FCSys boundary connector"
             annotation (Placement(transformation(extent={{-50,-10},{-30,10}}),
                 iconTransformation(extent={{-50,-10},{-30,10}})));
           Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort if
@@ -2706,6 +2725,74 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         extends Modelica.Icons.Package;
 
+        expandable connector SourcePhaseRealInputBus
+          extends Connectors.RealInputBus;
+          Connectors.RealInputBus H2;
+          Connectors.RealInputBus H2O;
+          Connectors.RealInputBus N2;
+          Connectors.RealInputBus O2;
+          Connectors.RealInputBus 'e-';
+          Connectors.RealInputBus 'H+';
+          Connectors.RealInput 'C+';
+          Connectors.RealInput 'SO3-';
+        end SourcePhaseRealInputBus;
+
+        expandable connector SourceRealInputBus
+          extends Connectors.RealInputBus;
+          SourcePhaseRealInputBus gas;
+          SourcePhaseRealInputBus graphite;
+          SourcePhaseRealInputBus ionomer;
+          SourcePhaseRealInputBus liquid;
+        end SourceRealInputBus;
+
+        expandable connector SourceSpeciesRealOutputBus
+          extends Connectors.RealOutputBus;
+          Connectors.RealOutput material;
+          Connectors.RealOutput after;
+          Connectors.RealOutput before;
+          Connectors.RealOutput thermal;
+        end SourceSpeciesRealOutputBus;
+
+        expandable connector SourcePhaseRealOutputBus
+          extends Connectors.RealOutputBus;
+          SourceSpeciesRealOutputBus H2;
+          SourceSpeciesRealOutputBus H2O;
+          SourceSpeciesRealOutputBus N2;
+          SourceSpeciesRealOutputBus O2;
+          SourceSpeciesRealOutputBus 'e-';
+          SourceSpeciesRealOutputBus 'H+';
+          Connectors.RealOutput 'C+';
+          Connectors.RealOutput 'SO3-';
+        end SourcePhaseRealOutputBus;
+
+        expandable connector SourceRealOutputBus
+          extends Connectors.RealOutputBus;
+          SourcePhaseRealOutputBus gas;
+          SourcePhaseRealOutputBus graphite;
+          SourcePhaseRealOutputBus ionomer;
+          SourcePhaseRealOutputBus liquid;
+        end SourceRealOutputBus;
+
+        expandable connector SourcePhaseBoundaryBus
+          extends Connectors.BoundaryBus;
+          Connectors.Boundary H2;
+          Connectors.Boundary H2O;
+          Connectors.Boundary N2;
+          Connectors.Boundary O2;
+          Connectors.Boundary 'e-';
+          Connectors.Boundary 'H+';
+          Connectors.ThermalDiffusive 'C+';
+          Connectors.ThermalDiffusive 'SO3-';
+        end SourcePhaseBoundaryBus;
+
+        expandable connector SourceBoundaryBus
+          extends Connectors.BoundaryBus;
+          SourcePhaseBoundaryBus gas;
+          SourcePhaseBoundaryBus graphite;
+          SourcePhaseBoundaryBus ionomer;
+          SourcePhaseBoundaryBus liquid;
+        end SourceBoundaryBus;
+
         model Source
           "<html>Material source for a <a href=\"modelica://FCSys.Connectors.BoundaryBus\">BoundaryBus</a> connector</html>"
 
@@ -2727,17 +2814,17 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                   "Phases (click to edit)", __Dymola_descriptionLabel=true),
               Placement(transformation(extent={{-10,-10},{10,10}})));
 
-          Connectors.BoundaryBus boundary
+          SourceBoundaryBus boundary
             "Connector for material, momentum, and energy of multiple species"
             annotation (Placement(transformation(extent={{-10,-50},{10,-30}}),
                 iconTransformation(extent={{-10,-50},{10,-30}})));
-          Connectors.RealInputBus u "Bus of inputs to specify conditions"
+          SourceRealInputBus u "Bus of inputs to specify conditions"
             annotation (Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=0,
                 origin={-110,0})));
 
-          Connectors.RealOutputBus y "Output bus of measurements" annotation (
+          SourceRealOutputBus y "Output bus of measurements" annotation (
               Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=0,
@@ -3438,7 +3525,7 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             Connectors.BoundaryBus boundary
               "Multi-species connector for material, momentum, and energy"
               annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
-            Connectors.RealInputBus u
+            SourcePhaseRealInputBus u
               "Input bus for values of specified conditions" annotation (
                 Placement(transformation(
                   extent={{-10,-10},{10,10}},
@@ -3448,7 +3535,7 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                   rotation=0,
                   origin={-110,0})));
 
-            Connectors.RealOutputBus y "Output bus of measurements" annotation
+            SourcePhaseRealOutputBus y "Output bus of measurements" annotation
               (Placement(transformation(
                   extent={{-10,-10},{10,10}},
                   rotation=0,
@@ -6088,7 +6175,9 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 origin={-20,0})));
 
       equation
-        chemical.phi = phi[cartTrans];
+        chemical.phi = {if cartTrans[i] == Integer(Axis.x) then phi[Axis.x]
+          else if cartTrans[i] == Integer(Axis.y) then phi[Axis.y] else phi[Axis.z]
+          for i in 1:n_trans};
         chemical.sT = sT;
 
         connect(set.y, u_final) annotation (Line(
@@ -6874,16 +6963,16 @@ settings will be used.",
     extends FCSys.Icons.Names.Top3;
     parameter Boolean crossOver=false "Cross over (otherwise, pass through)"
       annotation (choices(__Dymola_checkBox=true));
-    Connectors.BoundaryBus negative1 "Negative boundary 1" annotation (
+    ByConnector.BoundaryBus.Single.SourceBoundaryBus negative1 "Negative boundary 1" annotation (
         Placement(transformation(extent={{-90,-50},{-70,-30}}, rotation=0),
           iconTransformation(extent={{-90,-50},{-70,-30}})));
-    Connectors.BoundaryBus positive1 "Positive boundary 1" annotation (
+    ByConnector.BoundaryBus.Single.SourceBoundaryBus positive1 "Positive boundary 1" annotation (
         Placement(transformation(extent={{70,-50},{90,-30}}, rotation=0),
           iconTransformation(extent={{70,-50},{90,-30}})));
-    Connectors.BoundaryBus negative2 "Negative boundary 2" annotation (
+    ByConnector.BoundaryBus.Single.SourceBoundaryBus negative2 "Negative boundary 2" annotation (
         Placement(transformation(extent={{-90,30},{-70,50}}, rotation=0),
           iconTransformation(extent={{-90,30},{-70,50}})));
-    Connectors.BoundaryBus positive2 "Positive boundary 2" annotation (
+    ByConnector.BoundaryBus.Single.SourceBoundaryBus positive2 "Positive boundary 2" annotation (
         Placement(transformation(extent={{70,30},{90,50}}, rotation=0),
           iconTransformation(extent={{70,30},{90,50}})));
 

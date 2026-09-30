@@ -347,83 +347,173 @@ package Assemblies "Combinations of regions (e.g., cells)"
           annotation (Dialog, Placement(transformation(extent={{10,30},{30,50}})));
 
       protected
-        Connectors.RealInput p_N2_in[cell.caFP.n_x, cell.n_z](each unit=
+        connector NitrogenPressureSignal = Real;
+        NitrogenPressureSignal p_N2_in[cell.caFP.n_x, cell.n_z](each unit=
               "M/(L.T2)") "Pressure of N2 at inlet";
-        Connectors.RealInput p_N2_out[cell.caFP.n_x, cell.n_z](each unit=
+        NitrogenPressureSignal p_N2_out[cell.caFP.n_x, cell.n_z](each unit=
               "M/(L.T2)") "Pressure of N2 at outlet";
+
+        Connectors.ThermalDiffusive anThermalNode[cell.n_y,cell.n_z]
+          "Declared thermal junction for the anode end plate" annotation(HideResult=true);
+        Connectors.ThermalDiffusive caThermalNode[cell.n_y,cell.n_z]
+          "Declared thermal junction for the cathode end plate" annotation(HideResult=true);
+
 
       equation
         // Aliases
         zI = load.i*U.A;
 
         // Nitrogen pressures (since N2 is conditionally included)
-        connect(p_N2_in, caSource.gas.N2.materialOut.y) "Not shown in diagram";
-        connect(p_N2_out, caSink.gas.N2.materialOut.y) "Not shown in diagram";
-        if not cell.inclN2 then
+        if cell.inclN2 then
+          connect(p_N2_in, caSource.y.gas.N2.material) "Not shown in diagram";
+          connect(p_N2_out, caSink.y.gas.N2.material) "Not shown in diagram";
+        else
           p_N2_in = zeros(cell.caFP.n_x, cell.n_y);
           p_N2_out = zeros(cell.caFP.n_x, cell.n_y);
         end if;
 
-        connect(cell.an[1, 1], anAdapt.boundary) annotation (Line(
+        connect(cell.an[1, 1].graphite.'e-', anAdapt.boundary.graphite.'e-') annotation (Line(
             points={{-10,0},{-10,-26}},
             color={127,127,127},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(cell.ca[1, 1], caAdapt.boundary) annotation (Line(
+        connect(cell.ca[1, 1].graphite.'e-', caAdapt.boundary.graphite.'e-') annotation (Line(
             points={{10,0},{10,-26}},
             color={127,127,127},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(cell.an, anBC.boundary) annotation (Line(
+        connect(cell.an.graphite.'C+', anThermalNode) annotation (Line(
             points={{-10,0},{-20,0}},
             color={127,127,127},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(cell.ca, caBC.boundary) annotation (Line(
+        connect(anThermalNode, anBC.boundary.graphite.'C+') annotation (Line(
+            points={{-10,0},{-20,0}},
+            color={127,127,127},
+            thickness=0.5,
+            smooth=Smooth.None));
+        connect(cell.ca.graphite.'C+', caThermalNode) annotation (Line(
             points={{10,0},{20,0}},
             color={127,127,127},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(anRouter.positive2, anSink.boundary) annotation (Line(
+        connect(caThermalNode, caBC.boundary.graphite.'C+') annotation (Line(
+            points={{10,0},{20,0}},
+            color={127,127,127},
+            thickness=0.5,
+            smooth=Smooth.None));
+        connect(anRouter.positive2.gas, anSink.boundary.gas) annotation (Line(
             points={{-56,4},{-56,20}},
             color={240,0,0},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(anRouter.positive1, anSource.boundary) annotation (Line(
+        for j in 1:cell.anFP.n_x loop
+          for k in 1:cell.n_z loop
+            if anSink[j,k].liquid.inclH2O then
+              connect(anRouter[j,k].positive2.liquid, anSink[j,k].boundary.liquid) annotation (Line(
+            points={{-56,4},{-56,20}},
+            color={240,0,0},
+            thickness=0.5,
+            smooth=Smooth.None));
+            end if;
+          end for;
+        end for;
+        connect(anRouter.positive1.gas, anSource.boundary.gas) annotation (Line(
             points={{-56,-4},{-56,-20}},
             color={240,0,0},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(cell.anPositive, anRouter.negative2) annotation (Line(
+        for j in 1:cell.anFP.n_x loop
+          for k in 1:cell.n_z loop
+            if anSource[j,k].liquid.inclH2O then
+              connect(anRouter[j,k].positive1.liquid, anSource[j,k].boundary.liquid) annotation (Line(
+            points={{-56,-4},{-56,-20}},
+            color={240,0,0},
+            thickness=0.5,
+            smooth=Smooth.None));
+            end if;
+          end for;
+        end for;
+        connect(cell.anPositive.gas, anRouter.negative2.gas) annotation (Line(
             points={{-4,10},{-4,20},{-40,20},{-40,4}},
             color={240,0,0},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(cell.anNegative, anRouter.negative1) annotation (Line(
+        if cell.inclLiq then
+          connect(cell.anPositive.liquid, anRouter.negative2.liquid) annotation (Line(
+            points={{-4,10},{-4,20},{-40,20},{-40,4}},
+            color={240,0,0},
+            thickness=0.5,
+            smooth=Smooth.None));
+        end if;
+        connect(cell.anNegative.gas, anRouter.negative1.gas) annotation (Line(
             points={{-4,-10},{-4,-20},{-40,-20},{-40,-4}},
             color={240,0,0},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(caSink.boundary, caRouter.negative2) annotation (Line(
+        if cell.inclLiq then
+          connect(cell.anNegative.liquid, anRouter.negative1.liquid) annotation (Line(
+            points={{-4,-10},{-4,-20},{-40,-20},{-40,-4}},
+            color={240,0,0},
+            thickness=0.5,
+            smooth=Smooth.None));
+        end if;
+        connect(caSink.boundary.gas, caRouter.negative2.gas) annotation (Line(
             points={{56,20},{56,4}},
             color={0,0,240},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(caSource.boundary, caRouter.negative1) annotation (Line(
+        for j in 1:cell.caFP.n_x loop
+          for k in 1:cell.n_z loop
+            if caSink[j,k].liquid.inclH2O then
+              connect(caSink[j,k].boundary.liquid, caRouter[j,k].negative2.liquid) annotation (Line(
+            points={{56,20},{56,4}},
+            color={0,0,240},
+            thickness=0.5,
+            smooth=Smooth.None));
+            end if;
+          end for;
+        end for;
+        connect(caSource.boundary.gas, caRouter.negative1.gas) annotation (Line(
             points={{56,-20},{56,-4}},
             color={0,0,240},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(caRouter.positive2, cell.caPositive) annotation (Line(
+        for j in 1:cell.caFP.n_x loop
+          for k in 1:cell.n_z loop
+            if caSource[j,k].liquid.inclH2O then
+              connect(caSource[j,k].boundary.liquid, caRouter[j,k].negative1.liquid) annotation (Line(
+            points={{56,-20},{56,-4}},
+            color={0,0,240},
+            thickness=0.5,
+            smooth=Smooth.None));
+            end if;
+          end for;
+        end for;
+        connect(caRouter.positive2.gas, cell.caPositive.gas) annotation (Line(
             points={{40,4},{40,20},{4,20},{4,10}},
             color={0,0,240},
             thickness=0.5,
             smooth=Smooth.None));
-        connect(caRouter.positive1, cell.caNegative) annotation (Line(
+        if cell.inclLiq then
+          connect(caRouter.positive2.liquid, cell.caPositive.liquid) annotation (Line(
+            points={{40,4},{40,20},{4,20},{4,10}},
+            color={0,0,240},
+            thickness=0.5,
+            smooth=Smooth.None));
+        end if;
+        connect(caRouter.positive1.gas, cell.caNegative.gas) annotation (Line(
             points={{40,-4},{40,-20},{4,-20},{4,-10}},
             color={0,0,240},
             thickness=0.5,
             smooth=Smooth.None));
+        if cell.inclLiq then
+          connect(caRouter.positive1.liquid, cell.caNegative.liquid) annotation (Line(
+            points={{40,-4},{40,-20},{4,-20},{4,-10}},
+            color={0,0,240},
+            thickness=0.5,
+            smooth=Smooth.None));
+        end if;
         connect(anAdapt.pin, load.n) annotation (Line(
             points={{-10,-34},{-10,-50}},
             color={0,0,255},
@@ -466,6 +556,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
                 "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStand-states.mos"
               "Assemblies.Cells.Examples.TestStand-states.mos"),
           experiment(StopTime=36180, __Dymola_Algorithm="Dassl"),
+          __OpenModelica_commandLineOptions="--generateDynamicJacobian=symbolic",
+          __OpenModelica_simulationFlags(s="ida", jacobian="coloredSymbolical"),
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-80,-80},
                   {80,60}}), graphics));
       end TestStand;
@@ -639,14 +731,14 @@ package Assemblies "Combinations of regions (e.g., cells)"
         annotation (Dialog(tab="Assumptions", compact=true), choices(
             __Dymola_checkBox=true));
 
-      Connectors.BoundaryBus an[n_y, n_z] "Interface with the anode end plate"
+      Subregions.LiquidFaceBoundaryBus an[n_y, n_z] "Interface with the anode end plate"
         annotation (Placement(transformation(extent={{-100,-20},{-80,0}},
               rotation=0), iconTransformation(extent={{-110,-10},{-90,10}})));
-      Connectors.BoundaryBus ca[n_y, n_z]
+      Subregions.LiquidFaceBoundaryBus ca[n_y, n_z]
         "Interface with the cathode end plate" annotation (Placement(
             transformation(extent={{60,-20},{80,0}}, rotation=0),
             iconTransformation(extent={{90,-10},{110,10}})));
-      Connectors.BoundaryBus anNegative[anFP.n_x, n_z]
+      Subregions.LiquidFaceBoundaryBus anNegative[anFP.n_x, n_z]
         "Negative anode fluid port" annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=0,
@@ -654,7 +746,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
             extent={{-10,-10},{10,10}},
             rotation=180,
             origin={-40,-100})));
-      Connectors.BoundaryBus caNegative[caFP.n_x, n_z]
+      Subregions.LiquidFaceBoundaryBus caNegative[caFP.n_x, n_z]
         "Negative cathode fluid port" annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=0,
@@ -662,7 +754,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
             extent={{-10,-10},{10,10}},
             rotation=180,
             origin={40,-100})));
-      Connectors.BoundaryBus anPositive[anFP.n_x, n_z]
+      Subregions.LiquidFaceBoundaryBus anPositive[anFP.n_x, n_z]
         "Positive anode fluid port" annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=0,
@@ -670,7 +762,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
             extent={{-10,-10},{10,10}},
             rotation=180,
             origin={-40,100})));
-      Connectors.BoundaryBus caPositive[caFP.n_x, n_z]
+      Subregions.LiquidFaceBoundaryBus caPositive[caFP.n_x, n_z]
         "Positive cathode fluid port" annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=0,
@@ -740,22 +832,42 @@ package Assemblies "Combinations of regions (e.g., cells)"
           color={240,0,0},
           smooth=Smooth.None,
           thickness=0.5));
-      connect(anGDL.xPositive, anCL.xNegative) annotation (Line(
+      connect(anGDL.xPositive.gas, anCL.xNegative.gas) annotation (Line(
           points={{-40,-10},{-40,-10}},
           color={240,0,0},
           smooth=Smooth.None,
           thickness=0.5));
-      connect(anCL.xPositive, PEM.xNegative) annotation (Line(
+      connect(anGDL.xPositive.graphite, anCL.xNegative.graphite) annotation (Line(
+          points={{-40,-10},{-40,-10}},
+          color={240,0,0},
+          smooth=Smooth.None,
+          thickness=0.5));
+      connect(anGDL.xPositive.liquid, anCL.xNegative.liquid) annotation (Line(
+          points={{-40,-10},{-40,-10}},
+          color={240,0,0},
+          smooth=Smooth.None,
+          thickness=0.5));
+      connect(anCL.xPositive.ionomer, PEM.xNegative.ionomer) annotation (Line(
           points={{-20,-10},{-20,-10}},
           color={240,0,0},
           smooth=Smooth.None,
           thickness=0.5));
-      connect(PEM.xPositive, caCL.xNegative) annotation (Line(
+      connect(PEM.xPositive.ionomer, caCL.xNegative.ionomer) annotation (Line(
           points={{0,-10},{0,-10}},
           color={0,0,240},
           smooth=Smooth.None,
           thickness=0.5));
-      connect(caCL.xPositive, caGDL.xNegative) annotation (Line(
+      connect(caCL.xPositive.gas, caGDL.xNegative.gas) annotation (Line(
+          points={{20,-10},{20,-10}},
+          color={0,0,240},
+          smooth=Smooth.None,
+          thickness=0.5));
+      connect(caCL.xPositive.graphite, caGDL.xNegative.graphite) annotation (Line(
+          points={{20,-10},{20,-10}},
+          color={0,0,240},
+          smooth=Smooth.None,
+          thickness=0.5));
+      connect(caCL.xPositive.liquid, caGDL.xNegative.liquid) annotation (Line(
           points={{20,-10},{20,-10}},
           color={0,0,240},
           smooth=Smooth.None,

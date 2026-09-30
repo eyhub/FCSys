@@ -1,0 +1,8 @@
+getVersion();
+loadModel(Modelica,{"3.2.3"});getErrorString();
+getSourceFile(Modelica);
+setCommandLineOptions("--generateDynamicJacobian=symbolic");getErrorString();
+loadFile("@PACKAGE_FILE@");getErrorString();
+print("BEGIN_STAGE=translate\n");
+translateModel(FCSys.Assemblies.Cells.Examples.TestStand);getErrorString();
+print("END_STAGE=translate\n");

@@ -11,6 +11,14 @@ the Modelica code (starting at the [top level](FCSys 0.2.6/package.mo)).
 
 ### Installation
 
+This fork contains an OpenModelica 1.27.0 native-core prerelease for Windows 64-bit.
+See the [OpenModelica setup instructions](openmodelica/README.md),
+[source changes](openmodelica/PORT_CHANGES.md), and
+[qualification results and limitations](openmodelica/QUALIFICATION.md).
+Headless and manual OMEdit qualification passed for the original wet TestStand,
+including monitored runtime-path capture. Other models and configurations remain
+unqualified; setup steps, diagnostics and display limitations are documented above.
+
 Please see the
 [Getting Started section](http://kdavies4.github.io/FCSys/FCSys_UsersGuide.html#FCSys.UsersGuide.GettingStarted)
 of the

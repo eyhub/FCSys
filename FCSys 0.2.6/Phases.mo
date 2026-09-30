@@ -2,6 +2,14 @@ within FCSys;
 package Phases "Mixtures of species"
   extends Modelica.Icons.Package;
 
+  expandable connector GasBoundaryBus
+    extends Connectors.BoundaryBus;
+    Connectors.Boundary H2;
+    Connectors.Boundary H2O;
+    Connectors.Boundary N2;
+    Connectors.Boundary O2;
+  end GasBoundaryBus;
+
   model Gas "Gas phase"
     import Modelica.Constants.inf;
     import Modelica.Math.BooleanVectors.countTrue;
@@ -25,6 +33,7 @@ package Phases "Mixtures of species"
       final n_inter,
       final kL,
       final n_chem,
+      final exposeCommonWeights=true,
       final k_intra_Phi,
       final k_intra_Q) if inclH2 constrainedby FCSys.Species.Fluid(
       n_trans=n_trans,
@@ -55,6 +64,7 @@ package Phases "Mixtures of species"
       final n_inter,
       final kL,
       final n_chem,
+      final exposeCommonWeights=true,
       final k_intra_Phi,
       final k_intra_Q) if inclH2O constrainedby FCSys.Species.Fluid(
       n_trans=n_trans,
@@ -87,6 +97,7 @@ package Phases "Mixtures of species"
       final n_inter,
       final kL,
       final n_chem,
+      final exposeCommonWeights=true,
       final k_intra_Phi,
       final k_intra_Q) if inclN2 constrainedby FCSys.Species.Fluid(
       n_trans=n_trans,
@@ -118,6 +129,7 @@ package Phases "Mixtures of species"
       final n_inter,
       final kL,
       final n_chem,
+      final exposeCommonWeights=true,
       final k_intra_Phi,
       final k_intra_Q) if inclO2 constrainedby FCSys.Species.Fluid(
       n_trans=n_trans,
@@ -156,27 +168,27 @@ package Phases "Mixtures of species"
        or inclO2 "<html>Between N<sub>2</sub> and O<sub>2</sub></html>"
       annotation (Dialog(group="Independence factors"));
 
-    Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
+    GasBoundaryBus xNegative if inclTrans[Axis.x]
       "Negative boundary along the x axis" annotation (Placement(transformation(
             extent={{-120,10},{-100,30}}), iconTransformation(extent={{-90,-10},
               {-70,10}})));
-    Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
+    GasBoundaryBus yNegative if inclTrans[Axis.y]
       "Negative boundary along the y axis" annotation (Placement(transformation(
             extent={{-96,-14},{-76,6}}), iconTransformation(extent={{-10,-94},{
               10,-74}})));
-    Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
+    GasBoundaryBus zNegative if inclTrans[Axis.z]
       "Negative boundary along the z axis" annotation (Placement(transformation(
             extent={{88,22},{108,42}}), iconTransformation(extent={{40,40},{60,
               60}})));
-    Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
+    GasBoundaryBus xPositive if inclTrans[Axis.x]
       "Positive boundary along the x axis" annotation (Placement(transformation(
             extent={{100,10},{120,30}}), iconTransformation(extent={{70,-10},{
               90,10}})));
-    Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
+    GasBoundaryBus yPositive if inclTrans[Axis.y]
       "Positive boundary along the y axis" annotation (Placement(transformation(
             extent={{76,34},{96,54}}), iconTransformation(extent={{-10,90},{10,
               110}})));
-    Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
+    GasBoundaryBus zPositive if inclTrans[Axis.z]
       "Positive boundary along the z axis" annotation (Placement(transformation(
             extent={{-108,-2},{-88,18}}), iconTransformation(extent={{-90,-90},
               {-70,-70}})));
@@ -205,16 +217,17 @@ package Phases "Mixtures of species"
               {46,60},{66,80}}), iconTransformation(extent={{30,-50},{50,-30}})));
 
   protected
-    Connectors.InertNode exchCommon
+    Connectors.InertNodeWeightedSignals exchCommon(final n_trans=n_trans, final n_spec=n_spec,
+      useMean={common.k_Phi[cartTrans[j]] > 0 for j in 1:n_trans}) if n_spec > 0
       "Connector for exchange among species in the phase"
       annotation (Placement(transformation(extent={{76,-38},{96,-18}})));
-    Connectors.InertNode exchH2_H2O "Connector for exchange between H2 and H2O"
+    Connectors.InertNodeFixed exchH2_H2O(final n_trans=n_trans) if inclH2 or inclH2O "Connector for exchange between H2 and H2O"
       annotation (Placement(transformation(extent={{76,-48},{96,-28}})));
-    Connectors.InertNode exchH2O_N2 "Connector for exchange between H2O and N2"
+    Connectors.InertNodeFixed exchH2O_N2(final n_trans=n_trans) if inclH2O or inclN2 "Connector for exchange between H2O and N2"
       annotation (Placement(transformation(extent={{76,-58},{96,-38}})));
-    Connectors.InertNode exchH2O_O2 "Connector for exchange between H2O and O2"
+    Connectors.InertNodeFixed exchH2O_O2(final n_trans=n_trans) if inclH2O or inclO2 "Connector for exchange between H2O and O2"
       annotation (Placement(transformation(extent={{76,-68},{96,-48}})));
-    Connectors.InertNode exchN2_O2 "Connector for exchange between N2 and O2"
+    Connectors.InertNodeFixed exchN2_O2(final n_trans=n_trans) if inclN2 or inclO2 "Connector for exchange between N2 and O2"
       annotation (Placement(transformation(extent={{76,-78},{96,-58}})));
 
   equation
@@ -249,6 +262,30 @@ package Phases "Mixtures of species"
         points={{69,16.2},{69,-16},{110,-16}},
         color={221,23,47},
         smooth=Smooth.None));
+    if inclH2 then
+      connect(H2.commonWeight, exchCommon.weights[1]);
+      for j in 1:n_trans loop
+        connect(H2.commonWeightedPhi[j], exchCommon.weightedPhi[1,j]);
+      end for;
+    end if;
+    if inclH2O then
+      connect(H2O.commonWeight, exchCommon.weights[1 + (if inclH2 then 1 else 0)]);
+      for j in 1:n_trans loop
+        connect(H2O.commonWeightedPhi[j], exchCommon.weightedPhi[1 + (if inclH2 then 1 else 0),j]);
+      end for;
+    end if;
+    if inclN2 then
+      connect(N2.commonWeight, exchCommon.weights[1 + (if inclH2 then 1 else 0) + (if inclH2O then 1 else 0)]);
+      for j in 1:n_trans loop
+        connect(N2.commonWeightedPhi[j], exchCommon.weightedPhi[1 + (if inclH2 then 1 else 0) + (if inclH2O then 1 else 0),j]);
+      end for;
+    end if;
+    if inclO2 then
+      connect(O2.commonWeight, exchCommon.weights[1 + (if inclH2 then 1 else 0) + (if inclH2O then 1 else 0) + (if inclN2 then 1 else 0)]);
+      for j in 1:n_trans loop
+        connect(O2.commonWeightedPhi[j], exchCommon.weightedPhi[1 + (if inclH2 then 1 else 0) + (if inclH2O then 1 else 0) + (if inclN2 then 1 else 0),j]);
+      end for;
+    end if;
     connect(H2.intra[1], exchCommon.node) annotation (Line(
         points={{-56,11},{-56,-28},{86,-28}},
         color={221,23,47},
@@ -479,6 +516,12 @@ package Phases "Mixtures of species"
               100}}), graphics));
   end Gas;
 
+  expandable connector GraphiteBoundaryBus
+    extends Connectors.BoundaryBus;
+    Connectors.Boundary 'e-';
+    Connectors.ThermalDiffusive 'C+';
+  end GraphiteBoundaryBus;
+
   model Graphite "Graphite phase"
     import assert = FCSys.Utilities.assertEval;
     import Modelica.Math.BooleanVectors.countTrue;
@@ -574,27 +617,27 @@ package Phases "Mixtures of species"
     // must be manually changed at instantiation if additional transport axes
     //  are enabled.
 
-    Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
+    GraphiteBoundaryBus xNegative if inclTrans[Axis.x]
       "Negative boundary along the x axis" annotation (Placement(transformation(
             extent={{-80,-30},{-60,-10}}), iconTransformation(extent={{-90,-10},
               {-70,10}})));
-    Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
+    GraphiteBoundaryBus yNegative if inclTrans[Axis.y]
       "Negative boundary along the y axis" annotation (Placement(transformation(
             extent={{-56,-54},{-36,-34}}), iconTransformation(extent={{-10,-94},
               {10,-74}})));
-    Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
+    GraphiteBoundaryBus zNegative if inclTrans[Axis.z]
       "Negative boundary along the z axis" annotation (Placement(transformation(
             extent={{48,-18},{68,2}}), iconTransformation(extent={{40,40},{60,
               60}})));
-    Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
+    GraphiteBoundaryBus xPositive if inclTrans[Axis.x]
       "Positive boundary along the x axis" annotation (Placement(transformation(
             extent={{60,-30},{80,-10}}), iconTransformation(extent={{70,-10},{
               90,10}})));
-    Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
+    GraphiteBoundaryBus yPositive if inclTrans[Axis.y]
       "Positive boundary along the y axis" annotation (Placement(transformation(
             extent={{36,-6},{56,14}}), iconTransformation(extent={{-10,90},{10,
               110}})));
-    Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
+    GraphiteBoundaryBus zPositive if inclTrans[Axis.z]
       "Positive boundary along the z axis" annotation (Placement(transformation(
             extent={{-68,-42},{-48,-22}}), iconTransformation(extent={{-90,-90},
               {-70,-70}})));
@@ -616,7 +659,7 @@ package Phases "Mixtures of species"
     Conditions.Adapters.AmagatDalton amagatDalton if n_spec > 0
       "Adapter between additivity of volume and additivity of pressure"
       annotation (Placement(transformation(extent={{-60,4},{-40,24}})));
-    Connectors.InertNode exchCommon
+    Connectors.InertNodeFixed exchCommon(final n_trans=n_trans) if n_spec > 0
       "Connector for exchange among all species in the phase"
       annotation (Placement(transformation(extent={{36,-78},{56,-58}})));
 
@@ -773,6 +816,13 @@ package Phases "Mixtures of species"
               100}}), graphics));
   end Graphite;
 
+  expandable connector IonomerBoundaryBus
+    extends Connectors.BoundaryBus;
+    Connectors.Boundary 'H+';
+    Connectors.Boundary H2O;
+    Connectors.ThermalDiffusive 'SO3-';
+  end IonomerBoundaryBus;
+
   model Ionomer "Ionomer phase"
     import Modelica.Constants.inf;
     import Modelica.Math.BooleanVectors.countTrue;
@@ -882,27 +932,27 @@ package Phases "Mixtures of species"
         enable=inclH2O),
       Placement(transformation(extent={{-10,2},{10,22}})));
 
-    Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
+    IonomerBoundaryBus xNegative if inclTrans[Axis.x]
       "Negative boundary along the x axis" annotation (Placement(transformation(
             extent={{-100,2},{-80,22}}), iconTransformation(extent={{-90,-10},{
               -70,10}})));
-    Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
+    IonomerBoundaryBus yNegative if inclTrans[Axis.y]
       "Negative boundary along the y axis" annotation (Placement(transformation(
             extent={{-76,-22},{-56,-2}}), iconTransformation(extent={{-10,-94},
               {10,-74}})));
-    Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
+    IonomerBoundaryBus zNegative if inclTrans[Axis.z]
       "Negative boundary along the z axis" annotation (Placement(transformation(
             extent={{68,14},{88,34}}), iconTransformation(extent={{40,40},{60,
               60}})));
-    Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
+    IonomerBoundaryBus xPositive if inclTrans[Axis.x]
       "Positive boundary along the x axis" annotation (Placement(transformation(
             extent={{80,2},{100,22}}), iconTransformation(extent={{70,-10},{90,
               10}})));
-    Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
+    IonomerBoundaryBus yPositive if inclTrans[Axis.y]
       "Positive boundary along the y axis" annotation (Placement(transformation(
             extent={{56,26},{76,46}}), iconTransformation(extent={{-10,90},{10,
               110}})));
-    Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
+    IonomerBoundaryBus zPositive if inclTrans[Axis.z]
       "Positive boundary along the z axis" annotation (Placement(transformation(
             extent={{-88,-10},{-68,10}}), iconTransformation(extent={{-90,-90},
               {-70,-70}})));
@@ -942,19 +992,19 @@ package Phases "Mixtures of species"
       "Adapter between additivity of volume and additivity of pressure"
       annotation (Placement(transformation(extent={{-80,38},{-60,58}})));
 
-    Connectors.InertNode exchCommon
+    Connectors.InertNodeFixed exchCommon(final n_trans=n_trans) if n_spec > 0
       "Connector for exchange among all species in the phase" annotation (
         Placement(transformation(extent={{56,-46},{76,-26}}),
           iconTransformation(extent={{86,-50},{106,-30}})));
-    Connectors.InertNode 'exchH+_SO3-'
+    Connectors.InertNodeFixed 'exchH+_SO3-'(final n_trans=n_trans) if 'inclSO3-' or 'inclH+'
       "Connector for exchange between H+ and SO3-" annotation (Placement(
           transformation(extent={{56,-56},{76,-36}}), iconTransformation(extent
             ={{48,-76},{68,-56}})));
-    Connectors.InertNode 'exchH+_H2O'
+    Connectors.InertNodeFixed 'exchH+_H2O'(final n_trans=n_trans) if 'inclH+' or inclH2O
       "Connector for exchange between H+ and H2O" annotation (Placement(
           transformation(extent={{56,-66},{76,-46}}), iconTransformation(extent
             ={{48,-76},{68,-56}})));
-    Connectors.InertNode 'exchH2O_SO3-'
+    Connectors.InertNodeFixed 'exchH2O_SO3-'(final n_trans=n_trans) if 'inclSO3-' or inclH2O
       "Connector for exchange between H2O and SO3-" annotation (Placement(
           transformation(extent={{56,-76},{76,-56}}), iconTransformation(extent
             ={{48,-76},{68,-56}})));
@@ -1157,6 +1207,11 @@ package Phases "Mixtures of species"
               100}}), graphics));
   end Ionomer;
 
+  expandable connector LiquidBoundaryBus
+    extends Connectors.BoundaryBus;
+    Connectors.Boundary H2O;
+  end LiquidBoundaryBus;
+
   model Liquid "Liquid phase"
     extends Icons.Phases.Liquid;
     extends PartialPhase(final n_spec=if inclH2O then 1 else 0,final V=-amagat.V);
@@ -1191,26 +1246,26 @@ package Phases "Mixtures of species"
         enable=inclH2O),
       Placement(transformation(extent={{-20,-20},{0,0}})));
 
-    Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
+    LiquidBoundaryBus xNegative if inclTrans[Axis.x]
       "Negative boundary along the x axis" annotation (Placement(transformation(
             extent={{-60,-20},{-40,0}}), iconTransformation(extent={{-90,-10},{
               -70,10}})));
-    Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
+    LiquidBoundaryBus yNegative if inclTrans[Axis.y]
       "Negative boundary along the y axis" annotation (Placement(transformation(
             extent={{-20,-60},{0,-40}}), iconTransformation(extent={{-10,-94},{
               10,-74}})));
-    Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
+    LiquidBoundaryBus zNegative if inclTrans[Axis.z]
       "Negative boundary along the z axis" annotation (Placement(transformation(
             extent={{0,0},{20,20}}), iconTransformation(extent={{40,40},{60,60}})));
-    Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
+    LiquidBoundaryBus xPositive if inclTrans[Axis.x]
       "Positive boundary along the x axis" annotation (Placement(transformation(
             extent={{20,-20},{40,0}}), iconTransformation(extent={{70,-10},{90,
               10}})));
-    Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
+    LiquidBoundaryBus yPositive if inclTrans[Axis.y]
       "Positive boundary along the y axis" annotation (Placement(transformation(
             extent={{-20,20},{0,40}}), iconTransformation(extent={{-10,90},{10,
               110}})));
-    Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
+    LiquidBoundaryBus zPositive if inclTrans[Axis.z]
       "Positive boundary along the z axis" annotation (Placement(transformation(
             extent={{-40,-40},{-20,-20}}), iconTransformation(extent={{-90,-90},
               {-70,-70}})));
@@ -1342,10 +1397,16 @@ protected
     outer parameter Q.Length L[Axis] if n_spec > 0 "Length of the subregion"
       annotation (missingInnerMessage="This model should be used within a subregion model.
 ");
-    final parameter Q.Length kL[:]=k[cartTrans] .* L[cartTrans] if n_spec > 0
+    final parameter Q.Length kL[:]={if cartTrans[i] == Integer(Axis.x) then
+      k[Axis.x] else if cartTrans[i] == Integer(Axis.y) then k[Axis.y] else
+      k[Axis.z] for i in 1:n_trans} .* {if cartTrans[i] == Integer(Axis.x)
+      then L[Axis.x] else if cartTrans[i] == Integer(Axis.y) then L[Axis.y]
+      else L[Axis.z] for i in 1:n_trans} if n_spec > 0
       "Effective transport lengths";
-    final inner Q.Area Aprime[n_trans]=fill(V, n_trans) ./ L[cartTrans] if
-      n_spec > 0 "Effective cross-sectional areas";
+    final inner Q.Area Aprime[n_trans]=fill(V, n_trans) ./ {if cartTrans[i]
+      == Integer(Axis.x) then L[Axis.x] else if cartTrans[i] == Integer(Axis.y)
+      then L[Axis.y] else L[Axis.z] for i in 1:n_trans} if n_spec > 0
+      "Effective cross-sectional areas";
     outer parameter Integer cartTrans[:]
       "Cartesian-axis indices of the components of translational momentum"
       annotation (missingInnerMessage="This model should be used within a subregion model.
@@ -1383,7 +1444,7 @@ public
   record ExchangeParams "Independence factors for an exchange process"
     extends Modelica.Icons.Record;
 
-    parameter Q.NumberAbsolute k_Phi[Axis]={1,1,1} "Translational" annotation (
+    parameter Q.NumberAbsolute k_Phi[3]={1,1,1} "Translational" annotation (
         Evaluate=true, Dialog(__Dymola_label=
             "<html><i>k</i><sub>&Phi;</sub></html>"));
     parameter Q.NumberAbsolute k_Q=1 "Thermal" annotation (Evaluate=true,

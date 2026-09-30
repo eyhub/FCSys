@@ -3230,7 +3230,7 @@ For more information, please see the
     // Auxiliary parameters (for analysis only)
     final parameter Q.Length L[Axis]={sum(L_x),sum(L_y),sum(L_z)} if
       hasSubregions "Length";
-    final parameter Q.Area A[Axis]={L[cartWrap(axis + 1)]*L[cartWrap(axis + 2)]
+    final parameter Q.Area A[Axis]={L[Axis(cartWrap(Integer(axis) + 1))]*L[Axis(cartWrap(Integer(axis) + 2))]
         for axis in Axis} if hasSubregions "Cross-sectional areas";
     final parameter Q.Volume V=product(L) if hasSubregions "Volume";
 
@@ -3247,26 +3247,26 @@ For more information, please see the
           for i_z in 1:n_z, i_y in 1:n_y, i_x in 1:n_x}) if hasSubregions
       "Instances of the subregion model"
       annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
-    Connectors.BoundaryBus xNegative[n_y, n_z] if inclTransX
+    Subregions.LiquidFaceBoundaryBus xNegative[n_y, n_z] if inclTransX
       "Negative boundary along the x axis" annotation (Placement(transformation(
             extent={{-60,-20},{-40,0}}), iconTransformation(extent={{-110,-10},
               {-90,10}})));
-    Connectors.BoundaryBus xPositive[n_y, n_z] if inclTransX
+    Subregions.LiquidFaceBoundaryBus xPositive[n_y, n_z] if inclTransX
       "Positive boundary along the x axis" annotation (Placement(transformation(
             extent={{20,-20},{40,0}}), iconTransformation(extent={{90,-10},{110,
               10}})));
-    Connectors.BoundaryBus yNegative[n_x, n_z] if inclTransY
+    Subregions.LiquidFaceBoundaryBus yNegative[n_x, n_z] if inclTransY
       "Negative boundary along the y axis" annotation (Placement(transformation(
             extent={{-20,-60},{0,-40}}), iconTransformation(extent={{-10,-110},
               {10,-90}})));
-    Connectors.BoundaryBus yPositive[n_x, n_z] if inclTransY
+    Subregions.LiquidFaceBoundaryBus yPositive[n_x, n_z] if inclTransY
       "Positive boundary along the y axis" annotation (Placement(transformation(
             extent={{-20,20},{0,40}}), iconTransformation(extent={{-10,90},{10,
               110}})));
-    Connectors.BoundaryBus zNegative[n_x, n_y] if inclTransZ
+    Subregions.LiquidFaceBoundaryBus zNegative[n_x, n_y] if inclTransZ
       "Negative boundary along the z axis" annotation (Placement(transformation(
             extent={{0,0},{20,20}}), iconTransformation(extent={{40,40},{60,60}})));
-    Connectors.BoundaryBus zPositive[n_x, n_y] if inclTransZ
+    Subregions.LiquidFaceBoundaryBus zPositive[n_x, n_y] if inclTransZ
       "Positive boundary along the z axis" annotation (Placement(transformation(
             extent={{-40,-40},{-20,-20}}), iconTransformation(extent={{-60,-60},
               {-40,-40}})));

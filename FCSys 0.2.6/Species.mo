@@ -434,8 +434,8 @@ and &theta; = <code>U.m*U.K/(183e-3*U.W)</code>) are based on data of H<sub>2</s
           "Relative humidity (approximate)";
         output Q.NumberAbsolute RH_boundaries[n_trans, Side](
           each stateSelect=StateSelect.never,
-          each displayUnit="%") = boundaries.p ./ Characteristics.H2O.p_sat(
-          boundaries.T) if environment.analysis
+          each displayUnit="%") = boundaries.p ./ {{Characteristics.H2O.p_sat(
+          boundaries[i, side].T) for side in Side} for i in 1:n_trans} if environment.analysis
           "Relative humidity at the boundaries (approximate)";
 
         annotation (
@@ -974,7 +974,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
             "Chemical parameters", __Dymola_label="<html>&tau;&prime;</html>"));
 
     // Geometry
-    Q.Length kL[:]=L[cartTrans] "Effective transport length" annotation (Dialog(
+    Q.Length kL[:]=L[{if cartTrans[i] == 1 then Axis.x else if cartTrans[i] == 2 then Axis.y else Axis.z for i in 1:n_trans}] "Effective transport length" annotation (Dialog(
           group="Geometry", __Dymola_label=
             "<html><b><i>k&nbsp;L</i></b></html>"));
     // Note:  The size is n_trans, but it isn't specified here to
@@ -1093,7 +1093,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
        = fill(
         1,
         n_trans,
-        2) ./ Data.v_Tp(boundaries.T, boundaries.p) if environment.analysis
+        2) ./ {{Data.v_Tp(boundaries[i, side].T, boundaries[i, side].p) for side in Side} for i in 1:n_trans} if environment.analysis
       "Densities at the boundaries";
     output Q.VolumeRate Vdot_boundaries[n_trans, Side](each stateSelect=
           StateSelect.never) = boundaries.Ndot ./ rho_boundaries if environment.analysis
@@ -1113,16 +1113,16 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
       Delta(boundaries.p) if environment.analysis
       "Differences in pressures across the boundaries";
     output Q.Power Hprimedot[n_trans, Side](each stateSelect=StateSelect.never)
-       = (Data.h(boundaries.T, boundaries.p) + Data.m*phi_boundaries .^ 2/2)
+       = ({{Data.h(boundaries[i, side].T, boundaries[i, side].p) for side in Side} for i in 1:n_trans} + Data.m*phi_boundaries .^ 2/2)
        .* boundaries.Ndot if environment.analysis
       "Flow rates of enthalpy + kinetic energy into the boundaries";
     //
     // Potentials
     output Q.Potential g_boundaries[n_trans, Side](each stateSelect=StateSelect.never)
-       = Data.g(boundaries.T, boundaries.p) if environment.analysis and not
+       = {{Data.g(boundaries[i, side].T, boundaries[i, side].p) for side in Side} for i in 1:n_trans} if environment.analysis and not
       Data.isCompressible "Gibbs potentials at the boundaries";
     output Q.Potential Deltag[n_trans](each stateSelect=StateSelect.never) =
-      Delta(g_boundaries) if environment.analysis and not Data.isCompressible
+      {g_boundaries[i, Side.p] - g_boundaries[i, Side.n] for i in 1:n_trans} if environment.analysis and not Data.isCompressible
       "Differences in Gibbs potentials across the boundaries";
     // Note:  If a boundary is left unconnnected, then it's possible that its
     // pressure may become negative.  If the equation of state has an ideal-gas
@@ -1137,7 +1137,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
       "Time constants for material transport";
     output Q.TimeAbsolute tau_PhiT[n_trans](
       each stateSelect=StateSelect.never,
-      each start=U.s) = M*eta*kL ./ (2*Nu_Phi[cartTrans] .* Aprime) if
+      each start=U.s) = M*eta*kL ./ (2*Nu_Phi[{Axis(k) for k in cartTrans}] .* Aprime) if
       environment.analysis
       "Time constants for transverse translational transport";
     output Q.TimeAbsolute tau_QT[n_trans](
@@ -1167,24 +1167,19 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
     //
     // Translational momentum balance
     output Q.Force Ma[n_trans](each stateSelect=StateSelect.never) = M*(der(phi)
-      /U.s + environment.a[cartTrans]) + N*Data.z*environment.E[cartTrans] if
+      /U.s + environment.a[{Axis(k) for k in cartTrans}]) + N*Data.z*environment.E[{Axis(k) for k in cartTrans}] if
       environment.analysis
       "Acceleration force (including acceleration due to body forces)";
     output Q.Force f_thermo[n_trans](each stateSelect=StateSelect.never) = -
       Delta(boundaries.p) .* Aprime if environment.analysis
       "Thermodynamic force";
-    output Q.Force f_AE[n_trans](each stateSelect=StateSelect.never) = Data.m*
-      sum((actualStream(chemical[i].phi) - phi)*chemical[i].Ndot for i in 1:
-      n_chem) if environment.analysis
+    output Q.Force f_AE[n_trans](each stateSelect=StateSelect.never) = {Data.m*
+      sum((actualStream(chemical[i].phi[j]) - phi[j])*chemical[i].Ndot for i in 1:
+      n_chem) for j in 1:n_trans} if environment.analysis
       "Acceleration force due to advective exchange";
-    output Q.Force f_AT[n_trans](each stateSelect=StateSelect.never) = {sum(((
-      if i == j then phi_boundaries[j, :] else boundaries[j, :].phi[cartWrap(
-      cartTrans[i] - cartTrans[j])]) - {phi[i],phi[i]})*boundaries[j, :].Ndot*
-      Data.m for j in 1:n_trans) for i in 1:n_trans} if environment.analysis
+    output Q.Force f_AT[n_trans](each stateSelect=StateSelect.never) = {sum(sum(((if i == j then phi_boundaries[j, side] else (if cartWrap(cartTrans[i] - cartTrans[j]) == 1 then boundaries[j, side].phi[Orient.after] else boundaries[j, side].phi[Orient.before])) - phi[i])*boundaries[j, side].Ndot*Data.m for side in Side) for j in 1:n_trans) for i in 1:n_trans} if environment.analysis
       "Acceleration force due to advective transport";
-    output Q.Force f_DT[n_trans](each stateSelect=StateSelect.never) = {sum(sum(
-      if i == j then {0,0} else boundaries[j, :].mPhidot[cartWrap(cartTrans[i]
-       - cartTrans[j])]) for j in 1:n_trans) for i in 1:n_trans} if environment.analysis
+    output Q.Force f_DT[n_trans](each stateSelect=StateSelect.never) = {sum(sum((if i == j then 0 else (if cartWrap(cartTrans[i] - cartTrans[j]) == 1 then boundaries[j, side].mPhidot[Orient.after] else boundaries[j, side].mPhidot[Orient.before])) for side in Side) for j in 1:n_trans) for i in 1:n_trans} if environment.analysis
       "Shear force from other subregions (diffusive transport)";
     //
     // Energy balance
@@ -1197,8 +1192,8 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
       actualStream(chemical[i].phi) - phi*phi)*Data.m/2)*chemical[i].Ndot for i
        in 1:n_chem) if environment.analysis
       "Relative rate of energy (internal, flow, and kinetic) due to reactions and phase change";
-    output Q.Power Edot_AT(stateSelect=StateSelect.never) = sum((Data.h(
-      boundaries[i, :].T, boundaries[i, :].p) - {h,h} + (phi_boundaries[i, :]
+    output Q.Power Edot_AT(stateSelect=StateSelect.never) = sum(({Data.h(
+      boundaries[i, Side.n].T, boundaries[i, Side.n].p),Data.h(boundaries[i, Side.p].T, boundaries[i, Side.p].p)} - {h,h} + (phi_boundaries[i, :]
        .^ 2 + sum(boundaries[i, :].phi[orient] .^ 2 for orient in Orient) -
       fill(phi*phi, 2))*(Data.m/2))*boundaries[i, :].Ndot for i in 1:n_trans)
       if environment.analysis
@@ -1251,8 +1246,9 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
 ");
     // Note:  The size is also Axis, but it can't be specified here due
     // to an error in Dymola 2014.
-    final parameter ConsTrans consTrans[n_trans]=selectIntegers({consTransX,
-        consTransY,consTransZ}, cartTrans)
+    final parameter ConsTrans consTrans[n_trans]={if cartTrans[i] == 1 then
+        consTransX else if cartTrans[i] == 2 then consTransY else consTransZ
+        for i in 1:n_trans}
       "Formulation of the translational conservation equations for the transport axes"
       annotation (HideResult=true);
     final parameter Boolean upstream[n_trans]=selectBooleans({upstreamX,
@@ -1418,32 +1414,33 @@ Choose any condition besides none.");
           *boundaries[i, side].Ndot/(2*Aprime[i])) else 2) + inSign(side)*f[i];
 
         // Translational momentum
-        kL[i]*eta*mPhidot_boundaries[i, side, Orient.after] = Aprime[i]*Nu_Phi[
-          after(cartTrans[i])]*(boundaries[i, side].phi[Orient.after] - (if
-          inclTrans[after(cartTrans[i])] then phi[transCart[after(cartTrans[i])]]
-           else 0))*(if upstream[i] then 1 + exp(-kL[i]*eta*Data.m*boundaries[i,
-          side].Ndot/(2*Aprime[i]*Nu_Phi[after(cartTrans[i])])) else 2)
+        kL[i]*eta*mPhidot_boundaries[i, side, Orient.after]*(if upstream[i] then
+          FCSys.Utilities.inverseOnePlusExp(-kL[i]*eta*Data.m*boundaries[i, side].Ndot/
+          (2*Aprime[i]*Nu_Phi[after(Axis(cartTrans[i]))])) else 0.5) =
+          Aprime[i]*Nu_Phi[after(Axis(cartTrans[i]))]*(boundaries[i, side].phi[Orient.after] -
+          (if inclTrans[after(Axis(cartTrans[i]))] then phi[transCart[after(Axis(cartTrans[i]))]] else 0))
           "1st transverse";
-        kL[i]*eta*mPhidot_boundaries[i, side, Orient.before] = Aprime[i]*Nu_Phi[
-          before(cartTrans[i])]*(boundaries[i, side].phi[Orient.before] - (if
-          inclTrans[before(cartTrans[i])] then phi[transCart[before(cartTrans[i])]]
-           else 0))*(if upstream[i] then 1 + exp(-kL[i]*eta*Data.m*boundaries[i,
-          side].Ndot/(2*Aprime[i]*Nu_Phi[before(cartTrans[i])])) else 2)
+        kL[i]*eta*mPhidot_boundaries[i, side, Orient.before]*(if upstream[i] then
+          FCSys.Utilities.inverseOnePlusExp(-kL[i]*eta*Data.m*boundaries[i, side].Ndot/
+          (2*Aprime[i]*Nu_Phi[before(Axis(cartTrans[i]))])) else 0.5) =
+          Aprime[i]*Nu_Phi[before(Axis(cartTrans[i]))]*(boundaries[i, side].phi[Orient.before] -
+          (if inclTrans[before(Axis(cartTrans[i]))] then phi[transCart[before(Axis(cartTrans[i]))]] else 0))
           "2nd transverse";
 
         // Thermal energy
-        kL[i]*theta*boundaries[i, side].Qdot = Aprime[i]*Nu_Q*(boundaries[i,
-          side].T - T)*(if upstream[i] then 1 + exp(-kL[i]*theta*Data.c_v(T, p)
-          *boundaries[i, side].Ndot/(2*Aprime[i]*Nu_Q)) else 2);
+        kL[i]*theta*boundaries[i, side].Qdot*(if upstream[i] then
+          FCSys.Utilities.inverseOnePlusExp(-kL[i]*theta*Data.c_v(T, p)
+          *boundaries[i, side].Ndot/(2*Aprime[i]*Nu_Q)) else 0.5) =
+          Aprime[i]*Nu_Q*(boundaries[i, side].T - T);
       end for;
 
       // Direct mapping of shear forces (calculated above)
-      if not (consRot and inclRot[before(cartTrans[i])]) then
+      if not (consRot and inclRot[before(Axis(cartTrans[i]))]) then
         boundaries[i, :].mPhidot[Orient.after] = mPhidot_boundaries[i, :,
           Orient.after];
         // Else, the force must be mapped for zero torque (below).
       end if;
-      if not (consRot and inclRot[after(cartTrans[i])]) then
+      if not (consRot and inclRot[after(Axis(cartTrans[i]))]) then
         boundaries[i, :].mPhidot[Orient.before] = mPhidot_boundaries[i, :,
           Orient.before];
         // Else, the force must be mapped for zero torque (below).
@@ -1455,16 +1452,16 @@ Choose any condition besides none.");
       for axis in cartRot loop
         4*cat(
             1,
-            boundaries[transCart[after(axis)], :].mPhidot[Orient.after],
-            boundaries[transCart[before(axis)], :].mPhidot[Orient.before]) = {{
-          3,1,L[before(axis)]/L[after(axis)],-L[before(axis)]/L[after(axis)]},{
-          1,3,-L[before(axis)]/L[after(axis)],L[before(axis)]/L[after(axis)]},{
-          L[after(axis)]/L[before(axis)],-L[after(axis)]/L[before(axis)],3,1},{
-          -L[after(axis)]/L[before(axis)],L[after(axis)]/L[before(axis)],1,3}}*
+            boundaries[transCart[after(Axis(axis))], :].mPhidot[Orient.after],
+            boundaries[transCart[before(Axis(axis))], :].mPhidot[Orient.before]) = {{
+          3,1,L[before(Axis(axis))]/L[after(Axis(axis))],-L[before(Axis(axis))]/L[after(Axis(axis))]},{
+          1,3,-L[before(Axis(axis))]/L[after(Axis(axis))],L[before(Axis(axis))]/L[after(Axis(axis))]},{
+          L[after(Axis(axis))]/L[before(Axis(axis))],-L[after(Axis(axis))]/L[before(Axis(axis))],3,1},{
+          -L[after(Axis(axis))]/L[before(Axis(axis))],L[after(Axis(axis))]/L[before(Axis(axis))],1,3}}*
           cat(
             1,
-            mPhidot_boundaries[transCart[after(axis)], :, Orient.after],
-            mPhidot_boundaries[transCart[before(axis)], :, Orient.before]);
+            mPhidot_boundaries[transCart[after(Axis(axis))], :, Orient.after],
+            mPhidot_boundaries[transCart[before(Axis(axis))], :, Orient.before]);
       end for;
     end if;
 
@@ -1508,12 +1505,17 @@ Choose any condition besides none.");
     end if;
 
     // Conservation of translational momentum
-    f + M*environment.a[cartTrans] + Data.z*N*environment.E[cartTrans] = Data.m
-      *sum(actualStream(chemical[i].phi)*chemical[i].Ndot for i in 1:n_chem) +
+    if n_trans == 1 then
+      f[1] + M*environment.a[Axis(cartTrans[1])] +
+        Data.z*N*environment.E[Axis(cartTrans[1])] = Data.m
+        *sum(actualStream(chemical[i].phi[1])*chemical[i].Ndot for i in 1:n_chem) +
+        (if n_intra > 0 then sum(intra[i].mPhidot[1] for i in 1:n_intra) else 0) +
+        (if n_inter > 0 then sum(inter[i].mPhidot[1] for i in 1:n_inter) else 0);
+    else
+    f + M*environment.a[{Axis(k) for k in cartTrans}] + Data.z*N*environment.E[{Axis(k) for k in cartTrans}] = {Data.m*sum(actualStream(chemical[i].phi[j])*chemical[i].Ndot for i in 1:n_chem) for j in 1:n_trans} +
       {sum(intra[:].mPhidot[j]) + sum(inter[:].mPhidot[j]) + sum((if i == j
-       then 0 else boundaries[i, :].phi[cartWrap(cartTrans[j] - cartTrans[i])]*
-      boundaries[i, :].Ndot*Data.m + sum(boundaries[i, :].mPhidot[cartWrap(
-      cartTrans[j] - cartTrans[i])])) for i in 1:n_trans) for j in 1:n_trans};
+       then 0 else ((if cartWrap(cartTrans[j] - cartTrans[i]) == 1 then boundaries[i, Side.n].phi[Orient.after] else boundaries[i, Side.n].phi[Orient.before])*boundaries[i, Side.n].Ndot + (if cartWrap(cartTrans[j] - cartTrans[i]) == 1 then boundaries[i, Side.p].phi[Orient.after] else boundaries[i, Side.p].phi[Orient.before])*boundaries[i, Side.p].Ndot)*Data.m + (if cartWrap(cartTrans[j] - cartTrans[i]) == 1 then boundaries[i, Side.n].mPhidot[Orient.after] else boundaries[i, Side.n].mPhidot[Orient.before]) + (if cartWrap(cartTrans[j] - cartTrans[i]) == 1 then boundaries[i, Side.p].mPhidot[Orient.after] else boundaries[i, Side.p].mPhidot[Orient.before])) for i in 1:n_trans) for j in 1:n_trans};
+    end if;
     // Note:  The storage is split between the boundaries via f, so a
     // derivative doesn't appear here (see material transport above).
     // Note:  The explicit expansions (intra[:] and inter[:]) are necessary in
@@ -1559,8 +1561,9 @@ Choose any condition besides none.");
         actualStream(chemical[i].phi)*actualStream(chemical[i].phi)*Data.m/2)*
         chemical[i].Ndot for i in 1:n_chem) + sum(intra[i].phi*intra[i].mPhidot
         for i in 1:n_intra) + sum(inter[i].phi*inter[i].mPhidot for i in 1:
-        n_inter) + sum(intra.Qdot) + sum(inter.Qdot) + sum((Data.h(boundaries[i,
-        :].T, boundaries[i, :].p) - {h,h} + (phi_boundaries[i, :] .^ 2 + sum(
+        n_inter) + sum(intra.Qdot) + sum(inter.Qdot) + sum(({Data.h(boundaries[i,
+        Side.n].T, boundaries[i, Side.n].p),Data.h(boundaries[i, Side.p].T,
+        boundaries[i, Side.p].p)} - {h,h} + (phi_boundaries[i, :] .^ 2 + sum(
         boundaries[i, :].phi[orient] .^ 2 for orient in Orient))*(Data.m/2))*
         boundaries[i, :].Ndot + sum(boundaries[i, :].phi[orient]*boundaries[i,
         :].mPhidot[orient] for orient in Orient) for i in 1:n_trans) + sum(
@@ -1827,6 +1830,9 @@ protected
     // Preferred states
     // Note:  The start values for these variable aren't fixed because the
     // initial equation section will be used instead.
+    parameter Boolean exposeCommonWeights=false;
+    Modelica.Blocks.Interfaces.RealOutput commonWeight=N/mu if exposeCommonWeights;
+    Modelica.Blocks.Interfaces.RealOutput commonWeightedPhi[n_trans]={N/mu*phi[j] for j in 1:n_trans} if exposeCommonWeights;
     Q.Amount N(
       final min=Modelica.Constants.small,
       nominal=4*U.C,
@@ -1982,13 +1988,19 @@ Check that the volumes of the other phases are set properly.");
     M = Data.m*N;
 
     // Thermodynamic correlations
-    if Data.isCompressible then
+    if Data.n_v[1] == -1 and Data.n_v[2] == 0 and size(Data.b_v, 1) == 1 and size(Data.b_v, 2) == 1 and Data.b_v[1, 1] == 1 then
+      v = T/p;
+    elseif Data.isCompressible then
       p = Data.p_Tv(T, v);
     else
       v = Data.v_Tp(T, p);
     end if;
     h = Data.h(T, p);
-    s = Data.s(T, p);
+    if Data.explicitEntropyInverse then
+      T = exp((s - Data.B_c[1, 2])/Data.b_c[1, 1]);
+    else
+      s = Data.s(T, p);
+    end if;
 
     // Exchange
     // --------
@@ -1996,14 +2008,22 @@ Check that the volumes of the other phases are set properly.");
     for i in 1:n_intra loop
       k_intra_Phi[i, :]*mu .* intra[i].mPhidot = N*(intra[i].phi - phi)
         "Translational";
+      if k_intra_Q[i] == 0 then
+        intra[i].T = T;
+      else
       k_intra_Q[i]*nu*intra[i].Qdot = N*(intra[i].T - T) "Thermal";
+      end if;
     end for;
     //
     // With other phases
     for i in 1:n_inter loop
       k_inter_Phi[i, :]*mu .* inter[i].mPhidot = N*(inter[i].phi - phi)
         "Translational";
+      if k_inter_Q[i] == 0 then
+        inter[i].T = T;
+      else
       k_inter_Q[i]*nu*inter[i].Qdot = N*(inter[i].T - T) "Thermal";
+      end if;
     end for;
 
     annotation (

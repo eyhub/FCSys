@@ -453,6 +453,94 @@ package Connectors "Declarative and imperative interfaces"
 
   end InertNode;
 
+  connector InertNodeFixed
+    "<html>Internal node for <a href=\"modelica://FCSys.Connectors.Intra\">Intra</a> and <a href=\"modelica://FCSys.Connectors.Intra\">Inter</a></html>"
+
+    parameter Integer n_trans(min=1,max=3);
+    Intra node(final n_trans=n_trans);
+
+    annotation (
+      Documentation(info="<html><p>This connector is used as an internal node to connect
+
+    <a href=\"modelica://FCSys.Connectors.Intra\">Intra</a> or <a href=\"modelica://FCSys.Connectors.Inter\">Inter</a>
+    connectors.  It contains an Intra connector with an explicit translational cardinality.</p>
+
+    <p>For more information, please see the documentation of the
+    <a href=\"modelica://FCSys.Connectors\">Connectors</a> package.</p></html>"),
+
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+              100}}), graphics={Ellipse(extent={{-80,80},{80,-80}}, lineColor={
+            221,23,47}),Ellipse(
+              extent={{-100,100},{100,-100}},
+              lineColor={170,0,0},
+              fillPattern=FillPattern.Solid,
+              fillColor={221,23,47})}),
+      Diagram(coordinateSystem(preserveAspectRatio=true,extent={{-100,-100},{
+              100,100}}), graphics={Ellipse(
+              extent={{-10,10},{10,-10}},
+              lineColor={170,0,0},
+              fillColor={221,23,47},
+              fillPattern=FillPattern.Solid,
+              lineThickness=0.5),Text(
+              extent={{-100,10},{100,50}},
+              textString="%name",
+              lineColor={0,0,0})}));
+
+  end InertNodeFixed;
+
+  model InertNodeWeighted
+    "<html>Internal node for <a href=\"modelica://FCSys.Connectors.Intra\">Intra</a> and <a href=\"modelica://FCSys.Connectors.Intra\">Inter</a></html>"
+
+    parameter Integer n_trans(min=1,max=3);
+    parameter Boolean useMean[n_trans];
+    input Q.Velocity meanVelocity[n_trans];
+    Intra node(final n_trans=n_trans);
+  equation
+    node.Qdot = 0;
+    for j in 1:n_trans loop
+      if useMean[j] then
+        node.phi[j] = meanVelocity[j];
+      else
+        node.mPhidot[j] = 0;
+      end if;
+    end for;
+
+    annotation (
+      Documentation(info="<html><p>This connector is used as an internal node to connect
+
+    <a href=\"modelica://FCSys.Connectors.Intra\">Intra</a> or <a href=\"modelica://FCSys.Connectors.Inter\">Inter</a>
+    connectors.  It contains an Intra connector with an explicit translational cardinality.</p>
+
+    <p>For more information, please see the documentation of the
+    <a href=\"modelica://FCSys.Connectors\">Connectors</a> package.</p></html>"),
+
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+              100}}), graphics={Ellipse(extent={{-80,80},{80,-80}}, lineColor={
+            221,23,47}),Ellipse(
+              extent={{-100,100},{100,-100}},
+              lineColor={170,0,0},
+              fillPattern=FillPattern.Solid,
+              fillColor={221,23,47})}),
+      Diagram(coordinateSystem(preserveAspectRatio=true,extent={{-100,-100},{
+              100,100}}), graphics={Ellipse(
+              extent={{-10,10},{10,-10}},
+              lineColor={170,0,0},
+              fillColor={221,23,47},
+              fillPattern=FillPattern.Solid,
+              lineThickness=0.5),Text(
+              extent={{-100,10},{100,50}},
+              textString="%name",
+              lineColor={0,0,0})}));
+
+  end InertNodeWeighted;
+
+  model InertNodeWeightedSignals
+    parameter Integer n_spec(min=1);
+    Modelica.Blocks.Interfaces.RealInput weights[n_spec];
+    Modelica.Blocks.Interfaces.RealInput weightedPhi[n_spec,n_trans];
+    extends InertNodeWeighted(meanVelocity={sum(weightedPhi[:,j])/sum(weights) for j in 1:n_trans});
+  end InertNodeWeightedSignals;
+
   connector Translational
     "Connector for the advection or diffusion of translational momentum"
 

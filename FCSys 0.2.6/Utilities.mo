@@ -2,6 +2,34 @@ within FCSys;
 package Utilities "General supporting functions"
   extends Modelica.Icons.UtilitiesPackage;
 
+  function inverseOnePlusExp
+    input Real x;
+    output Real w;
+  protected
+    Real e;
+  algorithm
+    if x >= 0 then
+      e := exp(-x);
+      w := e/(1 + e);
+    else
+      e := exp(x);
+      w := 1/(1 + e);
+    end if;
+    annotation(Inline=false, derivative=derInverseOnePlusExp);
+  end inverseOnePlusExp;
+
+  function derInverseOnePlusExp
+    input Real x;
+    input Real dx;
+    output Real dw;
+  protected
+    Real e;
+  algorithm
+    e := exp(if x >= 0 then -x else x);
+    dw := -e/((1 + e)*(1 + e))*dx;
+    annotation(Inline=false);
+  end derInverseOnePlusExp;
+
   package Chemistry "Functions to support chemistry"
     extends Modelica.Icons.Package;
     function charge "Return the charge of a species given its chemical formula"
@@ -10,11 +38,73 @@ package Utilities "General supporting functions"
       output Integer z "Charge number"
         annotation (Dialog(__Dymola_label="<html><i>z</i></html>"));
 
-    external"C";
-      annotation (
-        IncludeDirectory="modelica://FCSys/Resources/Source/C",
-        Include="#include \"Chemistry.c\"",
-        Documentation(info="<html><p>This function returns the net
+    protected
+      Integer n = Modelica.Utilities.Strings.length(formula);
+      Integer i = 1;
+      Integer j;
+      Integer q;
+      Integer d;
+      String c;
+      Boolean valid = true;
+    algorithm
+      z := 0;
+      while i <= n and valid loop
+        // Match C isspace: skip whitespace before each formula symbol.
+        c := Modelica.Utilities.Strings.substring(formula, i, i);
+        while i <= n and Modelica.Utilities.Strings.find(" \t\r\n\v\f", c) > 0 loop
+          i := i + 1;
+          if i <= n then
+            c := Modelica.Utilities.Strings.substring(formula, i, i);
+          end if;
+        end while;
+        if i > n then
+          valid := false;
+        elseif Modelica.Utilities.Strings.find("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", c) == 0 then
+          valid := false;
+        else
+          // Advance over the element symbol, including lowercase suffixes.
+          i := i + 1;
+          while i <= n loop
+            c := Modelica.Utilities.Strings.substring(formula, i, i);
+            if Modelica.Utilities.Strings.find("abcdefghijklmnopqrstuvwxyz", c) > 0 then
+              i := i + 1;
+            else
+              break;
+            end if;
+          end while;
+          // Skip the optional stoichiometric coefficient.
+          while i <= n and Modelica.Utilities.Strings.find("0123456789", Modelica.Utilities.Strings.substring(formula, i, i)) > 0 loop
+            i := i + 1;
+          end while;
+          // Apply an explicit signed charge, or an implicit unit charge.
+          if i <= n then
+            c := Modelica.Utilities.Strings.substring(formula, i, i);
+            if c == "+" or c == "-" then
+              if i < n and Modelica.Utilities.Strings.find("0123456789", Modelica.Utilities.Strings.substring(formula, i + 1, i + 1)) > 0 then
+                q := 0;
+                j := i + 1;
+                while j <= n and Modelica.Utilities.Strings.find("0123456789", Modelica.Utilities.Strings.substring(formula, j, j)) > 0 loop
+                  d := Modelica.Utilities.Strings.find("0123456789", Modelica.Utilities.Strings.substring(formula, j, j)) - 1;
+                  q := 10*q + d;
+                  j := j + 1;
+                end while;
+                z := if c == "+" then z + q else z - q;
+                i := j;
+              elseif c == "+" then
+                z := z + 1;
+                i := i + 1;
+              else
+                z := z - 1;
+                i := i + 1;
+              end if;
+            end if;
+          end if;
+        end if;
+      end while;
+      if not valid then
+        z := 0;
+      end if;
+      annotation (Documentation(info="<html><p>This function returns the net
   electrical charge associated with a species represented by a chemical
   formula (<code>formula</code>).  If the charge number is
   not given explicitly in the formula, then it is assumed to be zero.  A \"+\" or \"-\" without any immediately following digits is interpreted as
@@ -246,7 +336,7 @@ An unrelated species may be included.");
       output Axis after;
 
     algorithm
-      after := cartWrap(axis + 1);
+      after := Axis(mod1(Integer(axis) + 1, Integer(Axis.z)));
 
       annotation (Inline=true, Documentation(info="<html><p><b>Example:</b><br>
     <code>after(Axis.z)</code> or <code>after(3)</code> returns 1, which is equivalent to <code>Axis.x</code>.</p></html>"));
@@ -260,13 +350,13 @@ An unrelated species may be included.");
       output Axis after;
 
     algorithm
-      after := cartWrap(axis - 1);
+      after := Axis(mod1(Integer(axis) - 1, Integer(Axis.z)));
 
       annotation (Inline=true, Documentation(info="<html><p><b>Example:</b><br>
     <code>after(Axis.x)</code> or <code>after(1)</code> returns 3, which is equivalent to <code>Axis.z</code>.</p></html>"));
     end before;
 
-    function cartWrap = mod1 (final den=Axis.z)
+    function cartWrap = mod1 (final den=Integer(Axis.z))
       "<html>Return the index to a Cartesian axis (1 to 3 or <a href=\"modelica://FCSys.BaseClasses.Axis\">Axis.x</a> to <a href=\"modelica://FCSys.BaseClasses.Axis\">Axis.z</a>) after wrapping</html>"
       annotation (Inline=true, Documentation(info="<html><p><b>Examples:</b><br>
     <code>cartWrap(0)</code> returns 3 and <code>cartWrap(4)</code> returns 1.</p></html>"));
@@ -387,30 +477,17 @@ An unrelated species may be included.");
         output Real y "Result";
 
       algorithm
-        y := if size(a, 1) > 0 then x*(a[1] + (if size(a, 1) > 1 then x*(a[2]
-           + (if size(a, 1) > 2 then x*(a[3] + (if size(a, 1) > 3 then x*(a[4]
-           + (if size(a, 1) > 4 then x*(a[5] + (if size(a, 1) > 5 then x*(a[6]
-           + (if size(a, 1) > 6 then x*(a[7] + (if size(a, 1) > 7 then x*(a[8]
-           + (if size(a, 1) > 8 then x*(a[9] + (if size(a, 1) > 9 then x*(a[10]
-           + (if size(a, 1) > 10 then positivePoly(x, a[11:end]) else 0)) else
-          0)) else 0)) else 0)) else 0)) else 0)) else 0)) else 0)) else 0))
-           else 0)) else 0 annotation (Inline=true);
-        // Note:  Dymola 7.4 does seem to not inline the recursive calls beyond
-        // depth 1; therefore, the function is "unrolled" up to the 10th order.
-        // Also, in Dymola 7.4, if this function is called from a stack of (nested)
-        // functions, it seems to reduce the depth allowed for the nested
-        // parentheses.  The implementation here ("unrolled" only up to the 10th
-        // order) allows poly() to be called from within one other function within
-        // a model.
+        y := sum(a[i]*x^i for i in 1:size(a, 1));
+        annotation (Inline=true);
+        // Run-local compatibility: finite equivalent of the original nested polynomial.
 
       end positivePoly;
 
     algorithm
       f := (if n < 0 then (if n + size(a, 1) < 0 then x^(n + size(a, 1)) else 1)
-        *positivePoly(1/x, a[min(size(a, 1), -n):-1:1]) else 0) + (if n <= 0
+        *sum(a[min(size(a, 1), -n) - j + 1]*(1/x)^j for j in 1:min(size(a, 1), -n)) else 0) + (if n <= 0
          and n > -size(a, 1) then a[1 - n] else 0) + (if n + size(a, 1) > 1
-         then (if n > 1 then x^(n - 1) else 1)*positivePoly(x, a[1 + max(0, 1
-         - n):size(a, 1)]) else 0);
+         then (if n > 1 then x^(n - 1) else 1)*sum(a[max(0, 1 - n) + j]*x^j for j in 1:(size(a, 1) - max(0, 1 - n))) else 0);
       // Here, Dymola 2014 won't allow indexing via a[1 + max(0, 1 - n):end], so
       // a[1 + max(0, 1 - n):size(a, 1)] is necessary.
       annotation (
@@ -697,7 +774,7 @@ An unrelated species may be included.");
     output Integer sign "Sign indicating direction along the axis";
 
   algorithm
-    sign := 3 - 2*side;
+    sign := 3 - 2*Integer(side);
     annotation (Inline=true,Documentation(info="<html><p><b>Examples:</b><br>
   <code>inSign(FCSys.BaseClasses.Side.n)</code> returns 1 and
   <code>inSign(FCSys.BaseClasses.Side.p)</code> returns -1.

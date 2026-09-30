@@ -1258,7 +1258,7 @@ encompass other systems of units.</p>
 
   function from_degC
     "Convert from temperature in degree Celsius to temperature as a quantity"
-    extends Modelica.SIunits.Icons.Conversion;
+    extends Modelica.Icons.Function;
 
     input Real T_degC "Temperature in degree Celsius";
     output Q.TemperatureAbsolute T "Thermodynamic temperature";
@@ -1270,7 +1270,7 @@ encompass other systems of units.</p>
 
   function to_degC
     "Convert from temperature as a quantity to temperature in degree Celsius"
-    extends Modelica.SIunits.Icons.Conversion;
+    extends Modelica.Icons.Function;
 
     input Q.TemperatureAbsolute T "Thermodynamic temperature";
     output Real T_degC "Temperature in degree Celsius";
@@ -1282,7 +1282,7 @@ encompass other systems of units.</p>
 
   function from_kPag
     "Convert from gauge pressure in kilopascals to absolute pressure as a quantity"
-    extends Modelica.SIunits.Icons.Conversion;
+    extends Modelica.Icons.Function;
 
     input Real p_kPag "Gauge pressure in kilopascals";
     output Q.PressureAbsolute p "Absolute pressure";
@@ -1294,7 +1294,7 @@ encompass other systems of units.</p>
 
   function to_kPag
     "Convert from absolute pressure as a quantity to gauge pressure in kilopascals"
-    extends Modelica.SIunits.Icons.Conversion;
+    extends Modelica.Icons.Function;
 
     input Q.PressureAbsolute p "Absolute pressure";
     output Real p_kPag "Gauge pressure in kilopascals";
@@ -1314,7 +1314,7 @@ encompass other systems of units.</p>
   // Base physical constants and units
   // ------------------------------------------------------------------------
 
-  replaceable constant Bases.LH base constrainedby Bases.SImols
+  replaceable constant Bases.FC base constrainedby Bases.SImols
     "Scalable base constants and units";
   // Note:  The base constants and units may be replaced to suit the scale
   // of the physical system.

@@ -42,7 +42,7 @@ import FCSys.Species.Enumerations.Init;
 
 annotation (
   preferredView="info",
-  uses(Modelica(version="3.2.1")),
+  uses(Modelica(version="3.2.3")),
   Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."),
   Documentation(info="<html>
     <p><a href=\"modelica://FCSys\">FCSys</a> is a free, open-source library of

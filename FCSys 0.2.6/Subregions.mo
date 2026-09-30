@@ -932,6 +932,14 @@ package Subregions "Control volumes with multi-species transfer and storage"
   end Examples;
   extends Modelica.Icons.Package;
 
+  expandable connector LiquidFaceBoundaryBus
+    extends Connectors.BoundaryBus;
+    Phases.LiquidBoundaryBus liquid;
+    Phases.GraphiteBoundaryBus graphite;
+    Phases.GasBoundaryBus gas;
+    Phases.IonomerBoundaryBus ionomer;
+  end LiquidFaceBoundaryBus;
+
   model Subregion "Subregion with all phases"
     import Modelica.Constants.inf;
 
@@ -984,27 +992,27 @@ package Subregions "Control volumes with multi-species transfer and storage"
     Phases.ExchangeParams gasLiq(k_Phi={inf,inf,inf}) "Between gas and liquid"
       annotation (Dialog(group="Independence factors"));
 
-    Connectors.BoundaryBus xNegative if inclTransX
+    LiquidFaceBoundaryBus xNegative if inclTransX
       "Negative boundary along the x axis" annotation (Placement(transformation(
             extent={{-120,-40},{-100,-20}}), iconTransformation(extent={{-110,-10},
               {-90,10}})));
-    Connectors.BoundaryBus yNegative if inclTransY
+    LiquidFaceBoundaryBus yNegative if inclTransY
       "Negative boundary along the y axis" annotation (Placement(transformation(
             extent={{-96,-64},{-76,-44}}), iconTransformation(extent={{-10,-110},
               {10,-90}})));
-    Connectors.BoundaryBus zNegative if inclTransZ
+    LiquidFaceBoundaryBus zNegative if inclTransZ
       "Negative boundary along the z axis" annotation (Placement(transformation(
             extent={{88,8},{108,28}}), iconTransformation(extent={{40,40},{60,
               60}})));
-    Connectors.BoundaryBus xPositive if inclTransX
+    LiquidFaceBoundaryBus xPositive if inclTransX
       "Positive boundary along the x axis" annotation (Placement(transformation(
             extent={{100,-4},{120,16}}), iconTransformation(extent={{90,-10},{
               110,10}})));
-    Connectors.BoundaryBus yPositive if inclTransY
+    LiquidFaceBoundaryBus yPositive if inclTransY
       "Positive boundary along the y axis" annotation (Placement(transformation(
             extent={{76,20},{96,40}}), iconTransformation(extent={{-10,90},{10,
               110}})));
-    Connectors.BoundaryBus zPositive if inclTransZ
+    LiquidFaceBoundaryBus zPositive if inclTransZ
       "Positive boundary along the z axis" annotation (Placement(transformation(
             extent={{-108,-52},{-88,-32}}), iconTransformation(extent={{-60,-60},
               {-40,-40}})));
@@ -1025,10 +1033,10 @@ package Subregions "Control volumes with multi-species transfer and storage"
       "Include the oxygen reduction reaction";
 
     outer Conditions.Environment environment "Environmental conditions";
-    Connectors.InertNode exchCommon "Connector for exchange among all species"
+    Connectors.InertNodeFixed exchCommon(final n_trans=n_trans) if n_spec > 0 "Connector for exchange among all species"
       annotation (HideResult=true, Placement(transformation(extent={{76,32},{96,
               52}}), iconTransformation(extent={{100,18},{120,38}})));
-    Connectors.InertNode exchGasLiq
+    Connectors.InertNodeFixed exchGasLiq(final n_trans=n_trans) if gas.n_spec > 0 or liquid.n_spec > 0
       "Connector for exchange between gas and liquid" annotation (HideResult=
           true, Placement(transformation(extent={{76,44},{96,64}}),
           iconTransformation(extent={{100,18},{120,38}})));
@@ -1276,26 +1284,26 @@ in diagram)")}));
       annotation (Dialog(group="Phases (click to edit)"), Placement(
           transformation(extent={{-20,0},{0,20}})));
 
-    Connectors.BoundaryBus xNegative if inclTransX
+    LiquidFaceBoundaryBus xNegative if inclTransX
       "Negative boundary along the x axis" annotation (Placement(transformation(
             extent={{-60,0},{-40,20}}), iconTransformation(extent={{-110,-10},{
               -90,10}})));
-    Connectors.BoundaryBus yNegative if inclTransY
+    LiquidFaceBoundaryBus yNegative if inclTransY
       "Negative boundary along the y axis" annotation (Placement(transformation(
             extent={{-20,-40},{0,-20}}), iconTransformation(extent={{-10,-110},
               {10,-90}})));
-    Connectors.BoundaryBus zNegative if inclTransZ
+    LiquidFaceBoundaryBus zNegative if inclTransZ
       "Negative boundary along the z axis" annotation (Placement(transformation(
             extent={{0,20},{20,40}}), iconTransformation(extent={{40,40},{60,60}})));
-    Connectors.BoundaryBus xPositive if inclTransX
+    LiquidFaceBoundaryBus xPositive if inclTransX
       "Positive boundary along the x axis" annotation (Placement(transformation(
             extent={{20,0},{40,20}}), iconTransformation(extent={{90,-10},{110,
               10}})));
-    Connectors.BoundaryBus yPositive if inclTransY
+    LiquidFaceBoundaryBus yPositive if inclTransY
       "Positive boundary along the y axis" annotation (Placement(transformation(
             extent={{-20,40},{0,60}}), iconTransformation(extent={{-10,90},{10,
               110}})));
-    Connectors.BoundaryBus zPositive if inclTransZ
+    LiquidFaceBoundaryBus zPositive if inclTransZ
       "Positive boundary along the z axis" annotation (Placement(transformation(
             extent={{-40,-20},{-20,0}}), iconTransformation(extent={{-60,-60},{
               -40,-40}})));
@@ -1365,6 +1373,14 @@ in diagram)")}));
               60}}), graphics));
   end SubregionIonomer;
 
+  expandable connector NoIonomerFaceBoundaryBus
+    extends Connectors.BoundaryBus;
+    Phases.LiquidBoundaryBus liquid;
+    Phases.GraphiteBoundaryBus graphite;
+    Phases.GasBoundaryBus gas;
+    Connectors.BoundaryBus ionomer;
+  end NoIonomerFaceBoundaryBus;
+
   model SubregionNoIonomer "Subregion with all phases except ionomer"
     import Modelica.Constants.inf;
 
@@ -1400,26 +1416,26 @@ in diagram)")}));
     Phases.ExchangeParams gasLiq(k_Phi={inf,inf,inf}) "Between gas and liquid"
       annotation (Dialog(group="Independence factors"));
 
-    Connectors.BoundaryBus xNegative if inclTransX
+    NoIonomerFaceBoundaryBus xNegative if inclTransX
       "Negative boundary along the x axis" annotation (Placement(transformation(
             extent={{-100,-40},{-80,-20}}), iconTransformation(extent={{-110,-10},
               {-90,10}})));
-    Connectors.BoundaryBus yNegative if inclTransY
+    NoIonomerFaceBoundaryBus yNegative if inclTransY
       "Negative boundary along the y axis" annotation (Placement(transformation(
             extent={{-76,-64},{-56,-44}}), iconTransformation(extent={{-10,-110},
               {10,-90}})));
-    Connectors.BoundaryBus zNegative if inclTransZ
+    NoIonomerFaceBoundaryBus zNegative if inclTransZ
       "Negative boundary along the z axis" annotation (Placement(transformation(
             extent={{68,8},{88,28}}), iconTransformation(extent={{40,40},{60,60}})));
-    Connectors.BoundaryBus xPositive if inclTransX
+    NoIonomerFaceBoundaryBus xPositive if inclTransX
       "Positive boundary along the x axis" annotation (Placement(transformation(
             extent={{80,-4},{100,16}}), iconTransformation(extent={{90,-10},{
               110,10}})));
-    Connectors.BoundaryBus yPositive if inclTransY
+    NoIonomerFaceBoundaryBus yPositive if inclTransY
       "Positive boundary along the y axis" annotation (Placement(transformation(
             extent={{56,20},{76,40}}), iconTransformation(extent={{-10,90},{10,
               110}})));
-    Connectors.BoundaryBus zPositive if inclTransZ
+    NoIonomerFaceBoundaryBus zPositive if inclTransZ
       "Positive boundary along the z axis" annotation (Placement(transformation(
             extent={{-88,-52},{-68,-32}}), iconTransformation(extent={{-60,-60},
               {-40,-40}})));
@@ -1436,10 +1452,10 @@ in diagram)")}));
     outer Conditions.Environment environment "Environmental conditions";
 
     // Exchange
-    Connectors.InertNode exchCommon "Among all phases" annotation (HideResult=
+    Connectors.InertNodeFixed exchCommon(final n_trans=n_trans) if n_spec > 0 "Among all phases" annotation (HideResult=
           true,Placement(transformation(extent={{56,32},{76,52}}),
           iconTransformation(extent={{100,18},{120,38}})));
-    Connectors.InertNode exchGasLiq "Between gas and liquid" annotation (
+    Connectors.InertNodeFixed exchGasLiq(final n_trans=n_trans) if gas.n_spec > 0 or liquid.n_spec > 0 "Between gas and liquid" annotation (
         HideResult=true, Placement(transformation(extent={{56,44},{76,64}}),
           iconTransformation(extent={{100,18},{120,38}})));
 
