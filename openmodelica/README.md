@@ -62,12 +62,7 @@ enforce those wall-clock limits automatically.
 The identical library ran in OMEdit with one manual setting:
 Simulation Setup > Translation Flags > Additional Translation Flags:
 `--generateDynamicJacobian=symbolic`. Solver settings: IDA / coloredSymbolical.
-The compiler annotation alone was not effective in the retained editor workflow.
-A fresh user-operated candidate run passed all eight numerical checks and
-produced a byte-identical reference result. The submitted voltage plot and
-TestStand diagram were inspected. A monitored repeat captured the actual runtime
-and solver DLL paths under the pinned OpenModelica installation and passed the
-same numerical checks. Complete icon/diagram fidelity is unqualified.
+
 
 ## Known limits
 
