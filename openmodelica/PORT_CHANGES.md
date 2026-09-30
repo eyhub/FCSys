@@ -58,11 +58,7 @@ current ramp, and oxygen-stop rule remain the selected baseline.
 
 The candidate excludes later residual-enthalpy domain guards, the cancellation-safe
 negative `asinh` branch, dry gas–liquid weighting, externally supplied shear
-closures, normalized shear options, oxygen-entropy trial continuation, and the
-oxygen-dependent reaction-rate extension. Their evidence concerns different
-research configurations. They require separate review and wet-model regression
-before a backport can be qualified. No default-native/experimental selector is
-included.
+closures, normalized shear options.
 
 ## 5. Repository and archive contents
 
