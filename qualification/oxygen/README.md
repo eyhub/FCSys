@@ -30,3 +30,7 @@ Run output is deliberately excluded from Git. The reusable command writes full
 provenance, actual source/tool paths and hashes, logs, executable, MAT, numerical
 checks and artifacts manifest under build/. Preserve that directory when archiving
 a study. Neither an expected hash nor a process exit alone establishes acceptance.
+
+The reusable command passed end to end from clean relocated commit `bfa3e3844fafa381628e48ca88646e88f23c5b94`.
+See [runner-validation.json](runner-validation.json) for the 19 gates, stage receipts,
+MAT identity and warning counts. The final evidence commit changes documentation only.
