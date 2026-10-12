@@ -161,7 +161,15 @@ def accept_runtime(directory):
         if not (species and species.group(1) in allowed_species and 'time 0.000000' in block and 'min constraint' in block):
             raise ValueError('Unreviewed runtime assertion warning; inspect logs')
     other = [line for line in stdout.splitlines() if 'warning' in line.lower() and 'LOG_ASSERT' not in line]
-    if other:
-        raise ValueError('Unreviewed runtime warning: ' + other[0])
+    # Reviewed in the original complete-cell run and both relocated attempts:
+    # 72 initialization fallbacks; all three MATs have the same SHA-256.
+    fallback = re.compile(r'^LOG_STDOUT\s*\| warning \| The default linear solver fails, the fallback solver with total pivoting is started at time 0\.000000\. That might raise performance issues, for more information use -lv LOG_LS\.$')
+    unreviewed = [line for line in other if not fallback.fullmatch(line)]
+    if unreviewed:
+        raise ValueError('Unreviewed runtime warning: ' + unreviewed[0])
+    if len(other) not in (0, 72):
+        raise ValueError('Unexpected count of initialization linear-solver fallbacks')
     return {'solver': 'ida', 'startupPressureWarnings': len(blocks),
+            'initializationLinearSolverFallbacks': len(other),
+            'linearSolverFallbackWarnings': other,
             'warningBlocks': blocks, 'scope': 'process completion; numerical acceptance is separate'}

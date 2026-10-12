@@ -60,5 +60,17 @@ class RunnerTests(unittest.TestCase):
         (self.path/'simulate-stdout.log').write_text('solver: ida\nLOG_WARNING | warning | unexpected\nThe simulation finished successfully.')
         (self.path/'simulate-stderr.log').write_text('')
         with self.assertRaisesRegex(ValueError,'Unreviewed runtime warning'):accept_runtime(self.path)
+    def test_reviewed_initialization_fallbacks(self):
+        warning = 'LOG_STDOUT        | warning | The default linear solver fails, the fallback solver with total pivoting is started at time 0.000000. That might raise performance issues, for more information use -lv LOG_LS.\n'
+        (self.path/'simulate-stderr.log').write_text('')
+        log = self.path/'simulate-stdout.log'
+        log.write_text(warning*72+'solver: ida\nThe simulation finished successfully.')
+        self.assertEqual(accept_runtime(self.path)['initializationLinearSolverFallbacks'],72)
+        log.write_text(warning+'solver: ida\nThe simulation finished successfully.')
+        with self.assertRaisesRegex(ValueError,'Unexpected count'):accept_runtime(self.path)
+    def test_later_linear_solver_fallback_rejected(self):
+        (self.path/'simulate-stderr.log').write_text('')
+        (self.path/'simulate-stdout.log').write_text('LOG_STDOUT | warning | The default linear solver fails, the fallback solver with total pivoting is started at time 1.000000. That might raise performance issues, for more information use -lv LOG_LS.\nsolver: ida\nThe simulation finished successfully.')
+        with self.assertRaisesRegex(ValueError,'Unreviewed runtime warning'):accept_runtime(self.path)
 
 if __name__=='__main__':unittest.main()

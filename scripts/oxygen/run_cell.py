@@ -139,6 +139,7 @@ def main():
                 record.update(status='PASS', verification=verification, continuousStates=audit['continuousStates'],
                               gridXYZ=[1,10,1], liveOxygenBindings=10, translationWarnings=len(audit['warnings']),
                               runtimeWarnings=warnings['startupPressureWarnings'], matSha256=proc['mat_sha256'],
+                              initializationLinearSolverFallbacks=warnings['initializationLinearSolverFallbacks'],
                               matchesRetainedMat=proc['mat_sha256']==lock['retainedNative1MatSha256'],
                               limits=lock['limits'])
                 write_json(out/'run.json', record)

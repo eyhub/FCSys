@@ -14,6 +14,13 @@ startup pressure-minimum warnings for charged species. IDA recovered from intern
 error/convergence test failures and completed; all final gates passed. No warning
 was repaired by changing model physics or loosening numerical tolerances.
 
+Review of the full runtime logs also found 72 linear-solver total-pivoting fallback
+warnings at initialization (time 0) in the original run and both relocated runner
+attempts. Earlier summaries counted only the 177 pressure warnings. The MAT files
+are byte-identical. The runner records these 72 initialization fallbacks separately;
+different wording, nonzero times or unexpected nonzero counts stop acceptance.
+This is a documented solver limitation, not a repaired model or a warning-free run.
+
 The original oxygen-20260929/ evidence and serialization manifests remain immutable.
 The documentation-maintenance.json map permits exactly the current root README,
 OXYGEN guide and source verifier to evolve; it carries baseline/current canonical
