@@ -1,6 +1,7 @@
-> This working tree now contains the September 29 oxygen experimental overlay.
-> Read [the current source-assembly guide](OXYGEN.md) first. The native-core
-> qualification below describes base commit 19b9d322, not this modified tree.
+> This branch contains the selected September 29 oxygen-dependent cell.
+> Start with [OXYGEN.md](OXYGEN.md) for the complete-cell command, verified result
+> and qualification limits. The native-core text below describes the earlier
+> base configuration and is retained for upstream context.
 
 FCSys
 -----

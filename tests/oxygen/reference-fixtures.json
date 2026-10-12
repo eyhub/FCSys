@@ -1,0 +1,60 @@
+{
+  "formatVersion": 1,
+  "scope": "External retained reference MAT identities; no new simulation or empirical validation",
+  "files": [
+    {
+      "id": "paperten/sweep-air20-V650.mat",
+      "sourceLocator": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air20-V650.mat",
+      "sha256": "07fdb2017bccbccc4e85cec9dfb9335d99d481f95b29d50d75ad934b32ac82d6",
+      "purpose": "Retained native dry-cell reference; voltage/flow identified by filename"
+    },
+    {
+      "id": "paperten/sweep-air20-V700.mat",
+      "sourceLocator": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air20-V700.mat",
+      "sha256": "d87512f1179404c07b047367cd7f5aeb05948f2daccb84e97e625d0e5889ec39",
+      "purpose": "Retained native dry-cell reference; voltage/flow identified by filename"
+    },
+    {
+      "id": "paperten/paper20-v075.mat",
+      "sourceLocator": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/paper20-v075.mat",
+      "sha256": "f6e1122eec12be5d8bbdecb314c54d9b5d09bdb0c7c83a85beb188ee872b95f7",
+      "purpose": "Retained native dry-cell reference; voltage/flow identified by filename"
+    },
+    {
+      "id": "paperten/sweep-air50-V550.mat",
+      "sourceLocator": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air50-V550.mat",
+      "sha256": "11e55c5f94a5190f187731a6fed03697206307f69387c63c9739134ffd799e4d",
+      "purpose": "Retained native dry-cell reference; voltage/flow identified by filename"
+    },
+    {
+      "id": "paperten/sweep-air50-V600.mat",
+      "sourceLocator": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air50-V600.mat",
+      "sha256": "2f9920ca24b2caf8f5fcc81fda1683c5ca19407629f5f473f9cc8e848edbead4",
+      "purpose": "Retained native dry-cell reference; voltage/flow identified by filename"
+    },
+    {
+      "id": "paperten/sweep-air50-V650.mat",
+      "sourceLocator": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air50-V650.mat",
+      "sha256": "98f58c387b01c0a2a8a6e0ec1f35a470e1d665a84e97adb5e73e8b5a72f86333",
+      "purpose": "Retained native dry-cell reference; voltage/flow identified by filename"
+    },
+    {
+      "id": "paperten/sweep-air50-V700.mat",
+      "sourceLocator": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air50-V700.mat",
+      "sha256": "262e5ef11b8e44b2aa4ab3d75ce8ce5944dba3048e5f50beff38f0899737a04b",
+      "purpose": "Retained native dry-cell reference; voltage/flow identified by filename"
+    },
+    {
+      "id": "paperten/paper50-v075.mat",
+      "sourceLocator": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/paper50-v075.mat",
+      "sha256": "d9aee720a3114b96e6f96f3ceadec892e0aaa2915429ad56022699ebd018e84d",
+      "purpose": "Retained native dry-cell reference; voltage/flow identified by filename"
+    },
+    {
+      "id": "oxygen-local-parent",
+      "sourceLocator": "runs/fcsys-port/oxygen-variable-binding-20260929T170713Z/attempts/local/work/released-OxygenLocal_Matrix-translate/native-algebraic.mat",
+      "sha256": "28b1d809fe06560a3aedf1e29e36fcef578d7e40e68cc53a748fe62e35ebed51",
+      "purpose": "Actual-component parent for amplitude scaling controls"
+    }
+  ]
+}

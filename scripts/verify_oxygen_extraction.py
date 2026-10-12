@@ -9,16 +9,23 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def verify_serialized(root, record):
+def verify_serialized(root, record, maintenance=None):
     data = (root / record["path"]).read_bytes()
     if record["normalization"] == "crlf-to-lf":
         data = data.replace(b"\r\n", b"\n")
     else:
         assert record["normalization"] == "none", record["path"]
-    assert hashlib.sha256(data).hexdigest() == record["sha256"], record["path"]
+    expected = record["sha256"]
+    if maintenance and record["path"] in maintenance:
+        change = maintenance[record["path"]]
+        assert change["baselineSha256"] == expected, record["path"]
+        expected = change["currentSha256"]
+    assert hashlib.sha256(data).hexdigest() == expected, record["path"]
 
 
 def main():
+    if not __debug__:
+        raise RuntimeError("Run without -O: source integrity assertions are required")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sources", action="store_true",
                         help="Also verify original local source files")
@@ -31,9 +38,15 @@ def main():
     serialized_path = root / "qualification/oxygen-20260929/SERIALIZATION.json"
     serialized = (json.loads(serialized_path.read_text(encoding="utf-8"))
                   if serialized_path.exists() else None)
+    # Only current guidance and this verifier may evolve under this maintenance map.
+    # Modelica sources, historical evidence and both original manifests stay exact.
+    maintenance_path = root / "qualification/oxygen/documentation-maintenance.json"
+    maintenance = (json.loads(maintenance_path.read_text(encoding="utf-8"))["files"]
+                   if maintenance_path.exists() else {})
+    assert set(maintenance) <= {"README.md", "OXYGEN.md", "scripts/verify_oxygen_extraction.py"}
     if serialized:
         for record in serialized["files"]:
-            verify_serialized(root, record)
+            verify_serialized(root, record, maintenance)
     checked = set()
     for f in manifest["inheritedFiles"]:
         path = f["path"]
@@ -61,6 +74,7 @@ def main():
                       "selectedFiles": len(overlays),
                       "libraryRootFiles": len(manifest["rootLibraryComparison"]),
                       "serializedFiles": len(serialized["files"]) if serialized else 0,
+                      "maintainedDocumentationFiles": len(maintenance),
                       "originalSourcesChecked": args.sources,
                       "runtimeExecuted": False}))
 

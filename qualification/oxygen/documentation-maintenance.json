@@ -1,0 +1,18 @@
+{
+  "formatVersion": 1,
+  "reason": "Current execution guidance and narrow source-integrity maintenance; physical sources unchanged",
+  "files": {
+    "README.md": {
+      "baselineSha256": "71cd5dd8b4d1d3d12734a2aacf0db5abc9694376c037d2f723bc66f63beb5854",
+      "currentSha256": "a95b6c943e4dcf1af436803c8a8af52ff77c5b395615515e1d14656b0522ddf7"
+    },
+    "OXYGEN.md": {
+      "baselineSha256": "1d539ba6a26dc8220e5fd188b2dfe3a55fc8769c7a3db72ebe623586155a4580",
+      "currentSha256": "9da0728fca8afe39912b63ebbb87d1595cbaac2a004eff82e8c5163211a66162"
+    },
+    "scripts/verify_oxygen_extraction.py": {
+      "baselineSha256": "fd8b46c079c253ba4a6be51f1dc451cae00422623031b90af6407932b692800b",
+      "currentSha256": "2ec2bb88861caebd90b8be1f02af8123589c031f595414c23da704811cc52683"
+    }
+  }
+}

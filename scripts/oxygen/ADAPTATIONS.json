@@ -1,0 +1,41 @@
+{
+  "baselineCommit": "3a58218e24d6e7302d0fbb6ff34c688c80cd451e",
+  "adaptations": [
+    {
+      "source": "tests/oxygen/verify_cell.py",
+      "sourceSha256": "bd31df5b0f0982f3b72a0ee06294037684e25c29186850e0055196e28486869a",
+      "adapted": "scripts/oxygen/verify_cell.py",
+      "adaptedSha256": "91cf3cc0cfc9c139cbbd01872bb345d4acea7420a00d692172ea9a65ff233b13",
+      "changedRegions": [
+        "argument/input initialization",
+        "explicit pinned reference resolution",
+        "exclusive output writer"
+      ],
+      "numericalCheckBodies": "preserved by exact bounded replacements; replay comparison required"
+    },
+    {
+      "source": "tests/oxygen/verify_controls.py",
+      "sourceSha256": "39c679da581f86169868683ab72af82c8f5fe73580c9dde8099b59f7b0c56bfc",
+      "adapted": "scripts/oxygen/verify_controls.py",
+      "adaptedSha256": "d1e7c50fbe2570b5429e88c06f4ca329c7141a2343fd098ced8ef4c8c1e331ff",
+      "changedRegions": [
+        "argument/input initialization",
+        "explicit pinned reference resolution",
+        "exclusive output writer"
+      ],
+      "numericalCheckBodies": "preserved by exact bounded replacements; replay comparison required"
+    },
+    {
+      "source": "tests/oxygen/verify_polarization.py",
+      "sourceSha256": "965fa11cc7b6f3f7f9349d18c4d1a8d12112b673066d9b7f6ea5a4c5b9c31294",
+      "adapted": "scripts/oxygen/verify_polarization.py",
+      "adaptedSha256": "315bc6764470654f7e38bc7bb2e497ed4b87f13ab2c960a4ec0d7ddae4affcdc",
+      "changedRegions": [
+        "argument/input initialization",
+        "explicit pinned reference resolution",
+        "exclusive output writer"
+      ],
+      "numericalCheckBodies": "preserved by exact bounded replacements; replay comparison required"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "supportedPlatform": "Windows x64",
+  "qualifiedPython": "3.14.3",
+  "pythonPackages": {
+    "numpy": "2.4.2",
+    "scipy": "1.17.1"
+  },
+  "tools": [
+    {
+      "path": "bin/omc.exe",
+      "sha256": "cf5e9198b790616dc281389da64a46e919b10cab6d924e5a7da0101da638af5a"
+    },
+    {
+      "path": "lib/omc/ModelicaBuiltin.mo",
+      "sha256": "1a7888815670ed47038ad4aaf9584785121a3435c2f39eaf5dcd2297e11affb4"
+    },
+    {
+      "path": "share/omc/scripts/Compile.bat",
+      "sha256": "80918fb7efda8d6ed8ac1970cd1b04d91e2bb6a20e1bd05358a9d48356a70cd5"
+    }
+  ],
+  "libraries": [
+    {
+      "name": "Modelica",
+      "version": "3.2.3",
+      "path": "Modelica 3.2.3+maint.om/package.mo",
+      "sha256": "aec863f3c0fff3b677302a76384455188adc5512e5e351b3ca96ce97ac34084d"
+    },
+    {
+      "name": "Complex",
+      "version": "4.1.0",
+      "path": "Complex 4.1.0+maint.om/package.mo",
+      "sha256": "2828d0606b86cfef5675e636d6fbad076aeeacbda9eec9cfe14e9652a7f0c306"
+    },
+    {
+      "name": "ModelicaServices",
+      "version": "4.1.0",
+      "path": "ModelicaServices 4.1.0+maint.om/package.mo",
+      "sha256": "8cb5e937cc2fdbd9f1c122237496ec69e4ae0ca64a138dd40d3d529c23572b04"
+    }
+  ],
+  "boundsSeconds": {
+    "translate": 600,
+    "build": 300,
+    "simulate": 180
+  },
+  "settings": {
+    "model": "OxygenCoupled.Cell",
+    "oxygenOrder": 1,
+    "startTime": 0,
+    "stopTime": 180,
+    "tolerance": 1e-06,
+    "solver": "ida",
+    "jacobian": "coloredNumerical",
+    "air_sccm": 50,
+    "anode_sccm": 25,
+    "voltage": 0.65,
+    "ambientTemperatureK": 303.15,
+    "RH": 1,
+    "caGDLGridXYZ": [
+      1,
+      10,
+      1
+    ]
+  },
+  "retainedNative1MatSha256": "9c9207e7cbf499063d5bf5c170002e18b0ff48c7c0428bed0e9c0a804da0d17a",
+  "limits": [
+    "One dry ten-section complete-cell case, oxygenOrder=1; no new native0 or parameter sweep.",
+    "Numerical verification at fixed settings, not empirical calibration or hardware qualification.",
+    "No 300 W stack, drone integration, optimization or submodule registration.",
+    "Translation and startup pressure-minimum warnings remain; not a warning-free model.",
+    "Qualified external tool/library entry hashes do not fingerprint every installed compiler DLL or library file.",
+    "Python package versions are pinned; other Python/interpreter/platform combinations need separate qualification."
+  ]
+}
