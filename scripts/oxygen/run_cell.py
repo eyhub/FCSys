@@ -86,7 +86,9 @@ def main():
                       'processEnvironment': {k: env[k] for k in ['OPENMODELICAHOME', 'OPENMODELICALIBRARY']}}
             write_json(out/'run.json', record, new=True)
             try:
-                run_process([sys.executable, '-B', str(ROOT/'scripts/verify_oxygen_extraction.py')], out, 'source-check', 30, env)
+                source_proc = run_process([sys.executable, '-B', str(ROOT/'scripts/verify_oxygen_extraction.py')], out, 'source-check', 30, env)
+                source_proc.update(accepted=True, acceptance='Source integrity verifier passed')
+                write_json(out/'source-check-process.json', source_proc)
                 source_files = ['FCSys 0.2.6/package.mo', 'experimental/oxygen-paperten/KulikovskyDistributed.mo',
                                 'experimental/oxygen-paperten/DCell.mo', 'experimental/oxygen-paperten/OxygenCoupled.mo']
                 lines = ['getVersion();', 'loadModel(Modelica,{"3.2.3"});getErrorString();']
@@ -113,7 +115,7 @@ def main():
                     raise ValueError('C compilation error in log')
                 proc.update(accepted=True, executableSha256=sha256(executable))
                 write_json(out/'build-process.json', proc)
-                command = [str(executable), '-stopTime=180', '-s=ida', '-jacobian=coloredNumerical',
+                command = [str(executable), '-stopTime=180', '-stepSize=0.36', '-s=ida', '-jacobian=coloredNumerical',
                            '-outputFormat=mat', '-lv=LOG_STATS,LOG_EVENTS', '-override=oxygenOrder=1', '-r=native1.mat']
                 proc = run_process(command, out, 'simulate', lock['boundsSeconds']['simulate'], env)
                 warnings = accept_runtime(out)
@@ -124,10 +126,12 @@ def main():
                 command = [sys.executable, '-B', str(ROOT/'scripts/oxygen/verify_cell.py'), '--case', 'native1',
                            '--mat', str(mat), '--mat-sha256', proc['mat_sha256'], '--process-record', str(out/'simulate-process.json'),
                            '--evidence-kind', 'new-run', '--output', str(out/'verification.json')]
-                run_process(command, out, 'verify', 60, env)
+                verify_proc = run_process(command, out, 'verify', 60, env)
                 verification = json.loads((out/'verification.json').read_text())
                 if verification['status'] != 'PASS' or len(verification['gates']) != 19 or not all(verification['gates'].values()):
                     raise ValueError('Whole-cell numerical acceptance failed')
+                verify_proc.update(accepted=True, acceptance='All 19 whole-cell numerical gates passed')
+                write_json(out/'verify-process.json', verify_proc)
                 if inputs() != before or git('rev-parse', 'HEAD') != head or git('status', '--porcelain=v1') != status:
                     raise ValueError('Repository inputs changed during the run')
                 environment(args.omc_home, args.modelica_library, lock)

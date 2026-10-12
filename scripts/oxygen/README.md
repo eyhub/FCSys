@@ -21,7 +21,8 @@ required by default; --allow-dirty records an explicitly exploratory run and exa
 working-file hashes. Baseline Modelica integrity is still required in either mode.
 
 Stages are bounded: translation 600 s, native compilation 300 s, simulation 180 s
-wall time. The simulated horizon is 180 s. The runner checks five loads, actual
+wall time. The simulated horizon is 180 s with an explicit 0.36 s output interval;
+IDA retains adaptive internal time steps. The runner checks five loads, actual
 library paths, seven 1 x 10 x 1 layer grids, 446 states and ten regular qO2 equations
 before compiling. It verifies the new MAT with the unchanged 19 full-cell gates.
 There is no parameter sweep, calibration, stack sizing or system integration here.
@@ -73,8 +74,8 @@ No compiler is invoked by these commands. Later execution must use the generated
 directory as its working directory, the explicitly selected OpenModelica executable,
 bounded stages and a single session owner. Review every load result, compiler error
 and resolved library version before accepting translation. These scripts do not
-enforce execution time limits or record process receipts; that runner is a subsequent
-qualification step. Generated scripts contain resolved absolute checkout paths and
+enforce execution time limits or record process receipts; use run_cell.py above for
+the qualified complete-cell execution. Generated scripts contain resolved absolute checkout paths and
 must be regenerated after moving the checkout. Do not commit build outputs.
 
 ## Reference fixtures
