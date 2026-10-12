@@ -1,0 +1,753 @@
+{
+  "status": "PASS",
+  "evidence_classes": [
+    "Three fresh actual-component algebraic runs",
+    "Two retained verified coupled runs, MAT hashes rechecked",
+    "Analytic constitutive endpoint replays; not new coupled simulations"
+  ],
+  "controls": [
+    {
+      "status": "PASS",
+      "scale": 0.5,
+      "time_bounds_s": [
+        0.0,
+        0.1
+      ],
+      "samples": 508,
+      "T_K": 303.78,
+      "p_ref_atm": 0.14603527167717584,
+      "pressure_bounds_atm": [
+        0.026,
+        0.22
+      ],
+      "rows": [
+        {
+          "arm": "native",
+          "eta_V": 0.45,
+          "pressure_order": 1.1436073061826884e-15,
+          "reference_current_A": 0.019619995099398775,
+          "range_A": [
+            0.019619995099398775,
+            0.019619995099398775
+          ],
+          "errors": {
+            "rate": 2.4424906541753444e-15,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.1436073061826884e-15,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 3.3306690738754696e-16
+          }
+        },
+        {
+          "arm": "native",
+          "eta_V": 0.49,
+          "pressure_order": 1.1436073061826884e-15,
+          "reference_current_A": 0.04212146016979398,
+          "range_A": [
+            0.04212146016979398,
+            0.04212146016979398
+          ],
+          "errors": {
+            "rate": 4.440892098500626e-16,
+            "q": 0.0,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.1436073061826884e-15,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 0.0
+          }
+        },
+        {
+          "arm": "native",
+          "eta_V": 0.53,
+          "pressure_order": 1.1436073061826884e-15,
+          "reference_current_A": 0.09042904244423439,
+          "range_A": [
+            0.09042904244423439,
+            0.09042904244423439
+          ],
+          "errors": {
+            "rate": 3.3306690738754696e-16,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.1436073061826884e-15,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 1.1102230246251565e-16
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.45,
+          "pressure_order": 1.1436073061826884e-15,
+          "reference_current_A": 0.019619995099398775,
+          "range_A": [
+            0.019619995099398775,
+            0.019619995099398775
+          ],
+          "errors": {
+            "rate": 2.4424906541753444e-15,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.1436073061826884e-15,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 3.3306690738754696e-16
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.49,
+          "pressure_order": 1.1436073061826884e-15,
+          "reference_current_A": 0.04212146016979398,
+          "range_A": [
+            0.04212146016979398,
+            0.04212146016979398
+          ],
+          "errors": {
+            "rate": 4.440892098500626e-16,
+            "q": 0.0,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.1436073061826884e-15,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 0.0
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.53,
+          "pressure_order": 1.1436073061826884e-15,
+          "reference_current_A": 0.09042904244423439,
+          "range_A": [
+            0.09042904244423439,
+            0.09042904244423439
+          ],
+          "errors": {
+            "rate": 3.3306690738754696e-16,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.1436073061826884e-15,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 1.1102230246251565e-16
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.45,
+          "pressure_order": 0.9999999999999937,
+          "reference_current_A": 0.019619995099398713,
+          "range_A": [
+            0.00349312783634925,
+            0.029557235538339756
+          ],
+          "errors": {
+            "rate": 2.671085574945664e-12,
+            "q": 2.220446049250313e-16,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 6.328271240363392e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 1.3397172260454226e-11
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.49,
+          "pressure_order": 0.9999999999999976,
+          "reference_current_A": 0.04212146016979388,
+          "range_A": [
+            0.007499270223125192,
+            0.06345536342644392
+          ],
+          "errors": {
+            "rate": 1.212141498285746e-12,
+            "q": 2.220446049250313e-16,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 2.4424906541753444e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 1.4292900196721803e-11
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.53,
+          "pressure_order": 1.0000000000000047,
+          "reference_current_A": 0.09042904244423426,
+          "range_A": [
+            0.016099912552273898,
+            0.13623002928847155
+          ],
+          "errors": {
+            "rate": 5.575540029667536e-13,
+            "q": 2.220446049250313e-16,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 4.6629367034256575e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 1.4651280189070803e-11
+          }
+        }
+      ],
+      "mat_sha256": "321738902b4bd0e5fbc5a06a2fcf7fccdf314a6e71fd395328b59003966620e7",
+      "parent_mat_sha256": "28b1d809fe06560a3aedf1e29e36fcef578d7e40e68cc53a748fe62e35ebed51",
+      "limits": [
+        "Prescribed-reservoir actual-component test, not full-cell gas reconstruction",
+        "Amplitude sensitivity, not fitted or experimentally validated calibration"
+      ]
+    },
+    {
+      "status": "PASS",
+      "scale": 1,
+      "time_bounds_s": [
+        0.0,
+        0.1
+      ],
+      "samples": 508,
+      "T_K": 303.78,
+      "p_ref_atm": 0.14603527167717584,
+      "pressure_bounds_atm": [
+        0.026,
+        0.22
+      ],
+      "rows": [
+        {
+          "arm": "native",
+          "eta_V": 0.45,
+          "pressure_order": 9.973618425104315e-16,
+          "reference_current_A": 0.039239990198797564,
+          "range_A": [
+            0.039239990198797564,
+            0.039239990198797564
+          ],
+          "errors": {
+            "rate": 2.1094237467877974e-15,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 9.973618425104315e-16,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 0.0
+          }
+        },
+        {
+          "arm": "native",
+          "eta_V": 0.49,
+          "pressure_order": -6.347836544424928e-16,
+          "reference_current_A": 0.08424292033958795,
+          "range_A": [
+            0.08424292033958795,
+            0.08424292033958795
+          ],
+          "errors": {
+            "rate": 4.440892098500626e-16,
+            "q": 0.0,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 6.347836544424928e-16,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 0.0
+          }
+        },
+        {
+          "arm": "native",
+          "eta_V": 0.53,
+          "pressure_order": -6.347836544424928e-16,
+          "reference_current_A": 0.1808580848884688,
+          "range_A": [
+            0.1808580848884688,
+            0.1808580848884688
+          ],
+          "errors": {
+            "rate": 1.1102230246251565e-16,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 6.347836544424928e-16,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 0.0
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.45,
+          "pressure_order": 9.973618425104315e-16,
+          "reference_current_A": 0.039239990198797564,
+          "range_A": [
+            0.039239990198797564,
+            0.039239990198797564
+          ],
+          "errors": {
+            "rate": 2.1094237467877974e-15,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 9.973618425104315e-16,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 0.0
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.49,
+          "pressure_order": -6.347836544424928e-16,
+          "reference_current_A": 0.08424292033958795,
+          "range_A": [
+            0.08424292033958795,
+            0.08424292033958795
+          ],
+          "errors": {
+            "rate": 4.440892098500626e-16,
+            "q": 0.0,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 6.347836544424928e-16,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 0.0
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.53,
+          "pressure_order": -6.347836544424928e-16,
+          "reference_current_A": 0.1808580848884688,
+          "range_A": [
+            0.1808580848884688,
+            0.1808580848884688
+          ],
+          "errors": {
+            "rate": 1.1102230246251565e-16,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 6.347836544424928e-16,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 0.0
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.45,
+          "pressure_order": 1.0000000000000047,
+          "reference_current_A": 0.03923999019879754,
+          "range_A": [
+            0.0069862556726985004,
+            0.0591144710766796
+          ],
+          "errors": {
+            "rate": 1.3062884107739592e-12,
+            "q": 2.220446049250313e-16,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 4.6629367034256575e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 1.3579470881097677e-11
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.49,
+          "pressure_order": 1.0000000000000027,
+          "reference_current_A": 0.08424292033958787,
+          "range_A": [
+            0.014998540446250394,
+            0.12691072685288804
+          ],
+          "errors": {
+            "rate": 5.986322548778844e-13,
+            "q": 2.220446049250313e-16,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 2.6645352591003757e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 1.4328205288904883e-11
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.53,
+          "pressure_order": 1.0000000000000038,
+          "reference_current_A": 0.18085808488846858,
+          "range_A": [
+            0.03219982510454778,
+            0.27246005857694316
+          ],
+          "errors": {
+            "rate": 2.7777780076121417e-13,
+            "q": 2.220446049250313e-16,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 3.774758283725532e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 1.4658718683335792e-11
+          }
+        }
+      ],
+      "mat_sha256": "4ff2ed36e0db901eb34f68b788d73e9de23e0be777bd7da68ed0ca584d0a22b9",
+      "parent_mat_sha256": "28b1d809fe06560a3aedf1e29e36fcef578d7e40e68cc53a748fe62e35ebed51",
+      "limits": [
+        "Prescribed-reservoir actual-component test, not full-cell gas reconstruction",
+        "Amplitude sensitivity, not fitted or experimentally validated calibration"
+      ]
+    },
+    {
+      "status": "PASS",
+      "scale": 2,
+      "time_bounds_s": [
+        0.0,
+        0.1
+      ],
+      "samples": 508,
+      "T_K": 303.78,
+      "p_ref_atm": 0.14603527167717584,
+      "pressure_bounds_atm": [
+        0.026,
+        0.22
+      ],
+      "rows": [
+        {
+          "arm": "native",
+          "eta_V": 0.45,
+          "pressure_order": 1.2333795836839945e-16,
+          "reference_current_A": 0.07847998039759514,
+          "range_A": [
+            0.07847998039759514,
+            0.07847998039759514
+          ],
+          "errors": {
+            "rate": 1.9984014443252818e-15,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.2333795836839945e-16,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 2.220446049250313e-16
+          }
+        },
+        {
+          "arm": "native",
+          "eta_V": 0.49,
+          "pressure_order": 1.3291607270125985e-15,
+          "reference_current_A": 0.16848584067917596,
+          "range_A": [
+            0.16848584067917596,
+            0.16848584067917596
+          ],
+          "errors": {
+            "rate": 1.1102230246251565e-16,
+            "q": 0.0,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.3291607270125985e-15,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 2.220446049250313e-16
+          }
+        },
+        {
+          "arm": "native",
+          "eta_V": 0.53,
+          "pressure_order": 4.2919960287573976e-15,
+          "reference_current_A": 0.36171616977693716,
+          "range_A": [
+            0.3617161697768461,
+            0.36171616977693843
+          ],
+          "errors": {
+            "rate": 2.530198273120732e-13,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 4.2919960287573976e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 2.5290880500961066e-13
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.45,
+          "pressure_order": 1.2333795836839945e-16,
+          "reference_current_A": 0.07847998039759514,
+          "range_A": [
+            0.07847998039759514,
+            0.07847998039759514
+          ],
+          "errors": {
+            "rate": 1.9984014443252818e-15,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.2333795836839945e-16,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 2.220446049250313e-16
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.49,
+          "pressure_order": 1.3291607270125985e-15,
+          "reference_current_A": 0.16848584067917596,
+          "range_A": [
+            0.16848584067917596,
+            0.16848584067917596
+          ],
+          "errors": {
+            "rate": 1.1102230246251565e-16,
+            "q": 0.0,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.3291607270125985e-15,
+            "actual_I0_relative": 0.0,
+            "amplitude_scaling_relative": 2.220446049250313e-16
+          }
+        },
+        {
+          "arm": "disabled",
+          "eta_V": 0.53,
+          "pressure_order": 4.2919960287573976e-15,
+          "reference_current_A": 0.36171616977693716,
+          "range_A": [
+            0.3617161697768461,
+            0.36171616977693843
+          ],
+          "errors": {
+            "rate": 2.530198273120732e-13,
+            "q": 0.0,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 4.2919960287573976e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 2.5290880500961066e-13
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.45,
+          "pressure_order": 1.0000000000000016,
+          "reference_current_A": 0.07847998039759507,
+          "range_A": [
+            0.013972511345397001,
+            0.1182289421533593
+          ],
+          "errors": {
+            "rate": 6.461498003318411e-13,
+            "q": 2.220446049250313e-16,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.5543122344752192e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 1.3621770378335896e-11
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.49,
+          "pressure_order": 1.000000000000003,
+          "reference_current_A": 0.16848584067917582,
+          "range_A": [
+            0.029997080892500756,
+            0.253821453705776
+          ],
+          "errors": {
+            "rate": 2.9820590441431705e-13,
+            "q": 2.220446049250313e-16,
+            "eta_V": 5.551115123125783e-17,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 3.1086244689504383e-15,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 1.4337864229219122e-11
+          }
+        },
+        {
+          "arm": "candidate",
+          "eta_V": 0.53,
+          "pressure_order": 0.9999999999999809,
+          "reference_current_A": 0.36171616977693716,
+          "range_A": [
+            0.06439965020909556,
+            0.5449201171538858
+          ],
+          "errors": {
+            "rate": 2.485367467386368e-11,
+            "q": 2.220446049250313e-16,
+            "eta_V": 0.0,
+            "T_K": 0.0,
+            "oxygen": 0.0,
+            "electron_A": 0.0,
+            "energy_W": 0.0,
+            "order": 1.9095836023552692e-14,
+            "actual_I0_relative": 2.220446049250313e-16,
+            "amplitude_scaling_relative": 2.4852675473141517e-11
+          }
+        }
+      ],
+      "mat_sha256": "9371316a06f394ad3323451b3773a89beceb1fa7f852c61958c10387eabb28ec",
+      "parent_mat_sha256": "28b1d809fe06560a3aedf1e29e36fcef578d7e40e68cc53a748fe62e35ebed51",
+      "limits": [
+        "Prescribed-reservoir actual-component test, not full-cell gas reconstruction",
+        "Amplitude sensitivity, not fitted or experimentally validated calibration"
+      ]
+    }
+  ],
+  "retained_coupled_pins": [
+    {
+      "path": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/released-OxygenCoupled_Cell-translate/native0.mat",
+      "sha256": "d9dfb498168a01afa6e8deada79afd9311e9685cc2352678a9a8090403a11d7d"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/released-OxygenCoupled_Cell-translate/native1.mat",
+      "sha256": "9c9207e7cbf499063d5bf5c170002e18b0ff48c7c0428bed0e9c0a804da0d17a"
+    }
+  ],
+  "replays": {
+    "pressure_only_fixed_eta_T": {
+      "current_A": [
+        0.08299900681375591,
+        0.08092163908370777,
+        0.07886235145068635,
+        0.07682180271496875,
+        0.07480024680047635,
+        0.07279798383750014,
+        0.07081532447238335,
+        0.06885258842308352,
+        0.06691007309686023,
+        0.06498849138821032
+      ],
+      "outlet_to_inlet": 0.7830032416416747,
+      "drop_percent": 21.699675835832533
+    },
+    "pressure_and_eta_fixed_T": {
+      "current_A": [
+        0.08299900681375591,
+        0.08189731840528175,
+        0.08079388958332329,
+        0.07968499557551864,
+        0.07857045749479102,
+        0.0774501104826695,
+        0.07632385351847815,
+        0.07519159815373748,
+        0.0740533545644472,
+        0.07290603413370755
+      ],
+      "outlet_to_inlet": 0.8783964643975042,
+      "drop_percent": 12.160353560249582
+    },
+    "pressure_and_T_fixed_eta": {
+      "current_A": [
+        0.08299900681375591,
+        0.08087959425371781,
+        0.07877872288732919,
+        0.07669823331410476,
+        0.07463866857682598,
+        0.07260037987562586,
+        0.07058368313753781,
+        0.06858892212779671,
+        0.06661654886366121,
+        0.06466786604487139
+      ],
+      "outlet_to_inlet": 0.7791402394727645,
+      "drop_percent": 22.085976052723556
+    },
+    "pressure_eta_T_solved_values": {
+      "current_A": [
+        0.08299900681375591,
+        0.08185479302505924,
+        0.08070831998751458,
+        0.07955706322893193,
+        0.07840116662218921,
+        0.0772405518258447,
+        0.07607515981469917,
+        0.0749049670618878,
+        0.07373019563545172,
+        0.07254848190407104
+      ],
+      "outlet_to_inlet": 0.8740885546602367,
+      "drop_percent": 12.591144533976328
+    }
+  },
+  "replay_relative_closure": 8.881784197001252e-16,
+  "max_order_error": 1.9095836023552692e-14,
+  "max_rate_relative_error": 2.485367467386368e-11,
+  "max_amplitude_scaling_relative_error": 2.4852675473141517e-11
+}

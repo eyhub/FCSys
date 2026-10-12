@@ -46,3 +46,48 @@ FCSys*/help merge=ours
 # Files that are different between master and development:
 FCSys*/DOCUMENTATION.html merge=ours
 FCSys*/Resources/Source/Python/setup.py merge=ours
+
+# Preserve recovered oxygen source and evidence byte-for-byte.
+"FCSys 0.2.6/Characteristics.mo" -text
+"FCSys 0.2.6/Chemistry.mo" -text
+"FCSys 0.2.6/Phases.mo" -text
+"FCSys 0.2.6/Species.mo" -text
+"FCSys 0.2.6/Subregions.mo" -text
+"experimental/oxygen-paperten/KulikovskyDistributed.mo" -text
+"experimental/oxygen-paperten/DCell.mo" -text
+"experimental/oxygen-paperten/OxygenCoupled.mo" -text
+"tests/modelica/oxygen/OxygenLocal.mo" -text
+"tests/modelica/oxygen/OxygenControls.mo" -text
+"tests/modelica/oxygen/BindingProbe.mo" -text
+"tests/oxygen/verify_cell.py" -text
+"tests/oxygen/verify_controls.py" -text
+"tests/oxygen/verify_polarization.py" -text
+"tests/oxygen/polarization-points.json" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/README.md" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/PROVENANCE.md" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/PLAN.md" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/results/integrator-cell-audit.json" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/results/generated-qO2-audit.json" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/results/live-binding-evidence.json" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/results/cell-native0-verification.json" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/results/cell-native1-verification.json" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/results/comparison.json" -text
+"qualification/oxygen-20260929/oxygen-explicit-binding-20260929T172830Z/results/comparison.csv" -text
+"qualification/oxygen-20260929/oxygen-controlled-calibration-20260929T195741Z/README.md" -text
+"qualification/oxygen-20260929/oxygen-controlled-calibration-20260929T195741Z/PROVENANCE.md" -text
+"qualification/oxygen-20260929/oxygen-controlled-calibration-20260929T195741Z/PLAN.md" -text
+"qualification/oxygen-20260929/oxygen-controlled-calibration-20260929T195741Z/results/scale05-verification.json" -text
+"qualification/oxygen-20260929/oxygen-controlled-calibration-20260929T195741Z/results/scale1-verification.json" -text
+"qualification/oxygen-20260929/oxygen-controlled-calibration-20260929T195741Z/results/scale2-verification.json" -text
+"qualification/oxygen-20260929/oxygen-controlled-calibration-20260929T195741Z/results/controlled-comparison.json" -text
+"qualification/oxygen-20260929/oxygen-polarization-option-20260929T204628Z/README.md" -text
+"qualification/oxygen-20260929/oxygen-polarization-option-20260929T204628Z/PROVENANCE.md" -text
+"qualification/oxygen-20260929/oxygen-polarization-option-20260929T204628Z/PLAN.md" -text
+"qualification/oxygen-20260929/oxygen-polarization-option-20260929T204628Z/RUNTIME_CORRECTION.md" -text
+"qualification/oxygen-20260929/oxygen-polarization-option-20260929T204628Z/results/source-and-audit-identity.json" -text
+"qualification/oxygen-20260929/oxygen-polarization-option-20260929T204628Z/results/polarization-comparison.json" -text
+"qualification/oxygen-20260929/oxygen-polarization-option-20260929T204628Z/results/polarization-comparison.csv" -text
+"qualification/oxygen-20260929/oxygen-binding-probe-20260929T172630Z/README.md" -text
+"qualification/oxygen-20260929/oxygen-binding-probe-20260929T172630Z/results/verification.json" -text
+"qualification/oxygen-20260929/EXTRACTION.json" -text
+"qualification/oxygen-20260929/SERIALIZATION.json" -text

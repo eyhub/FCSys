@@ -1,0 +1,11 @@
+# Provenance
+
+Exact candidate: unchanged OxygenCoupled.Cell from oxygen-explicit-binding-20260929T172830Z, using local cathode q=(pO2/p_ref)^oxygenOrder with fixed p_ref0.14603527167717584atm. Exact baseline: original FCSys kinetic law in DCell.PaperTen with qualified stable-asinh compatibility, from kulikovsky-fig8-stable-asinh-20260921T154441Z. This is not a comparison against the author's differently configured default50cm2 TestStand curve or experimental data.
+
+New measured evidence: runtime logs and MAT results at released air/voltage/order overrides. Retained measured evidence: eight native MATs and the previously accepted candidate50sccm/0.65V MAT, all rehashed on use. Derived evidence: endpoint polarization, total-current differences, between-sample piecewise-linear voltage differences over shared current range only. Experimental validity and behavior outside the tested domain are not established.
+
+Every source copy is byte-identical; results/source-and-audit-identity.json pins the exact complete parent audit and corrects the initial runtime-identity.json shortened audit-path typo. The earlier RUNTIME_CORRECTION.md speculative alternate filename is not authoritative. Correct path: parent results/integrator-cell-audit.json, also hash-pinned in the parent's central GATE_RELEASE. Original released records are preserved.
+
+The first runtime copy omitted2773 generated binary sparsity-pattern assets. The initial native launch stopped before simulation with `Could not open sparsity pattern file OxygenCoupled.Cell_JacLSJac0.bin.` The correction copies these existing assets and unchanged executable/XML/JSON into work/native-complete. No numerical setting or physical equation changes. SWEEP_RELEASE is consumed; its eight unlaunched calls are canceled. SWEEP_V2_RELEASE independently authorizes the corrected native control and remaining cases, retaining the failure.
+
+Graphify retained prose discovery and coverage gap are in results/discovery.json. Exact September sources supersede stale graph coverage. No graph rebuild, Jev, external upload or production source modification. No new checkModel/translation/build is claimed; executable and source qualification are retained evidence. All test-stand translations retain600seconds including loading; native execution limits in this packet are180seconds each.

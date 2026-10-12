@@ -216,6 +216,9 @@ package Phases "Mixtures of species"
       "Chemical connector for O2" annotation (Placement(transformation(extent={
               {46,60},{66,80}}), iconTransformation(extent={{30,-50},{50,-30}})));
 
+    Modelica.Blocks.Interfaces.RealOutput exchangeWeight if n_spec > 0;
+    Modelica.Blocks.Interfaces.RealOutput exchangeWeightedPhi[n_trans] if n_spec > 0;
+
   protected
     Connectors.InertNodeWeightedSignals exchCommon(final n_trans=n_trans, final n_spec=n_spec,
       useMean={common.k_Phi[cartTrans[j]] > 0 for j in 1:n_trans}) if n_spec > 0
@@ -231,6 +234,12 @@ package Phases "Mixtures of species"
       annotation (Placement(transformation(extent={{76,-78},{96,-58}})));
 
   equation
+    if n_spec > 0 then
+      exchangeWeight = sum(exchCommon.weights);
+      for j in 1:n_trans loop
+        exchangeWeightedPhi[j] = sum(exchCommon.weightedPhi[:,j]);
+      end for;
+    end if;
     // Chemical exchange
     connect(O2.chemical, chemO2) annotation (Line(
         points={{56,29},{56,70}},

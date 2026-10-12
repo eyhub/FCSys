@@ -822,6 +822,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
       model Fixed "Fixed properties"
 
         extends Fluid(
+          final trialEntropyPressure=if p_stop > 0 then p_stop else 0,
           redeclare replaceable package Data = FCSys.Characteristics.O2.Gas (
                 b_v=[1], n_v={-1,0}),
           redeclare parameter Q.Mobility mu=Data.mu(),
@@ -927,6 +928,16 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
   end Ion;
 
   model Fluid "Base model for a fluid species"
+    parameter Boolean useXNegativeAfterShearClosure=false
+      "Use externally supplied x-negative after-face transverse velocity closure";
+    Q.Velocity xNegativeAfterShearClosure
+      "Externally supplied x-negative after-face transverse velocity";
+    parameter Boolean useXPositiveAfterShearClosure=false;
+    Q.Velocity xPositiveAfterShearClosure;
+    parameter Boolean useYNegativeBeforeShearClosure=false;
+    Q.Velocity yNegativeBeforeShearClosure;
+    parameter Boolean normalizeYPositiveBeforeShearForce=false;
+
 
     import FCSys.Utilities.Coordinates.after;
     import FCSys.Utilities.Coordinates.before;
@@ -1183,7 +1194,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
       "Shear force from other subregions (diffusive transport)";
     //
     // Energy balance
-    output Q.Power Ndere(stateSelect=StateSelect.never) = (N*T*der(Data.s(T, p))
+    output Q.Power Ndere(stateSelect=StateSelect.never) = (N*T*(if trialEntropyPressure > 0 then der(s) else der(Data.s(T, p)))
        + M*phi*der(phi))/U.s if environment.analysis
       "Rate of energy storage (internal and kinetic) and boundary work at constant mass";
     // Note that T*der(s) = der(u) + p*der(v).
@@ -1404,6 +1415,17 @@ Choose any condition besides none.");
     end for;
 
     // Transport
+    if not useXPositiveAfterShearClosure then
+      xPositiveAfterShearClosure = 0;
+    end if;
+    if not useYNegativeBeforeShearClosure then
+      yNegativeBeforeShearClosure = 0;
+    end if;
+    if not useXNegativeAfterShearClosure then
+      xNegativeAfterShearClosure = 0
+        "Disabled closure variable";
+    end if;
+
     for i in 1:n_trans loop
       for side in Side loop
         // Material
@@ -1414,18 +1436,32 @@ Choose any condition besides none.");
           *boundaries[i, side].Ndot/(2*Aprime[i])) else 2) + inSign(side)*f[i];
 
         // Translational momentum
-        kL[i]*eta*mPhidot_boundaries[i, side, Orient.after]*(if upstream[i] then
-          FCSys.Utilities.inverseOnePlusExp(-kL[i]*eta*Data.m*boundaries[i, side].Ndot/
-          (2*Aprime[i]*Nu_Phi[after(Axis(cartTrans[i]))])) else 0.5) =
-          Aprime[i]*Nu_Phi[after(Axis(cartTrans[i]))]*(boundaries[i, side].phi[Orient.after] -
-          (if inclTrans[after(Axis(cartTrans[i]))] then phi[transCart[after(Axis(cartTrans[i]))]] else 0))
-          "1st transverse";
+        if useXNegativeAfterShearClosure and cartTrans[i] == 1 and side == Side.n then
+          boundaries[i, side].phi[Orient.after] = xNegativeAfterShearClosure
+            "Externally closed x-negative after-face transverse velocity";
+        elseif useXPositiveAfterShearClosure and cartTrans[i] == 1 and side == Side.p then
+          boundaries[i, side].phi[Orient.after] = xPositiveAfterShearClosure;
+        else
+          kL[i]*eta*mPhidot_boundaries[i, side, Orient.after]*(if upstream[i] then
+            FCSys.Utilities.inverseOnePlusExp(-kL[i]*eta*Data.m*boundaries[i, side].Ndot/
+            (2*Aprime[i]*Nu_Phi[after(Axis(cartTrans[i]))])) else 0.5) =
+            Aprime[i]*Nu_Phi[after(Axis(cartTrans[i]))]*(boundaries[i, side].phi[Orient.after] -
+            (if inclTrans[after(Axis(cartTrans[i]))] then phi[transCart[after(Axis(cartTrans[i]))]] else 0))
+            "1st transverse";
+        end if;
+        if useYNegativeBeforeShearClosure and cartTrans[i] == 2 and side == Side.n then
+          boundaries[i, side].phi[Orient.before] = yNegativeBeforeShearClosure;
+        elseif normalizeYPositiveBeforeShearForce and cartTrans[i] == 2 and side == Side.p then
+          mPhidot_boundaries[i, side, Orient.before] = 2*Aprime[i]*Nu_Phi[before(Axis(cartTrans[i]))]*(boundaries[i, side].phi[Orient.before] -
+            (if inclTrans[before(Axis(cartTrans[i]))] then phi[transCart[before(Axis(cartTrans[i]))]] else 0))/(kL[i]*eta);
+        else
         kL[i]*eta*mPhidot_boundaries[i, side, Orient.before]*(if upstream[i] then
           FCSys.Utilities.inverseOnePlusExp(-kL[i]*eta*Data.m*boundaries[i, side].Ndot/
           (2*Aprime[i]*Nu_Phi[before(Axis(cartTrans[i]))])) else 0.5) =
           Aprime[i]*Nu_Phi[before(Axis(cartTrans[i]))]*(boundaries[i, side].phi[Orient.before] -
           (if inclTrans[before(Axis(cartTrans[i]))] then phi[transCart[before(Axis(cartTrans[i]))]] else 0))
           "2nd transverse";
+        end if;
 
         // Thermal energy
         kL[i]*theta*boundaries[i, side].Qdot*(if upstream[i] then
@@ -1764,6 +1800,10 @@ Choose any condition besides none.");
 protected
   partial model Species "Base model for one chemical species in one phase"
 
+    parameter Q.PressureAbsolute trialEntropyPressure=0
+      "Positive termination threshold used only for entropy trial continuation"
+      annotation(HideResult=true);
+
     import assert = FCSys.Utilities.assertEval;
 
     // Material properties
@@ -1976,6 +2016,9 @@ protected
     outer Conditions.Environment environment "Environmental conditions";
 
   initial equation
+    assert(trialEntropyPressure <= 0 or
+      (Data.n_v[1] == -1 and Data.n_v[2] == 0 and size(Data.b_v,1) == 1 and size(Data.b_v,2) == 1 and Data.b_v[1,1] == 1 and not Data.explicitEntropyInverse),
+      "Positive-stop entropy continuation requires the ideal-gas entropy law");
     // Check the initial conditions.
     assert(V >= 0, "The volume of " + getInstanceName() + " is negative.
 Check that the volumes of the other phases are set properly.");
@@ -1999,7 +2042,12 @@ Check that the volumes of the other phases are set properly.");
     if Data.explicitEntropyInverse then
       T = exp((s - Data.B_c[1, 2])/Data.b_c[1, 1]);
     else
-      s = Data.s(T, p);
+      if trialEntropyPressure > 0 then
+        s = smooth(1, Data.s(T, noEvent(if p >= trialEntropyPressure then p else trialEntropyPressure))
+          + noEvent(if p >= trialEntropyPressure then 0 else (trialEntropyPressure-p)/trialEntropyPressure));
+      else
+        s = Data.s(T, p);
+      end if;
     end if;
 
     // Exchange

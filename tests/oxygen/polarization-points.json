@@ -1,0 +1,56 @@
+[
+  {
+    "tag": "g0-air20-V750-r2",
+    "gamma": 0,
+    "air_sccm": 20,
+    "voltage_V": 0.75
+  },
+  {
+    "tag": "g0-air50-V550",
+    "gamma": 0,
+    "air_sccm": 50,
+    "voltage_V": 0.55
+  },
+  {
+    "tag": "g1-air50-V750",
+    "gamma": 1,
+    "air_sccm": 50,
+    "voltage_V": 0.75
+  },
+  {
+    "tag": "g1-air50-V700",
+    "gamma": 1,
+    "air_sccm": 50,
+    "voltage_V": 0.7
+  },
+  {
+    "tag": "g1-air50-V600",
+    "gamma": 1,
+    "air_sccm": 50,
+    "voltage_V": 0.6
+  },
+  {
+    "tag": "g1-air50-V550",
+    "gamma": 1,
+    "air_sccm": 50,
+    "voltage_V": 0.55
+  },
+  {
+    "tag": "g1-air20-V750",
+    "gamma": 1,
+    "air_sccm": 20,
+    "voltage_V": 0.75
+  },
+  {
+    "tag": "g1-air20-V700",
+    "gamma": 1,
+    "air_sccm": 20,
+    "voltage_V": 0.7
+  },
+  {
+    "tag": "g1-air20-V650",
+    "gamma": 1,
+    "air_sccm": 20,
+    "voltage_V": 0.65
+  }
+]

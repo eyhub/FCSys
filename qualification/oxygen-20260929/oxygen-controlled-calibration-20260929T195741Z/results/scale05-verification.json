@@ -1,0 +1,221 @@
+{
+  "status": "PASS",
+  "scale": 0.5,
+  "time_bounds_s": [
+    0.0,
+    0.1
+  ],
+  "samples": 508,
+  "T_K": 303.78,
+  "p_ref_atm": 0.14603527167717584,
+  "pressure_bounds_atm": [
+    0.026,
+    0.22
+  ],
+  "rows": [
+    {
+      "arm": "native",
+      "eta_V": 0.45,
+      "pressure_order": 1.1436073061826884e-15,
+      "reference_current_A": 0.019619995099398775,
+      "range_A": [
+        0.019619995099398775,
+        0.019619995099398775
+      ],
+      "errors": {
+        "rate": 2.4424906541753444e-15,
+        "q": 0.0,
+        "eta_V": 0.0,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 1.1436073061826884e-15,
+        "actual_I0_relative": 0.0,
+        "amplitude_scaling_relative": 3.3306690738754696e-16
+      }
+    },
+    {
+      "arm": "native",
+      "eta_V": 0.49,
+      "pressure_order": 1.1436073061826884e-15,
+      "reference_current_A": 0.04212146016979398,
+      "range_A": [
+        0.04212146016979398,
+        0.04212146016979398
+      ],
+      "errors": {
+        "rate": 4.440892098500626e-16,
+        "q": 0.0,
+        "eta_V": 5.551115123125783e-17,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 1.1436073061826884e-15,
+        "actual_I0_relative": 0.0,
+        "amplitude_scaling_relative": 0.0
+      }
+    },
+    {
+      "arm": "native",
+      "eta_V": 0.53,
+      "pressure_order": 1.1436073061826884e-15,
+      "reference_current_A": 0.09042904244423439,
+      "range_A": [
+        0.09042904244423439,
+        0.09042904244423439
+      ],
+      "errors": {
+        "rate": 3.3306690738754696e-16,
+        "q": 0.0,
+        "eta_V": 0.0,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 1.1436073061826884e-15,
+        "actual_I0_relative": 0.0,
+        "amplitude_scaling_relative": 1.1102230246251565e-16
+      }
+    },
+    {
+      "arm": "disabled",
+      "eta_V": 0.45,
+      "pressure_order": 1.1436073061826884e-15,
+      "reference_current_A": 0.019619995099398775,
+      "range_A": [
+        0.019619995099398775,
+        0.019619995099398775
+      ],
+      "errors": {
+        "rate": 2.4424906541753444e-15,
+        "q": 0.0,
+        "eta_V": 0.0,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 1.1436073061826884e-15,
+        "actual_I0_relative": 0.0,
+        "amplitude_scaling_relative": 3.3306690738754696e-16
+      }
+    },
+    {
+      "arm": "disabled",
+      "eta_V": 0.49,
+      "pressure_order": 1.1436073061826884e-15,
+      "reference_current_A": 0.04212146016979398,
+      "range_A": [
+        0.04212146016979398,
+        0.04212146016979398
+      ],
+      "errors": {
+        "rate": 4.440892098500626e-16,
+        "q": 0.0,
+        "eta_V": 5.551115123125783e-17,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 1.1436073061826884e-15,
+        "actual_I0_relative": 0.0,
+        "amplitude_scaling_relative": 0.0
+      }
+    },
+    {
+      "arm": "disabled",
+      "eta_V": 0.53,
+      "pressure_order": 1.1436073061826884e-15,
+      "reference_current_A": 0.09042904244423439,
+      "range_A": [
+        0.09042904244423439,
+        0.09042904244423439
+      ],
+      "errors": {
+        "rate": 3.3306690738754696e-16,
+        "q": 0.0,
+        "eta_V": 0.0,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 1.1436073061826884e-15,
+        "actual_I0_relative": 0.0,
+        "amplitude_scaling_relative": 1.1102230246251565e-16
+      }
+    },
+    {
+      "arm": "candidate",
+      "eta_V": 0.45,
+      "pressure_order": 0.9999999999999937,
+      "reference_current_A": 0.019619995099398713,
+      "range_A": [
+        0.00349312783634925,
+        0.029557235538339756
+      ],
+      "errors": {
+        "rate": 2.671085574945664e-12,
+        "q": 2.220446049250313e-16,
+        "eta_V": 0.0,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 6.328271240363392e-15,
+        "actual_I0_relative": 2.220446049250313e-16,
+        "amplitude_scaling_relative": 1.3397172260454226e-11
+      }
+    },
+    {
+      "arm": "candidate",
+      "eta_V": 0.49,
+      "pressure_order": 0.9999999999999976,
+      "reference_current_A": 0.04212146016979388,
+      "range_A": [
+        0.007499270223125192,
+        0.06345536342644392
+      ],
+      "errors": {
+        "rate": 1.212141498285746e-12,
+        "q": 2.220446049250313e-16,
+        "eta_V": 5.551115123125783e-17,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 2.4424906541753444e-15,
+        "actual_I0_relative": 2.220446049250313e-16,
+        "amplitude_scaling_relative": 1.4292900196721803e-11
+      }
+    },
+    {
+      "arm": "candidate",
+      "eta_V": 0.53,
+      "pressure_order": 1.0000000000000047,
+      "reference_current_A": 0.09042904244423426,
+      "range_A": [
+        0.016099912552273898,
+        0.13623002928847155
+      ],
+      "errors": {
+        "rate": 5.575540029667536e-13,
+        "q": 2.220446049250313e-16,
+        "eta_V": 0.0,
+        "T_K": 0.0,
+        "oxygen": 0.0,
+        "electron_A": 0.0,
+        "energy_W": 0.0,
+        "order": 4.6629367034256575e-15,
+        "actual_I0_relative": 2.220446049250313e-16,
+        "amplitude_scaling_relative": 1.4651280189070803e-11
+      }
+    }
+  ],
+  "mat_sha256": "321738902b4bd0e5fbc5a06a2fcf7fccdf314a6e71fd395328b59003966620e7",
+  "parent_mat_sha256": "28b1d809fe06560a3aedf1e29e36fcef578d7e40e68cc53a748fe62e35ebed51",
+  "limits": [
+    "Prescribed-reservoir actual-component test, not full-cell gas reconstruction",
+    "Amplitude sensitivity, not fitted or experimentally validated calibration"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "source_files": [
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Assemblies.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Assemblies.mo",
+      "sha256": "4c39e32c6a12bf23221e17efec6ef4631ddabc583ec285705db60ab64773e9fa"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Blocks.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Blocks.mo",
+      "sha256": "62fd6427a38f66394ae13b189a8c90a2c538a7e3ed8869d77cb7d206800e440b"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Characteristics.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Characteristics.mo",
+      "sha256": "41a6d2512ecfc44d59ddb05bde65cef2f5b436f35326915f7d8b56cf25409ed4"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Chemistry.mo",
+      "sha256": "9c4410e100d8cd4345dcb8c10bf40c06574955585f7af45eb35efb9688fbaa33"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Conditions.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Conditions.mo",
+      "sha256": "8ca9c1ad923b2063cd2f6037444fed9f3f0296a5123f40b1d30634378df7f45a"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Connectors.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Connectors.mo",
+      "sha256": "92c090e096df5f5877aeee35be20b8c55c3f7a588dc0f8bed27aa0f24c96afcb"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Icons.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Icons.mo",
+      "sha256": "8e805bd3d22d718ca55556c02ea56004be944311f2e6bdd35f14d09536c1d920"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/package.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/package.mo",
+      "sha256": "0ced6ff31643d0180ccd7eab03906f3791d49daef3b1a5bbbef2201f97186ce7"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/package.order",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/package.order",
+      "sha256": "cc2442c2362b79db2f9ca5e8ea76e323f58d4cb7874d01a881cb098d88580464"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Phases.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Phases.mo",
+      "sha256": "dd1d0d98ea6b0d5b9ed304ab0a000c206939dc4d8ce97534f5182613f705ad81"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Quantities.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Quantities.mo",
+      "sha256": "0a993e53f7c6f4cde7c98251343e25b2e1d57744aabaa0094fe7f92d7367c8f5"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Regions.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Regions.mo",
+      "sha256": "7c7206d9a5422bc194a325213e6039fb9e858fd7e3a7f659aab89673e977509e"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Species.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Species.mo",
+      "sha256": "c91569d3913402242463c9e0564d90b16fdebb60bfe706e9013877452ee615e2"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Subregions.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Subregions.mo",
+      "sha256": "e828d10223c4130af6e8d196536b01c569865ef8648d604cf67935a640253f5b"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Units.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Units.mo",
+      "sha256": "0a676c03041dd5e2361860905ae2d2aa36ea6eaec306c3c685d23e5f93d0d70b"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/UsersGuide.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/UsersGuide.mo",
+      "sha256": "29dbae30e8565281dec2ecd218a9b238529ca84bbb7e70f0b6d0579248330d97"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Utilities.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/FCSys/Utilities.mo",
+      "sha256": "3c23596d686394a0165d160bee5004815fa82c74f60906a6ee59e37fbf0a779f"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/harness/DCell.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/harness/DCell.mo",
+      "sha256": "61a40066b1749f7200099ffc0b8af64ba4e6607cb6a8d3a4b9f7d28b20522ad1"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/harness/KulikovskyDistributed.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/harness/KulikovskyDistributed.mo",
+      "sha256": "814218a3dfd6c631a8733e5a3c5f3c23b4348258aa37b16a0a10d61bf6215fac"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/harness/OxygenCoupled.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/harness/OxygenCoupled.mo",
+      "sha256": "74e7c9f57d1eb5327ec35e8380429d953aab0e7d087d3c9f6124adfa5414c37c"
+    },
+    {
+      "source": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/harness/OxygenLocal.mo",
+      "copy": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/harness/OxygenLocal.mo",
+      "sha256": "9f1ec363a78c6f6425a6d33f7fe533ff8de7ecc2a1b5ab73f22a8f8423776170"
+    }
+  ],
+  "parent_audit": {
+    "path": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/results/integrator-cell-audit.json",
+    "sha256": "45260cc649cc9e4181ac84344f7adbd5c008293821d7c43d224faeab7c076818"
+  },
+  "correction": "Initial runtime-identity.json parent_audit field used a nonexistent shortened name; the exact authoritative audit is this pinned integrator-cell-audit.json. RUNTIME_CORRECTION.md speculative alternative audit name is superseded by this record; raw released records retained."
+}

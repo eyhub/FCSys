@@ -1,0 +1,298 @@
+{
+  "status": "COMPARISON_COMPLETE",
+  "rows": [
+    {
+      "air_sccm": 20,
+      "voltage_V": 0.65,
+      "native_current_A": 0.7195003889798781,
+      "native_current_density_A_cm2": 0.32704563135449005,
+      "candidate_status": "PASS",
+      "candidate_retained": false,
+      "candidate_current_A": 0.554447938887809,
+      "candidate_current_density_A_cm2": 0.2520217904035495,
+      "current_difference_A": -0.16505245009206915,
+      "current_difference_percent": -22.9398694733277,
+      "candidate_power_W": 0.36039116027707585,
+      "native_power_W": 0.4676752528369208,
+      "boundary_parameter_match": true
+    },
+    {
+      "air_sccm": 20,
+      "voltage_V": 0.7,
+      "native_current_A": 0.45466722241214436,
+      "native_current_density_A_cm2": 0.20666691927824743,
+      "candidate_status": "PASS",
+      "candidate_retained": false,
+      "candidate_current_A": 0.39860613713854776,
+      "candidate_current_density_A_cm2": 0.18118460779024897,
+      "current_difference_A": -0.0560610852735966,
+      "current_difference_percent": -12.33013564870059,
+      "candidate_power_W": 0.2790242959969834,
+      "native_power_W": 0.31826705568850105,
+      "boundary_parameter_match": true
+    },
+    {
+      "air_sccm": 20,
+      "voltage_V": 0.75,
+      "native_current_A": 0.25628437242057783,
+      "native_current_density_A_cm2": 0.1164928965548081,
+      "candidate_status": "PASS",
+      "candidate_retained": false,
+      "candidate_current_A": 0.2568976064282861,
+      "candidate_current_density_A_cm2": 0.11677163928558457,
+      "current_difference_A": 0.000613234007708241,
+      "current_difference_percent": 0.23927873631790497,
+      "candidate_power_W": 0.19267320482121456,
+      "native_power_W": 0.19221327931543336,
+      "boundary_parameter_match": true
+    },
+    {
+      "air_sccm": 50,
+      "voltage_V": 0.55,
+      "native_current_A": 1.6217854383859307,
+      "native_current_density_A_cm2": 0.7371751992663321,
+      "candidate_status": "PASS",
+      "candidate_retained": false,
+      "candidate_current_A": 1.3260676373084948,
+      "candidate_current_density_A_cm2": 0.6027580169584067,
+      "current_difference_A": -0.29571780107743595,
+      "current_difference_percent": -18.23408905260284,
+      "candidate_power_W": 0.7293372005196722,
+      "native_power_W": 0.891981991112262,
+      "boundary_parameter_match": true
+    },
+    {
+      "air_sccm": 50,
+      "voltage_V": 0.6,
+      "native_current_A": 1.1958903814957789,
+      "native_current_density_A_cm2": 0.5435865370435358,
+      "candidate_status": "PASS",
+      "candidate_retained": false,
+      "candidate_current_A": 1.0515917317470826,
+      "candidate_current_density_A_cm2": 0.47799624170321936,
+      "current_difference_A": -0.14429864974869622,
+      "current_difference_percent": -12.066210413718048,
+      "candidate_power_W": 0.6309550390482496,
+      "native_power_W": 0.7175342288974673,
+      "boundary_parameter_match": true
+    },
+    {
+      "air_sccm": 50,
+      "voltage_V": 0.65,
+      "native_current_A": 0.8151860181948699,
+      "native_current_density_A_cm2": 0.3705390991794863,
+      "candidate_status": "PASS",
+      "candidate_retained": true,
+      "candidate_current_A": 0.7780197059194052,
+      "candidate_current_density_A_cm2": 0.35364532087245687,
+      "current_difference_A": -0.03716631227546474,
+      "current_difference_percent": -4.559243098619992,
+      "candidate_power_W": 0.5057128088476134,
+      "native_power_W": 0.5298709118266655,
+      "boundary_parameter_match": true
+    },
+    {
+      "air_sccm": 50,
+      "voltage_V": 0.7,
+      "native_current_A": 0.5061589589992715,
+      "native_current_density_A_cm2": 0.23007225409057797,
+      "candidate_status": "PASS",
+      "candidate_retained": false,
+      "candidate_current_A": 0.5286352417656616,
+      "candidate_current_density_A_cm2": 0.24028874625711888,
+      "current_difference_A": 0.02247628276639002,
+      "current_difference_percent": 4.440558122457805,
+      "candidate_power_W": 0.3700446692359631,
+      "native_power_W": 0.3543112712994901,
+      "boundary_parameter_match": true
+    },
+    {
+      "air_sccm": 50,
+      "voltage_V": 0.75,
+      "native_current_A": 0.2815862921366874,
+      "native_current_density_A_cm2": 0.12799376915303973,
+      "candidate_status": "PASS",
+      "candidate_retained": false,
+      "candidate_current_A": 0.32357084989492585,
+      "candidate_current_density_A_cm2": 0.1470776590431481,
+      "current_difference_A": 0.04198455775823845,
+      "current_difference_percent": 14.910014773680235,
+      "candidate_power_W": 0.24267813742119437,
+      "native_power_W": 0.21118971910251555,
+      "boundary_parameter_match": true
+    }
+  ],
+  "failures": [],
+  "controls": [
+    {
+      "tag": "g0-air20-V750-r2",
+      "status": "PASS"
+    },
+    {
+      "tag": "g0-air50-V550",
+      "status": "PASS"
+    }
+  ],
+  "monotonic": {
+    "20": {
+      "native": true,
+      "candidate": true
+    },
+    "50": {
+      "native": true,
+      "candidate": true
+    }
+  },
+  "matched_current": [
+    {
+      "air_sccm": 20,
+      "method": "Piecewise linear interpolation of accepted points within shared current range only; no extrapolation",
+      "current_A": [
+        0.2568976064282861,
+        0.39860613713854776,
+        0.45466722241214436,
+        0.554447938887809
+      ],
+      "native_voltage_V": [
+        0.7498454417789304,
+        0.7141295190778789,
+        0.7,
+        0.6811615898097596
+      ],
+      "candidate_voltage_V": [
+        0.75,
+        0.7,
+        0.6820134634467987,
+        0.65
+      ],
+      "delta_voltage_mV": [
+        0.1545582210695784,
+        -14.12951907787896,
+        -17.98653655320126,
+        -31.161589809759583
+      ],
+      "max_abs_delta_mV": 31.161589809759583
+    },
+    {
+      "air_sccm": 50,
+      "method": "Piecewise linear interpolation of accepted points within shared current range only; no extrapolation",
+      "current_A": [
+        0.32357084989492585,
+        0.5061589589992715,
+        0.5286352417656616,
+        0.7780197059194052,
+        0.8151860181948699,
+        1.0515917317470826,
+        1.1958903814957789,
+        1.3260676373084948
+      ],
+      "native_voltage_V": [
+        0.7406523446631356,
+        0.7,
+        0.6963633795006663,
+        0.6560134397894167,
+        0.65,
+        0.6189515361076441,
+        0.6,
+        0.5847172145218991
+      ],
+      "candidate_voltage_V": [
+        0.75,
+        0.7054802987884308,
+        0.7,
+        0.65,
+        0.643207216241679,
+        0.6,
+        0.5737137856502289,
+        0.55
+      ],
+      "delta_voltage_mV": [
+        9.347655336864435,
+        5.480298788430815,
+        3.636620499333665,
+        -6.013439789416708,
+        -6.7927837583210415,
+        -18.951536107644106,
+        -26.286214349771075,
+        -34.717214521899024
+      ],
+      "max_abs_delta_mV": 34.717214521899024
+    }
+  ],
+  "physical_and_numerical_gates_pass": true,
+  "provisional_current_deviation_limit_percent": 5,
+  "max_abs_current_deviation_percent": 22.9398694733277,
+  "provisional_packaging_screen_pass": false,
+  "input_pins": [
+    {
+      "path": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air20-V650.mat",
+      "sha256": "07fdb2017bccbccc4e85cec9dfb9335d99d481f95b29d50d75ad934b32ac82d6"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/native-complete/g1-air20-V650.mat",
+      "sha256": "e91f08718b3576145d21f4044c40082dac7e8c8050162483983539070b86dd6a"
+    },
+    {
+      "path": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air20-V700.mat",
+      "sha256": "d87512f1179404c07b047367cd7f5aeb05948f2daccb84e97e625d0e5889ec39"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/native-complete/g1-air20-V700.mat",
+      "sha256": "8ef727718e026e322d84508ab082525d9e46fcf10460b28414d49dc2cc5ebe4c"
+    },
+    {
+      "path": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/paper20-v075.mat",
+      "sha256": "f6e1122eec12be5d8bbdecb314c54d9b5d09bdb0c7c83a85beb188ee872b95f7"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/native-complete/g1-air20-V750.mat",
+      "sha256": "125a3b325895a127c02fe1d4340c9dab892eca316102b2435437f7a662c8b0e9"
+    },
+    {
+      "path": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air50-V550.mat",
+      "sha256": "11e55c5f94a5190f187731a6fed03697206307f69387c63c9739134ffd799e4d"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/native-complete/g1-air50-V550.mat",
+      "sha256": "8474b6b1962d91b3327d000157408facd4fd4d3283fb32ef768174fae9b2e5f8"
+    },
+    {
+      "path": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air50-V600.mat",
+      "sha256": "2f9920ca24b2caf8f5fcc81fda1683c5ca19407629f5f473f9cc8e848edbead4"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/native-complete/g1-air50-V600.mat",
+      "sha256": "1c3cf9cd373707a12ce2b4106aaa175ae91654f5403eb0d4c9ba08f85f81dbbc"
+    },
+    {
+      "path": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air50-V650.mat",
+      "sha256": "98f58c387b01c0a2a8a6e0ec1f35a470e1d665a84e97adb5e73e8b5a72f86333"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/released-OxygenCoupled_Cell-translate/native1.mat",
+      "sha256": "9c9207e7cbf499063d5bf5c170002e18b0ff48c7c0428bed0e9c0a804da0d17a"
+    },
+    {
+      "path": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/sweep-air50-V700.mat",
+      "sha256": "262e5ef11b8e44b2aa4ab3d75ce8ce5944dba3048e5f50beff38f0899737a04b"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/native-complete/g1-air50-V700.mat",
+      "sha256": "001337495439890a0cc1d7925918394628fc32ebf0bf5a111aa7d16e3cc4b4e7"
+    },
+    {
+      "path": "runs/fcsys-port/kulikovsky-fig8-stable-asinh-20260921T154441Z/work/released-DCell_PaperTen-translate/paper50-v075.mat",
+      "sha256": "d9aee720a3114b96e6f96f3ceadec892e0aaa2915429ad56022699ebd018e84d"
+    },
+    {
+      "path": "runs/fcsys-port/oxygen-polarization-option-20260929T204628Z/work/native-complete/g1-air50-V750.mat",
+      "sha256": "ebbd8ec52efb981498733a71e8422b27a6ee68a4b4e3963f2ad8e77c5f514068"
+    }
+  ],
+  "limitations": [
+    "Original kinetic law in the same dry ten-section harness, not author default TestStand or empirical data",
+    "Native-qualified range only; lower voltage native failures remain excluded",
+    "Fixed diagnostic gamma1 and p_ref; no fitting",
+    "Sparse sampled curves cannot exclude every between-point feature"
+  ]
+}

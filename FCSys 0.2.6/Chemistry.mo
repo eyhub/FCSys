@@ -136,6 +136,15 @@ package Chemistry "Chemical reactions and related models"
   package Electrochemistry "Models associated with electrochemical reactions"
     extends Modelica.Icons.Package;
 
+    function asinh
+      "Inverse hyperbolic sine with cancellation-safe negative branch"
+      input Real u;
+      output Real y;
+    algorithm
+      y := if u >= 0 then log(u + sqrt(u*u + 1))
+                     else -log(-u + sqrt(u*u + 1));
+    end asinh;
+
     model DoubleLayer "Electrolytic double layer"
       extends FCSys.Icons.Names.Top2;
 
@@ -256,7 +265,7 @@ package Chemistry "Chemical reactions and related models"
     end DoubleLayer;
 
     model ElectronTransfer "Electron transfer"
-      import Modelica.Math.asinh;
+      import FCSys.Chemistry.Electrochemistry.asinh;
       extends FCSys.Icons.Names.Top2;
 
       parameter Integer n_trans(min=1,max=3)
@@ -296,6 +305,8 @@ package Chemistry "Chemical reactions and related models"
           Placement(transformation(extent={{-10,-30},{10,-10}}),
             iconTransformation(extent={{-10,-50},{10,-30}})));
 
+      Real qO2=1 "Run-local positive kinetic multiplier; native default is one";
+
     equation
       // Aliases
       I = positive.Ndot;
@@ -310,9 +321,9 @@ package Chemistry "Chemical reactions and related models"
 
       // Reaction rate
       if abs(alpha - 0.5) < Modelica.Constants.eps and fromI then
-        Deltag = 2*T*asinh(0.5*exp(E_A*(1/T - 1/(300*U.K)))*I/I0);
+        Deltag = 2*T*asinh(0.5*exp(E_A*(1/T - 1/(300*U.K)))*I/(I0*qO2));
       else
-        I*exp(E_A*(1/T - 1/(300*U.K))) = I0*(exp((1 - alpha)*Deltag/T) - exp(-
+        I*exp(E_A*(1/T - 1/(300*U.K))) = I0*qO2*(exp((1 - alpha)*Deltag/T) - exp(-
           alpha*Deltag/T));
       end if;
 

@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "reviewer": "Primary",
+  "scope": "All825 functions and entire body identical after exactly ten indexed-comprehension-to-scalar binding substitutions",
+  "flat_sha256": "12ebfcf1b8b9745f27b0b5535c5bd200fa8f327be33ec3f8c0f258692124d310",
+  "parent_flat_sha256": "78deb724e6e9e4da607d22c43c85d19ab732cbd17d65cb8cdb7c43d6e25fb1fa",
+  "changes": [
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[1,1]",
+      "new": "(cell.caCL.subregions[1,1,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[2,1]",
+      "new": "(cell.caCL.subregions[1,2,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[3,1]",
+      "new": "(cell.caCL.subregions[1,3,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[4,1]",
+      "new": "(cell.caCL.subregions[1,4,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[5,1]",
+      "new": "(cell.caCL.subregions[1,5,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[6,1]",
+      "new": "(cell.caCL.subregions[1,6,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[7,1]",
+      "new": "(cell.caCL.subregions[1,7,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[8,1]",
+      "new": "(cell.caCL.subregions[1,8,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[9,1]",
+      "new": "(cell.caCL.subregions[1,9,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    },
+    {
+      "old": "array({(cell.caCL.subregions[1,j,1].gas.O2.p / pO2_ref) ^ oxygenOrder} for j in 1:10)[10,1]",
+      "new": "(cell.caCL.subregions[1,10,1].gas.O2.p / pO2_ref) ^ oxygenOrder"
+    }
+  ],
+  "inherited_component_verification": {
+    "path": "runs/fcsys-port/oxygen-variable-binding-20260929T170713Z/results/local-verification.json",
+    "sha256": "7f83e000515289c352c2863a15df1983f4a3a2dae64aebc8cc8a0163b41486b8"
+  },
+  "minimal_reproducer": {
+    "path": "runs/fcsys-port/oxygen-binding-probe-20260929T172630Z/results/verification.json",
+    "sha256": "e2fe7358994b4f1a36ef4f4f012f8092c14f592fda0e633ab7529f3d37089a87"
+  },
+  "test_stand": {
+    "model": "OxygenCoupled.Cell",
+    "classification": "test_stand",
+    "basis": "Same DCell.PaperTen fixed-feed ten-section cell at50sccm/0.65V. Only syntax representing ten local pressure bindings changes; entire source/body audit retains topology and physical laws."
+  },
+  "acceptance": "Translate once; generated live-binding gate remains before build/native"
+}

@@ -1,0 +1,54 @@
+{
+  "status": "DISCRIMINATOR_PASS",
+  "time_bounds": [
+    0.0,
+    1.0
+  ],
+  "samples": 502,
+  "rows": [
+    {
+      "arm": "nested",
+      "site": 1,
+      "max_abs_error": 1.2642411178086967,
+      "p_final": 0.7357588821913034,
+      "q_final": 2.0
+    },
+    {
+      "arm": "nested",
+      "site": 2,
+      "max_abs_error": 1.2642411178086967,
+      "p_final": 0.7357588821913034,
+      "q_final": 2.0
+    },
+    {
+      "arm": "literal",
+      "site": 1,
+      "max_abs_error": 0.0,
+      "p_final": 0.2706705713145688,
+      "q_final": 0.2706705713145688
+    },
+    {
+      "arm": "literal",
+      "site": 2,
+      "max_abs_error": 0.0,
+      "p_final": 0.2706705713145688,
+      "q_final": 0.2706705713145688
+    },
+    {
+      "arm": "explicitEquation",
+      "site": 1,
+      "max_abs_error": 0.0,
+      "p_final": 0.09957416039423758,
+      "q_final": 0.09957416039423758
+    },
+    {
+      "arm": "explicitEquation",
+      "site": 2,
+      "max_abs_error": 0.0,
+      "p_final": 0.09957416039423758,
+      "q_final": 0.09957416039423758
+    }
+  ],
+  "conclusion": "Nested comprehension freezes; explicit literal and explicit equation track state. Standalone compiler fixture, not physical validation.",
+  "mat_sha256": "053eabdc843853093ee357bbb1931322e02b4cb4d3fc71e71eddfb96e4a267cf"
+}

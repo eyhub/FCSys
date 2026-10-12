@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "comparison": "Prior nested-comprehension and two first repair variants: all ten cathode factors initialization-only. Explicit-literal variant: all ten regular.",
+  "regular_equations": [
+    {
+      "section": 1,
+      "eqIndex": 55923,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,1,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,1,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 2,
+      "eqIndex": 56103,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,2,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,2,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 3,
+      "eqIndex": 56362,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,3,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,3,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 4,
+      "eqIndex": 56621,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,4,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,4,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 5,
+      "eqIndex": 56880,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,5,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,5,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 6,
+      "eqIndex": 57139,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,6,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,6,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 7,
+      "eqIndex": 57398,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,7,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,7,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 8,
+      "eqIndex": 57657,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,8,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,8,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 9,
+      "eqIndex": 57916,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,9,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,9,1].gas.O2.p"
+      ]
+    },
+    {
+      "section": 10,
+      "eqIndex": 58175,
+      "equation": [
+        "(6.758115730408577e-4 * cell.caCL.subregions[1,10,1].gas.O2.p) ^ oxygenOrder"
+      ],
+      "uses": [
+        "oxygenOrder",
+        "cell.caCL.subregions[1,10,1].gas.O2.p"
+      ]
+    }
+  ],
+  "source_delta": "Ten scalar pressure bindings replace indexed nested array comprehension; physical formula unchanged."
+}

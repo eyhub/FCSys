@@ -1,0 +1,307 @@
+{
+  "status": "PASS",
+  "criterion": "All ten cathode qO2 have generated regular defining equations",
+  "rows": [
+    {
+      "section": 1,
+      "equations": [
+        {
+          "eqIndex": 55923,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,1,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,1,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,1,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 2,
+      "equations": [
+        {
+          "eqIndex": 56103,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,2,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,2,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,2,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 3,
+      "equations": [
+        {
+          "eqIndex": 56362,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,3,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,3,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,3,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 4,
+      "equations": [
+        {
+          "eqIndex": 56621,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,4,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,4,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,4,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 5,
+      "equations": [
+        {
+          "eqIndex": 56880,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,5,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,5,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,5,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 6,
+      "equations": [
+        {
+          "eqIndex": 57139,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,6,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,6,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,6,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 7,
+      "equations": [
+        {
+          "eqIndex": 57398,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,7,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,7,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,7,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 8,
+      "equations": [
+        {
+          "eqIndex": 57657,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,8,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,8,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,8,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 9,
+      "equations": [
+        {
+          "eqIndex": 57916,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,9,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,9,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,9,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    },
+    {
+      "section": 10,
+      "equations": [
+        {
+          "eqIndex": 58175,
+          "section": "regular",
+          "tag": "assign",
+          "defines": [
+            "cell.caCL.subregions[1,10,1].graphite.'e-Transfer'.qO2"
+          ],
+          "uses": [
+            "oxygenOrder",
+            "cell.caCL.subregions[1,10,1].gas.O2.p"
+          ],
+          "equation": [
+            "(6.758115730408577e-4 * cell.caCL.subregions[1,10,1].gas.O2.p) ^ oxygenOrder"
+          ],
+          "source": {
+            "info": {
+              "file": "C:/Thesis-cell/runs/fcsys-port/oxygen-explicit-binding-20260929T172830Z/work/FCSys/Chemistry.mo",
+              "lineStart": 308,
+              "lineEnd": 308,
+              "colStart": 7,
+              "colEnd": 80
+            }
+          }
+        }
+      ],
+      "continuous": true
+    }
+  ],
+  "info_sha256": "7612ccffc2d3ec760f762ab36c7e15457e3353d2f778a17971c133918ab5670c"
+}

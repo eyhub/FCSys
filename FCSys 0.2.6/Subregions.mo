@@ -1036,7 +1036,11 @@ package Subregions "Control volumes with multi-species transfer and storage"
     Connectors.InertNodeFixed exchCommon(final n_trans=n_trans) if n_spec > 0 "Connector for exchange among all species"
       annotation (HideResult=true, Placement(transformation(extent={{76,32},{96,
               52}}), iconTransformation(extent={{100,18},{120,38}})));
-    Connectors.InertNodeFixed exchGasLiq(final n_trans=n_trans) if gas.n_spec > 0 or liquid.n_spec > 0
+    Connectors.InertNodeWeightedSignals exchGasLiqDry(
+      final n_trans=n_trans, final n_spec=1,
+      useMean={gasLiq.k_Phi[cartTrans[j]] > 0 for j in 1:n_trans})
+      if gas.n_spec > 0 and liquid.n_spec == 0;
+    Connectors.InertNodeFixed exchGasLiq(final n_trans=n_trans) if liquid.n_spec > 0
       "Connector for exchange between gas and liquid" annotation (HideResult=
           true, Placement(transformation(extent={{76,44},{96,64}}),
           iconTransformation(extent={{100,18},{120,38}})));
@@ -1231,6 +1235,11 @@ package Subregions "Control volumes with multi-species transfer and storage"
         color={221,23,47},
         smooth=Smooth.None));
     // Gas-liquid
+    connect(gas.exchangeWeight, exchGasLiqDry.weights[1]);
+    for j in 1:n_trans loop
+      connect(gas.exchangeWeightedPhi[j], exchGasLiqDry.weightedPhi[1,j]);
+    end for;
+    connect(gas.inter[2], exchGasLiqDry.node);
     connect(gas.inter[2], exchGasLiq.node) annotation (Line(
         points={{-25,-7.5},{-25,54},{86,54}},
         color={221,23,47},
@@ -1455,7 +1464,11 @@ in diagram)")}));
     Connectors.InertNodeFixed exchCommon(final n_trans=n_trans) if n_spec > 0 "Among all phases" annotation (HideResult=
           true,Placement(transformation(extent={{56,32},{76,52}}),
           iconTransformation(extent={{100,18},{120,38}})));
-    Connectors.InertNodeFixed exchGasLiq(final n_trans=n_trans) if gas.n_spec > 0 or liquid.n_spec > 0 "Between gas and liquid" annotation (
+    Connectors.InertNodeWeightedSignals exchGasLiqDry(
+      final n_trans=n_trans, final n_spec=1,
+      useMean={gasLiq.k_Phi[cartTrans[j]] > 0 for j in 1:n_trans})
+      if gas.n_spec > 0 and liquid.n_spec == 0;
+    Connectors.InertNodeFixed exchGasLiq(final n_trans=n_trans) if liquid.n_spec > 0 "Between gas and liquid" annotation (
         HideResult=true, Placement(transformation(extent={{56,44},{76,64}}),
           iconTransformation(extent={{100,18},{120,38}})));
 
@@ -1604,6 +1617,11 @@ in diagram)")}));
         color={221,23,47},
         smooth=Smooth.None));
     // Gas-liquid
+    connect(gas.exchangeWeight, exchGasLiqDry.weights[1]);
+    for j in 1:n_trans loop
+      connect(gas.exchangeWeightedPhi[j], exchGasLiqDry.weightedPhi[1,j]);
+    end for;
+    connect(gas.inter[2], exchGasLiqDry.node);
     connect(gas.inter[2], exchGasLiq.node) annotation (Line(
         points={{-5,-7.5},{-5,54},{66,54}},
         color={221,23,47},

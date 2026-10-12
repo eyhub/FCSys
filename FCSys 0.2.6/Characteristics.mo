@@ -1425,10 +1425,11 @@ package Characteristics "Data and functions to correlate physical properties"
           // native oracle in residual-enthalpy-oracle-swap-20260905T112622Z.
           // Same powers, selected rows, and zero integration constant.
           h_resid := sum(sum(
-            b_v[k,j]*(n_v[1]-n_v[2]+k-j+1)
-              *T^(n_v[2]-n_v[1]-k+j)
-              *(if n_v[1]+k == 0 then log(p)
-                else p^(n_v[1]+k)/(n_v[1]+k))
+            if b_v[k,j]*(n_v[1]-n_v[2]+k-j+1) == 0 then 0 else
+              b_v[k,j]*(n_v[1]-n_v[2]+k-j+1)
+                *T^(n_v[2]-n_v[1]-k+j)
+                *(if n_v[1]+k == 0 then log(p)
+                  else p^(n_v[1]+k)/(n_v[1]+k))
             for j in 1:size(b_v,2))
             for k in rowLimits[1]:rowLimits[2]) annotation (Inline=true);
           // Note:  The partial derivative (delh/delp)_T is equal to v +
