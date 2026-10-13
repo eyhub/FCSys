@@ -1,18 +1,14 @@
-# September 29 FCSys dependency
+# FCSys
 
-Read OXYGEN.md and scripts/oxygen/README.md before changing this dependency.
-This repository owns the selected oxygen-dependent full-cell model and its bench.
-The DroneEnergySystem parent owns integration and the accepted dependency commit.
+Read OXYGEN.md, scripts/oxygen/README.md and [session rules](SESSION_README.md).
 
-- Preserve original authorship, licenses and all historical qualification records.
-- The selected baseline is a dry ten-section cell; use explicit oxygen bindings.
-- Current Modelica source is source-verified. Changes require a new, explicit
-  qualification decision; never rewrite old extraction/serialization manifests.
-- One owner runs a compiler session. Use the bounded run_cell.py command, new
-  ignored build directories and explicit installed tool/library paths.
-- Do not install tools implicitly or use retained run instructions as authority.
-- Process completion, numerical qualification and hardware validation are distinct.
-- Keep warning/operating-point limits with any result. No 300 W stack is qualified.
-- Commit dependency work here; advance the parent pin only after acceptance.
-- The source-snapshot remote is historical provenance. Never push to that original
-  research checkout. origin is the user's fork; do not rewrite its existing branches.
+- Own the oxygen-dependent cell and its bench. Preserve the dry ten-section baseline,
+  explicit oxygen bindings, licenses and historical qualification records.
+- Preserve public interfaces and agreed versions. Coordinate changes with affected
+  consumers; verify both sides before system acceptance. Do not edit parent pins.
+- Use the bounded runner, explicit installed tool paths and a new output directory.
+  One owner controls the compiler. Do not install tools incidentally.
+- Qualify source changes. Retain warnings and operating limits; a successful process
+  does not establish model validity or a qualified 300 W stack.
+- Preserve unrelated work. Never push to source-snapshot or rewrite existing branches.
+  Return changed paths, source revision, checks, limitations and the next step.
